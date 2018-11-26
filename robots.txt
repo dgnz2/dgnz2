@@ -1,0 +1,38 @@
+# allow
+User-agent: Googlebot
+Disallow: 
+User-agent: Mediapartners-Google*
+Disallow: 
+User-agent: Googlebot-Image
+Disallow: 
+User-agent: Googlebot-Mobile
+Disallow: 
+User-agent: AdsBot-Google
+Disallow: 
+User-agent: Googlebot-News
+Disallow: 
+User-agent: Googlebot-Video
+Disallow: 
+
+# - not these on patterns
+User-agent: Slurp
+User-agent: baiduspider
+User-agent: facebookexternalhit
+User-agent: twitterbot
+User-agent: DuckDuckBot
+User-agent: BingBot
+User-agent: Yandex
+Disallow: 
+Disallow: /*?
+Disallow: /*.txt$
+Disallow: /*.js$
+Disallow: /*.php$
+Disallow: /*.inc$
+Disallow: /common
+
+# not anyone below 
+User-agent: *
+Disallow: /
+
+
+

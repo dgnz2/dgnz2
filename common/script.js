@@ -1,6 +1,11 @@
 //////////// funcs //////////////
 function zas_opts(a) {
-	if (a == 1) return '<option>Poster</option> <option>Bag</option> <option>T-Shirt</option> ';
+	if (a == 1) return '' +
+		'<option>Poster</option>' +
+		'<option>Bag</option> ' +
+		'<option>T-Shirt</option>' +
+		'<option>Signature Poster</option>' +
+		' ';
 	if (a == 2) return '' +
 		/////// PASTE FROM GDOC COL FROM BELOW ///
 		// 

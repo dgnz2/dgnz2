@@ -54,7 +54,7 @@ function ga_evCatVal(evCat, evVal) {
 ///////////////////    ORDER FORM   //////////////////////
 ////////////////////////////////////////////////////
 if (zdsite == "orderform") {
-	$('body').append('<div id="fdbk" style="box-shadow: 0 0 5px #555555;opacity:0.75;background-color: #008000; bottom: 30px; font: 12px/1em sans-serif; padding: 10px; position: fixed; right: 30px;"><a id="fdbk_btn" style="font-size:18px;font-weight:bold;text-decoration:none;color:#fff;display:block;height:100%;width:100%;cursor:pointer">Open Order Form</a></div>');
+	$('body').append('<div id="fdbk" style="box-shadow: 0 0 5px #555555;opacity:0.75;background-color: #008000; bottom: 30px; font: 12px/1em sans-serif; padding: 10px; position: fixed; right: 30px;"><a id="fdbk_btn" style="font-size:18px;font-weight:bold;text-decoration:none;color:#fff;display:block;height:100%;width:100%;cursor:pointer">Open Image Request Form</a></div>');
 	////////////// <GDBSFRM 1/2 :: LINK> //////////////////////// 
 	// v2: now fdbk_openClose(url) 
 	// req detectmob(), viewport(), ga_evCatVal(), JQ 
@@ -103,7 +103,7 @@ if (zdsite == "dyn_catcher") {
 	var singleinputid = "1946163534";
 	var div_id = 'crecdiv'; // receiving div, eg 'crecdiv' for /c/
 	var require_bootstrap = "yes"; // "yes"|"no"; if bootstrap not already available.
-	var form_headline = '<div style="font-size:20px;line-height:2.5em;"> <!-- <img style="height:1em;display:inline-block;vertical-align:middle;" src="" /> --> Order an image for product </div> ';
+	var form_headline = '<div style="font-size:20px;line-height:2.5em;"> <!-- <img style="height:1em;display:inline-block;vertical-align:middle;" src="" /> --> Request an image for product </div> ';
 	var thankyou_headline = '<h2>Thank You!</h2> <h3>Your request has been sent.</h3>';
 	var form_elements = '' + // bs form markup
 		// 

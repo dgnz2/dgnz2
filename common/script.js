@@ -96,6 +96,7 @@ function zas_opts(a) {
 ' <option>Anthony van Dyck — Paintings & Drawings Vol 2</option> ' + 
 ' <option>Ulrika Pasch — The Paintings</option> ' + 
 ' <option>Ferdinand Hodler — Paintings & Drawings</option> ' + 
+' <option>Elizabeth Thompson — Paintings & Drawings</option> ' + 
 
 
 		// 

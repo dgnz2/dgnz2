@@ -98,6 +98,7 @@ function zas_opts(a) {
 ' <option>Ferdinand Hodler — Paintings & Drawings</option> ' + 
 ' <option>Elizabeth Thompson — Paintings & Drawings</option> ' + 
 ' <option>Vasily Polenov — Paintings & Drawings</option> ' + 
+' <option>Nicolas Poussin — Paintings & Drawings</option> ' + 
 
 
 		// 

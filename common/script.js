@@ -99,6 +99,8 @@ function zas_opts(a) {
 ' <option>Elizabeth Thompson — Paintings & Drawings</option> ' + 
 ' <option>Vasily Polenov — Paintings & Drawings</option> ' + 
 ' <option>Nicolas Poussin — Paintings & Drawings</option> ' + 
+' <option>Alphonse Mucha — Paintings & Drawings</option> ' + 
+' <option>Lavinia Fontana — Paintings & Drawings</option> ' + 
 
 
 		// 

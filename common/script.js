@@ -101,6 +101,7 @@ function zas_opts(a) {
 ' <option>Nicolas Poussin — Paintings & Drawings</option> ' + 
 ' <option>Alphonse Mucha — Paintings & Drawings</option> ' + 
 ' <option>Lavinia Fontana — Paintings & Drawings</option> ' + 
+' <option>Gustave Loiseau — The Paintings</option> ' + 
 
 
 		// 

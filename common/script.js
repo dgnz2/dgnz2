@@ -102,6 +102,7 @@ function zas_opts(a) {
 ' <option>Alphonse Mucha — Paintings & Drawings</option> ' + 
 ' <option>Lavinia Fontana — Paintings & Drawings</option> ' + 
 ' <option>Gustave Loiseau — The Paintings</option> ' + 
+' <option>Ivan Aivazovsky — Paintings & Drawings</option> ' + 
 
 
 		// 

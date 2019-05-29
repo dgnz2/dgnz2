@@ -10,7 +10,6 @@ function zas_opts(a) {
 		/////// PASTE FROM GDOC COL FROM BELOW ///
 		// 
 		
-		
 ' <option>Oscar-Claude Monet — The Paintings</option> ' + 
 ' <option>Édouard Manet — The Paintings</option> ' + 
 ' <option>Paul Gauguin — Paintings & Drawings</option> ' + 
@@ -103,7 +102,7 @@ function zas_opts(a) {
 ' <option>Lavinia Fontana — Paintings & Drawings</option> ' + 
 ' <option>Gustave Loiseau — The Paintings</option> ' + 
 ' <option>Ivan Aivazovsky — Paintings & Drawings</option> ' + 
-
+' <option>Jean-Léon Gérôme — Paintings & Drawings</option> ' + 
 
 		// 
 		///////// PASTE TILL ABOVE

@@ -103,6 +103,7 @@ function zas_opts(a) {
 ' <option>Gustave Loiseau — The Paintings</option> ' + 
 ' <option>Ivan Aivazovsky — Paintings & Drawings</option> ' + 
 ' <option>Jean-Léon Gérôme — Paintings & Drawings</option> ' + 
+' <option>Albert Lebourg — Paintings & Drawings</option> ' + 
 
 		// 
 		///////// PASTE TILL ABOVE

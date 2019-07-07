@@ -104,6 +104,7 @@ function zas_opts(a) {
 ' <option>Ivan Aivazovsky — Paintings & Drawings</option> ' + 
 ' <option>Jean-Léon Gérôme — Paintings & Drawings</option> ' + 
 ' <option>Albert Lebourg — Paintings & Drawings</option> ' + 
+' <option>Lawrence Alma-Tadema — Paintings & Drawings</option> ' + 
 
 		// 
 		///////// PASTE TILL ABOVE

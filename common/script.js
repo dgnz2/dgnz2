@@ -105,6 +105,7 @@ function zas_opts(a) {
 ' <option>Jean-Léon Gérôme — Paintings & Drawings</option> ' + 
 ' <option>Albert Lebourg — Paintings & Drawings</option> ' + 
 ' <option>Lawrence Alma-Tadema — Paintings & Drawings</option> ' + 
+' <option>Élisabeth Vigée Le Brun — Paintings & Drawings</option> ' + 
 
 		// 
 		///////// PASTE TILL ABOVE

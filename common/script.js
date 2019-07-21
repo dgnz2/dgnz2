@@ -106,6 +106,10 @@ function zas_opts(a) {
 ' <option>Albert Lebourg — Paintings & Drawings</option> ' + 
 ' <option>Lawrence Alma-Tadema — Paintings & Drawings</option> ' + 
 ' <option>Élisabeth Vigée Le Brun — Paintings & Drawings</option> ' + 
+' <option>Rosa Bonheur — Paintings & Drawings</option> ' + 
+' <option>Juan Gris — Paintings & Drawings</option> ' + 
+' <option>Eva Gonzalès — Paintings & Drawings</option> ' + 
+' <option>Judith Leyster — Paintings & Drawings</option> ' + 
 
 		// 
 		///////// PASTE TILL ABOVE

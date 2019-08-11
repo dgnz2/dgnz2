@@ -10,6 +10,7 @@ function zas_opts(a) {
 		/////// PASTE FROM GDOC COL FROM BELOW ///
 		// 
 		
+
 ' <option>Oscar-Claude Monet — The Paintings</option> ' + 
 ' <option>Édouard Manet — The Paintings</option> ' + 
 ' <option>Paul Gauguin — Paintings & Drawings</option> ' + 
@@ -110,6 +111,9 @@ function zas_opts(a) {
 ' <option>Juan Gris — Paintings & Drawings</option> ' + 
 ' <option>Eva Gonzalès — Paintings & Drawings</option> ' + 
 ' <option>Judith Leyster — Paintings & Drawings</option> ' + 
+' <option>Giovanni Boldini — Paintings & Drawings</option> ' + 
+' <option>Rachel Ruysch — Paintings & Drawings</option> ' + 
+' <option>Giovanna Garzoni — Paintings & Drawings</option> ' + 
 
 		// 
 		///////// PASTE TILL ABOVE

@@ -11,6 +11,7 @@ function zas_opts(a) {
 		// 
 		
 
+
 ' <option>Oscar-Claude Monet — The Paintings</option> ' + 
 ' <option>Édouard Manet — The Paintings</option> ' + 
 ' <option>Paul Gauguin — Paintings & Drawings</option> ' + 
@@ -114,6 +115,9 @@ function zas_opts(a) {
 ' <option>Giovanni Boldini — Paintings & Drawings</option> ' + 
 ' <option>Rachel Ruysch — Paintings & Drawings</option> ' + 
 ' <option>Giovanna Garzoni — Paintings & Drawings</option> ' + 
+' <option>Pieter de Hooch — Paintings & Drawings</option> ' + 
+' <option>Adélaïde Labille-Guiard — Paintings & Drawings</option> ' + 
+' <option>Sofonisba Anguissola — Paintings & Drawings</option> ' + 
 
 		// 
 		///////// PASTE TILL ABOVE

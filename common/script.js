@@ -118,6 +118,11 @@ function zas_opts(a) {
 ' <option>Pieter de Hooch — Paintings & Drawings</option> ' + 
 ' <option>Adélaïde Labille-Guiard — Paintings & Drawings</option> ' + 
 ' <option>Sofonisba Anguissola — Paintings & Drawings</option> ' + 
+' <option>Maurice Prendergast — Paintings & Drawings Vol 1</option> ' + 
+' <option>Maurice Prendergast — Paintings & Drawings Vol 2</option> ' + 
+' <option>Mary Beale — Paintings & Drawings</option> ' + 
+' <option>Christina Robertson — Paintings & Drawings</option> ' + 
+
 
 		// 
 		///////// PASTE TILL ABOVE

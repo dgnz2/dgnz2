@@ -122,6 +122,10 @@ function zas_opts(a) {
 ' <option>Maurice Prendergast — Paintings & Drawings Vol 2</option> ' + 
 ' <option>Mary Beale — Paintings & Drawings</option> ' + 
 ' <option>Christina Robertson — Paintings & Drawings</option> ' + 
+' <option>Ernst Ludwig Kirchner — Paintings & Drawings Vol 1</option> ' + 
+' <option>Ernst Ludwig Kirchner — Paintings & Drawings Vol 2</option> ' + 
+' <option>Sophie Gengembre Anderson — Paintings & Drawings</option> ' + 
+' <option>Marie Bashkirtseff — Paintings & Drawings</option> ' + 
 
 
 		// 

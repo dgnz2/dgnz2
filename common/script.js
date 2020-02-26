@@ -126,7 +126,14 @@ function zas_opts(a) {
 ' <option>Ernst Ludwig Kirchner — Paintings & Drawings Vol 2</option> ' + 
 ' <option>Sophie Gengembre Anderson — Paintings & Drawings</option> ' + 
 ' <option>Marie Bashkirtseff — Paintings & Drawings</option> ' + 
-
+' <option>Jean-Baptiste-Camille Corot — Paintings & Drawings Vol 1</option> ' + 
+' <option>Jean-Baptiste-Camille Corot — Paintings & Drawings Vol 2</option> ' + 
+' <option>Jean-Baptiste-Camille Corot — Paintings & Drawings Vol 3</option> ' + 
+' <option>Marguerite Gérard — Paintings & Drawings</option> ' + 
+' <option>Clara Peeters — Paintings & Drawings</option> ' + 
+' <option>Gustave Caillebotte — Paintings & Drawings</option> ' + 
+' <option>Anne Vallayer-Coster — Paintings & Drawings</option> ' + 
+' <option>Marianne North — Paintings & Drawings</option> ' + 
 
 		// 
 		///////// PASTE TILL ABOVE

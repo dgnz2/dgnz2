@@ -11,7 +11,6 @@ function zas_opts(a) {
 		// 
 		
 
-
 ' <option>Oscar-Claude Monet — The Paintings</option> ' + 
 ' <option>Édouard Manet — The Paintings</option> ' + 
 ' <option>Paul Gauguin — Paintings & Drawings</option> ' + 
@@ -42,7 +41,6 @@ function zas_opts(a) {
 ' <option>Paul Cézanne — The Paintings Vol 2</option> ' + 
 ' <option>Odilon Redon — Paintings & Drawings Vol 1</option> ' + 
 ' <option>Odilon Redon — Paintings & Drawings Vol 2</option> ' + 
-' <option>Odilon Redon — Paintings & Drawings Vol 3</option> ' + 
 ' <option>Alfred Sisley — The Paintings Vol 1</option> ' + 
 ' <option>Alfred Sisley — The Paintings Vol 2</option> ' + 
 ' <option>Ilya Repin — Paintings & Drawings Vol 1</option> ' + 

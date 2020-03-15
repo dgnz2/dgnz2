@@ -68,7 +68,6 @@ function zas_opts(a) {
 ' <option>Angelica Kauffman — Paintings & Drawings</option> ' + 
 ' <option>Katsushika Hokusai — Paintings & Drawings Vol 1</option> ' + 
 ' <option>Katsushika Hokusai — Paintings & Drawings Vol 2</option> ' + 
-' <option>Katsushika Hokusai — Paintings & Drawings Vol 3</option> ' + 
 ' <option>Henri de Toulouse-Lautrec — Paintings & Drawings</option> ' + 
 ' <option>Anders Zorn — Paintings & Drawings Vol 1</option> ' + 
 ' <option>Anders Zorn — Paintings & Drawings Vol 2</option> ' + 
@@ -132,6 +131,9 @@ function zas_opts(a) {
 ' <option>Gustave Caillebotte — Paintings & Drawings</option> ' + 
 ' <option>Anne Vallayer-Coster — Paintings & Drawings</option> ' + 
 ' <option>Marianne North — Paintings & Drawings</option> ' + 
+' <option>Egon Schiele — Paintings & Drawings Vol 1</option> ' + 
+' <option>Egon Schiele — Paintings & Drawings Vol 2</option> ' + 
+' <option>Egon Schiele — Paintings & Drawings Vol 3</option> ' + 
 
 		// 
 		///////// PASTE TILL ABOVE

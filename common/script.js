@@ -11,6 +11,7 @@ function zas_opts(a) {
 		// 
 		
 
+
 ' <option>Oscar-Claude Monet — The Paintings</option> ' + 
 ' <option>Édouard Manet — The Paintings</option> ' + 
 ' <option>Paul Gauguin — Paintings & Drawings</option> ' + 
@@ -78,7 +79,6 @@ function zas_opts(a) {
 ' <option>Rosalba Carriera — The Paintings</option> ' + 
 ' <option>Childe Hassam — Paintings & Drawings Vol 1</option> ' + 
 ' <option>Childe Hassam — Paintings & Drawings Vol 2</option> ' + 
-' <option>Childe Hassam — Paintings & Drawings Vol 3</option> ' + 
 ' <option>Zhao Mengfu — Paintings & Drawings</option> ' + 
 ' <option>Paula Modersohn-Becker — Paintings & Drawings</option> ' + 
 ' <option>Utagawa Hiroshige — Paintings & Drawings Vol 1</option> ' + 
@@ -134,6 +134,9 @@ function zas_opts(a) {
 ' <option>Egon Schiele — Paintings & Drawings Vol 1</option> ' + 
 ' <option>Egon Schiele — Paintings & Drawings Vol 2</option> ' + 
 ' <option>Egon Schiele — Paintings & Drawings Vol 3</option> ' + 
+' <option>Gerardina van de Sande Bakhuyzen — Paintings & Drawings</option> ' + 
+' <option>Elisabetta Sirani — Paintings & Drawings</option> ' + 
+
 
 		// 
 		///////// PASTE TILL ABOVE

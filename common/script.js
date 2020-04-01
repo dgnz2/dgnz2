@@ -37,7 +37,6 @@ function zas_opts(a) {
 ' <option>Diego Velázquez — The Paintings</option> ' + 
 ' <option>Vincent Van Gogh — The Paintings Vol 1</option> ' + 
 ' <option>Vincent Van Gogh — The Paintings Vol 2</option> ' + 
-' <option>Vincent Van Gogh — The Paintings Vol 3</option> ' + 
 ' <option>Paul Cézanne — The Paintings Vol 1</option> ' + 
 ' <option>Paul Cézanne — The Paintings Vol 2</option> ' + 
 ' <option>Odilon Redon — Paintings & Drawings Vol 1</option> ' + 
@@ -55,7 +54,6 @@ function zas_opts(a) {
 ' <option>Camille Pissarro — The Paintings Vol 1</option> ' + 
 ' <option>Camille Pissarro — The Paintings Vol 2</option> ' + 
 ' <option>Camille Pissarro — The Paintings Vol 3</option> ' + 
-' <option>Camille Pissarro — The Paintings Vol 4</option> ' + 
 ' <option>Eugène Boudin — Paintings & Drawings Vol 1</option> ' + 
 ' <option>Eugène Boudin — Paintings & Drawings Vol 2</option> ' + 
 ' <option>John Everett Millais — Paintings & Drawings</option> ' + 

@@ -11,7 +11,6 @@ function zas_opts(a) {
 		// 
 		
 
-
 ' <option>Oscar-Claude Monet — The Paintings</option> ' + 
 ' <option>Édouard Manet — The Paintings</option> ' + 
 ' <option>Paul Gauguin — Paintings & Drawings</option> ' + 
@@ -49,8 +48,6 @@ function zas_opts(a) {
 ' <option>Pierre-Auguste Renoir — The Paintings Vol 2</option> ' + 
 ' <option>Pierre-Auguste Renoir — The Paintings Vol 3</option> ' + 
 ' <option>Pierre-Auguste Renoir — The Paintings Vol 4</option> ' + 
-' <option>Pierre-Auguste Renoir — The Paintings Vol 5</option> ' + 
-' <option>Pierre-Auguste Renoir — The Paintings Vol 6</option> ' + 
 ' <option>Camille Pissarro — The Paintings Vol 1</option> ' + 
 ' <option>Camille Pissarro — The Paintings Vol 2</option> ' + 
 ' <option>Camille Pissarro — The Paintings Vol 3</option> ' + 
@@ -61,15 +58,13 @@ function zas_opts(a) {
 ' <option>Julian Onderdonk — The Paintings</option> ' + 
 ' <option>John Singer Sargent — Paintings & Drawings Vol 1</option> ' + 
 ' <option>John Singer Sargent — Paintings & Drawings Vol 2</option> ' + 
-' <option>Edgar Degas — Paintings & Drawings Vol 1</option> ' + 
-' <option>Edgar Degas — Paintings & Drawings Vol 2</option> ' + 
+' <option>Edgar Degas — Paintings & Drawings</option> ' + 
 ' <option>Mary Cassatt — Paintings & Drawings</option> ' + 
 ' <option>Angelica Kauffman — Paintings & Drawings</option> ' + 
 ' <option>Katsushika Hokusai — Paintings & Drawings Vol 1</option> ' + 
 ' <option>Katsushika Hokusai — Paintings & Drawings Vol 2</option> ' + 
 ' <option>Henri de Toulouse-Lautrec — Paintings & Drawings</option> ' + 
-' <option>Anders Zorn — Paintings & Drawings Vol 1</option> ' + 
-' <option>Anders Zorn — Paintings & Drawings Vol 2</option> ' + 
+' <option>Anders Zorn — Paintings & Drawings</option> ' + 
 ' <option>Henri-Edmond Cross — Paintings & Drawings</option> ' + 
 ' <option>Raphael — Paintings & Drawings</option> ' + 
 ' <option>Eugène Delacroix — Paintings & Drawings Vol 1</option> ' + 
@@ -134,7 +129,6 @@ function zas_opts(a) {
 ' <option>Egon Schiele — Paintings & Drawings Vol 3</option> ' + 
 ' <option>Gerardina van de Sande Bakhuyzen — Paintings & Drawings</option> ' + 
 ' <option>Elisabetta Sirani — Paintings & Drawings</option> ' + 
-
 
 		// 
 		///////// PASTE TILL ABOVE

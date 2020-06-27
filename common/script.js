@@ -131,6 +131,10 @@ function zas_opts(a) {
 ' <option>Thomas Moran — Paintings & Drawings</option> ' + 
 ' <option>Cecilia Beaux — Paintings & Drawings</option> ' + 
 ' <option>Margaret Sarah Carpenter — Paintings & Drawings</option> ' + 
+' <option>Gustave Courbet  — Paintings & Drawings Vol 1</option> ' + 
+' <option>Gustave Courbet  — Paintings & Drawings Vol 2</option> ' + 
+' <option>Marie Ellenrieder — Paintings & Drawings</option> ' + 
+' <option>Louise Moillon — Paintings & Drawings</option> ' + 
 
 		// 
 		///////// PASTE TILL ABOVE

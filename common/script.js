@@ -10,6 +10,7 @@ function zas_opts(a) {
 		/////// PASTE FROM GDOC COL FROM BELOW ///
 		// 
 		
+
 ' <option>Oscar-Claude Monet — The Paintings</option> ' + 
 ' <option>Édouard Manet — The Paintings</option> ' + 
 ' <option>Paul Gauguin — Paintings & Drawings</option> ' + 
@@ -24,13 +25,11 @@ function zas_opts(a) {
 ' <option>Albert Bierstadt — The Paintings</option> ' + 
 ' <option>Joaquín Sorolla — The Paintings</option> ' + 
 ' <option>Caspar David Friedrich — Paintings & Drawings</option> ' + 
-' <option>Thomas Eakins — Paintings & Drawings Vol 1</option> ' + 
-' <option>Thomas Eakins — Paintings & Drawings Vol 2</option> ' + 
+' <option>Thomas Eakins — Paintings & Drawings</option> ' + 
 ' <option>John William Waterhouse — Paintings & Drawings</option> ' + 
-' <option>William Merritt Chase — The Paintings</option> ' + 
+' <option>William Merritt Chase — Paintings & Drawings</option> ' + 
 ' <option>William-Adolphe Bouguereau — Paintings & Drawings</option> ' + 
-' <option>Peter Paul Rubens — Paintings & Drawings Vol 1</option> ' + 
-' <option>Peter Paul Rubens — Paintings & Drawings Vol 2</option> ' + 
+' <option>Peter Paul Rubens — Paintings & Drawings</option> ' + 
 ' <option>Michelangelo Merisi da Caravaggio — The Paintings</option> ' + 
 ' <option>Diego Velázquez — The Paintings</option> ' + 
 ' <option>Vincent Van Gogh — The Paintings Vol 1</option> ' + 
@@ -131,10 +130,11 @@ function zas_opts(a) {
 ' <option>Thomas Moran — Paintings & Drawings</option> ' + 
 ' <option>Cecilia Beaux — Paintings & Drawings</option> ' + 
 ' <option>Margaret Sarah Carpenter — Paintings & Drawings</option> ' + 
-' <option>Gustave Courbet  — Paintings & Drawings Vol 1</option> ' + 
-' <option>Gustave Courbet  — Paintings & Drawings Vol 2</option> ' + 
+' <option>Gustave Courbet — Paintings & Drawings Vol 1</option> ' + 
+' <option>Gustave Courbet — Paintings & Drawings Vol 2</option> ' + 
 ' <option>Marie Ellenrieder — Paintings & Drawings</option> ' + 
 ' <option>Louise Moillon — Paintings & Drawings</option> ' + 
+
 
 		// 
 		///////// PASTE TILL ABOVE

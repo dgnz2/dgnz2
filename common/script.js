@@ -30,8 +30,8 @@ function zas_opts(a) {
 ' <option>William Merritt Chase — Paintings & Drawings</option> ' + 
 ' <option>William-Adolphe Bouguereau — Paintings & Drawings</option> ' + 
 ' <option>Peter Paul Rubens — Paintings & Drawings</option> ' + 
-' <option>Michelangelo Merisi da Caravaggio — The Paintings</option> ' + 
-' <option>Diego Velázquez — The Paintings</option> ' + 
+' <option>Michelangelo Merisi da Caravaggio — Paintings & Drawings</option> ' + 
+' <option>Diego Velázquez — Paintings & Drawings</option> ' + 
 ' <option>Vincent Van Gogh — The Paintings Vol 1</option> ' + 
 ' <option>Vincent Van Gogh — The Paintings Vol 2</option> ' + 
 ' <option>Paul Cézanne — The Paintings Vol 1</option> ' + 
@@ -134,7 +134,6 @@ function zas_opts(a) {
 ' <option>Gustave Courbet — Paintings & Drawings Vol 2</option> ' + 
 ' <option>Marie Ellenrieder — Paintings & Drawings</option> ' + 
 ' <option>Louise Moillon — Paintings & Drawings</option> ' + 
-
 
 		// 
 		///////// PASTE TILL ABOVE

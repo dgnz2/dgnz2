@@ -38,8 +38,7 @@ function zas_opts(a) {
 ' <option>Paul Cézanne — Paintings & Drawings</option> ' + 
 ' <option>Odilon Redon — Paintings & Drawings Vol 1</option> ' + 
 ' <option>Odilon Redon — Paintings & Drawings Vol 2</option> ' + 
-' <option>Alfred Sisley — The Paintings Vol 1</option> ' + 
-' <option>Alfred Sisley — The Paintings Vol 2</option> ' + 
+' <option>Alfred Sisley — Paintings & Drawings</option> ' + 
 ' <option>Ilya Repin — Paintings & Drawings Vol 1</option> ' + 
 ' <option>Ilya Repin — Paintings & Drawings Vol 2</option> ' + 
 ' <option>Pierre-Auguste Renoir — The Paintings Vol 1</option> ' + 

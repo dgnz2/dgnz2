@@ -39,8 +39,7 @@ function zas_opts(a) {
 ' <option>Odilon Redon — Paintings & Drawings Vol 1</option> ' + 
 ' <option>Odilon Redon — Paintings & Drawings Vol 2</option> ' + 
 ' <option>Alfred Sisley — Paintings & Drawings</option> ' + 
-' <option>Ilya Repin — Paintings & Drawings Vol 1</option> ' + 
-' <option>Ilya Repin — Paintings & Drawings Vol 2</option> ' + 
+' <option>Ilya Repin — Paintings & Drawings</option> ' + 
 ' <option>Pierre-Auguste Renoir — The Paintings Vol 1</option> ' + 
 ' <option>Pierre-Auguste Renoir — The Paintings Vol 2</option> ' + 
 ' <option>Pierre-Auguste Renoir — The Paintings Vol 3</option> ' + 
@@ -133,6 +132,7 @@ function zas_opts(a) {
 ' <option>Gustave Courbet — Paintings & Drawings Vol 2</option> ' + 
 ' <option>Marie Ellenrieder — Paintings & Drawings</option> ' + 
 ' <option>Louise Moillon — Paintings & Drawings</option> ' + 
+
 
 		// 
 		///////// PASTE TILL ABOVE

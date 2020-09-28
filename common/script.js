@@ -54,7 +54,8 @@ function zas_opts(a) {
 ' <option>Julian Onderdonk — The Paintings</option> ' + 
 ' <option>John Singer Sargent — Paintings & Drawings Vol 1</option> ' + 
 ' <option>John Singer Sargent — Paintings & Drawings Vol 2</option> ' + 
-' <option>Edgar Degas — Paintings & Drawings</option> ' + 
+' <option>Edgar Degas — Paintings & Drawings Vol 1</option> ' + 
+' <option>Edgar Degas — Paintings & Drawings Vol 2</option> ' + 
 ' <option>Mary Cassatt — Paintings & Drawings</option> ' + 
 ' <option>Angelica Kauffman — Paintings & Drawings</option> ' + 
 ' <option>Katsushika Hokusai — Paintings & Drawings Vol 1</option> ' + 

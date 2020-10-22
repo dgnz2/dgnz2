@@ -11,9 +11,9 @@ function zas_opts(a) {
 		// 
 		
 
-
-' <option>Oscar-Claude Monet — The Paintings</option> ' + 
-' <option>Édouard Manet — The Paintings</option> ' + 
+' <option>Claude Monet — Paintings & Drawings  Vol 1</option> ' + 
+' <option>Claude Monet — Paintings & Drawings  Vol 2</option> ' + 
+' <option>Édouard Manet — Paintings & Drawings</option> ' + 
 ' <option>Paul Gauguin — Paintings & Drawings</option> ' + 
 ' <option>Amedeo Modigliani — The Paintings</option> ' + 
 ' <option>Rembrandt van Rijn — Paintings & Drawings</option> ' + 
@@ -51,7 +51,7 @@ function zas_opts(a) {
 ' <option>Eugène Boudin — Paintings & Drawings Vol 2</option> ' + 
 ' <option>John Everett Millais — Paintings & Drawings</option> ' + 
 ' <option>Edward Burne-Jones — Paintings & Drawings</option> ' + 
-' <option>Julian Onderdonk — The Paintings</option> ' + 
+' <option>Julian Onderdonk — Paintings & Drawings</option> ' + 
 ' <option>John Singer Sargent — Paintings & Drawings Vol 1</option> ' + 
 ' <option>John Singer Sargent — Paintings & Drawings Vol 2</option> ' + 
 ' <option>Edgar Degas — Paintings & Drawings Vol 1</option> ' + 

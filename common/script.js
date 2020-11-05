@@ -15,15 +15,15 @@ function zas_opts(a) {
 ' <option>Claude Monet — Paintings & Drawings  Vol 2</option> ' + 
 ' <option>Édouard Manet — Paintings & Drawings</option> ' + 
 ' <option>Paul Gauguin — Paintings & Drawings</option> ' + 
-' <option>Amedeo Modigliani — The Paintings</option> ' + 
+' <option>Amedeo Modigliani — Paintings & Drawings</option> ' + 
 ' <option>Rembrandt van Rijn — Paintings & Drawings</option> ' + 
 ' <option>JMW Turner — Paintings & Drawings Vol 1</option> ' + 
 ' <option>JMW Turner — Paintings & Drawings Vol 2</option> ' + 
 ' <option>JMW Turner — Paintings & Drawings Vol 3</option> ' + 
 ' <option>JMW Turner — Paintings & Drawings Vol 4</option> ' + 
-' <option>Francisco Goya — The Paintings</option> ' + 
+' <option>Francisco Goya — Paintings & Drawings</option> ' + 
 ' <option>Berthe Morisot — Paintings & Drawings</option> ' + 
-' <option>Albert Bierstadt — The Paintings</option> ' + 
+' <option>Albert Bierstadt — Paintings & Drawings</option> ' + 
 ' <option>Joaquín Sorolla — The Paintings</option> ' + 
 ' <option>Caspar David Friedrich — Paintings & Drawings</option> ' + 
 ' <option>Thomas Eakins — Paintings & Drawings</option> ' + 
@@ -133,7 +133,6 @@ function zas_opts(a) {
 ' <option>Gustave Courbet — Paintings & Drawings Vol 2</option> ' + 
 ' <option>Marie Ellenrieder — Paintings & Drawings</option> ' + 
 ' <option>Louise Moillon — Paintings & Drawings</option> ' + 
-
 
 		// 
 		///////// PASTE TILL ABOVE

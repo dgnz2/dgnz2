@@ -10,7 +10,6 @@ function zas_opts(a) {
 		/////// PASTE FROM GDOC COL FROM BELOW ///
 		// 
 		
-
 ' <option>Claude Monet — Paintings & Drawings  Vol 1</option> ' + 
 ' <option>Claude Monet — Paintings & Drawings  Vol 2</option> ' + 
 ' <option>Édouard Manet — Paintings & Drawings</option> ' + 
@@ -20,7 +19,6 @@ function zas_opts(a) {
 ' <option>JMW Turner — Paintings & Drawings Vol 1</option> ' + 
 ' <option>JMW Turner — Paintings & Drawings Vol 2</option> ' + 
 ' <option>JMW Turner — Paintings & Drawings Vol 3</option> ' + 
-' <option>JMW Turner — Paintings & Drawings Vol 4</option> ' + 
 ' <option>Francisco Goya — Paintings & Drawings</option> ' + 
 ' <option>Berthe Morisot — Paintings & Drawings</option> ' + 
 ' <option>Albert Bierstadt — Paintings & Drawings</option> ' + 
@@ -33,11 +31,11 @@ function zas_opts(a) {
 ' <option>Peter Paul Rubens — Paintings & Drawings</option> ' + 
 ' <option>Michelangelo Merisi da Caravaggio — Paintings & Drawings</option> ' + 
 ' <option>Diego Velázquez — Paintings & Drawings</option> ' + 
-' <option>Vincent Van Gogh — The Paintings Vol 1</option> ' + 
-' <option>Vincent Van Gogh — The Paintings Vol 2</option> ' + 
+' <option>Vincent Van Gogh — Paintings & Drawings Vol 1</option> ' + 
+' <option>Vincent Van Gogh — Paintings & Drawings Vol 2</option> ' + 
+' <option>Vincent Van Gogh — Paintings & Drawings Vol 3</option> ' + 
 ' <option>Paul Cézanne — Paintings & Drawings</option> ' + 
-' <option>Odilon Redon — Paintings & Drawings Vol 1</option> ' + 
-' <option>Odilon Redon — Paintings & Drawings Vol 2</option> ' + 
+' <option>Odilon Redon — Paintings & Drawings</option> ' + 
 ' <option>Alfred Sisley — Paintings & Drawings</option> ' + 
 ' <option>Ilya Repin — Paintings & Drawings</option> ' + 
 ' <option>Pierre-Auguste Renoir — The Paintings Vol 1</option> ' + 

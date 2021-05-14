@@ -10,8 +10,10 @@ function zas_opts(a) {
 		/////// PASTE FROM GDOC COL FROM BELOW ///
 		// 
 		
-' <option>Claude Monet — Paintings & Drawings  Vol 1</option> ' + 
-' <option>Claude Monet — Paintings & Drawings  Vol 2</option> ' + 
+
+
+' <option>Claude Monet — Paintings & Drawings Vol 1</option> ' + 
+' <option>Claude Monet — Paintings & Drawings Vol 2</option> ' + 
 ' <option>Édouard Manet — Paintings & Drawings</option> ' + 
 ' <option>Paul Gauguin — Paintings & Drawings</option> ' + 
 ' <option>Amedeo Modigliani — Paintings & Drawings</option> ' + 
@@ -38,13 +40,11 @@ function zas_opts(a) {
 ' <option>Odilon Redon — Paintings & Drawings</option> ' + 
 ' <option>Alfred Sisley — Paintings & Drawings</option> ' + 
 ' <option>Ilya Repin — Paintings & Drawings</option> ' + 
-' <option>Pierre-Auguste Renoir — The Paintings Vol 1</option> ' + 
-' <option>Pierre-Auguste Renoir — The Paintings Vol 2</option> ' + 
-' <option>Pierre-Auguste Renoir — The Paintings Vol 3</option> ' + 
-' <option>Pierre-Auguste Renoir — The Paintings Vol 4</option> ' + 
-' <option>Camille Pissarro — The Paintings Vol 1</option> ' + 
-' <option>Camille Pissarro — The Paintings Vol 2</option> ' + 
-' <option>Camille Pissarro — The Paintings Vol 3</option> ' + 
+' <option>Pierre-Auguste Renoir — Paintings & Drawings Vol 1</option> ' + 
+' <option>Pierre-Auguste Renoir — Paintings & Drawings Vol 2</option> ' + 
+' <option>Pierre-Auguste Renoir — Paintings & Drawings Vol 3</option> ' + 
+' <option>Camille Pissarro — Paintings & Drawings Vol 1</option> ' + 
+' <option>Camille Pissarro — Paintings & Drawings Vol 2</option> ' + 
 ' <option>Eugène Boudin — Paintings & Drawings Vol 1</option> ' + 
 ' <option>Eugène Boudin — Paintings & Drawings Vol 2</option> ' + 
 ' <option>John Everett Millais — Paintings & Drawings</option> ' + 
@@ -56,15 +56,13 @@ function zas_opts(a) {
 ' <option>Edgar Degas — Paintings & Drawings Vol 2</option> ' + 
 ' <option>Mary Cassatt — Paintings & Drawings</option> ' + 
 ' <option>Angelica Kauffman — Paintings & Drawings</option> ' + 
-' <option>Katsushika Hokusai — Paintings & Drawings Vol 1</option> ' + 
-' <option>Katsushika Hokusai — Paintings & Drawings Vol 2</option> ' + 
+' <option>Katsushika Hokusai — Paintings & Drawings</option> ' + 
 ' <option>Henri de Toulouse-Lautrec — Paintings & Drawings</option> ' + 
 ' <option>Anders Zorn — Paintings & Drawings</option> ' + 
 ' <option>Henri-Edmond Cross — Paintings & Drawings</option> ' + 
 ' <option>Raphael — Paintings & Drawings</option> ' + 
-' <option>Eugène Delacroix — Paintings & Drawings Vol 1</option> ' + 
-' <option>Eugène Delacroix — Paintings & Drawings Vol 2</option> ' + 
-' <option>Rosalba Carriera — The Paintings</option> ' + 
+' <option>Eugène Delacroix — Paintings & Drawings</option> ' + 
+' <option>Rosalba Carriera — Paintings & Drawings</option> ' + 
 ' <option>Childe Hassam — Paintings & Drawings Vol 1</option> ' + 
 ' <option>Childe Hassam — Paintings & Drawings Vol 2</option> ' + 
 ' <option>Zhao Mengfu — Paintings & Drawings</option> ' + 
@@ -73,13 +71,10 @@ function zas_opts(a) {
 ' <option>Utagawa Hiroshige — Paintings & Drawings Vol 2</option> ' + 
 ' <option>Dante Gabriel Rossetti — Paintings & Drawings</option> ' + 
 ' <option>Johannes Vermeer — The Paintings</option> ' + 
-' <option>Albrecht Dürer — Paintings & Drawings Vol 1</option> ' + 
-' <option>Albrecht Dürer — Paintings & Drawings Vol 2</option> ' + 
-' <option>Artemisia Gentileschi — The Paintings</option> ' + 
-' <option>Henri Lebasque — Paintings & Drawings Vol 1</option> ' + 
-' <option>Henri Lebasque — Paintings & Drawings Vol 2</option> ' + 
-' <option>Anthony van Dyck — Paintings & Drawings Vol 1</option> ' + 
-' <option>Anthony van Dyck — Paintings & Drawings Vol 2</option> ' + 
+' <option>Albrecht Dürer — Paintings & Drawings</option> ' + 
+' <option>Artemisia Gentileschi — Paintings & Drawings</option> ' + 
+' <option>Henri Lebasque — Paintings & Drawings</option> ' + 
+' <option>Anthony van Dyck — Paintings & Drawings</option> ' + 
 ' <option>Ulrika Pasch — The Paintings</option> ' + 
 ' <option>Ferdinand Hodler — Paintings & Drawings</option> ' + 
 ' <option>Elizabeth Thompson — Paintings & Drawings</option> ' + 
@@ -103,17 +98,14 @@ function zas_opts(a) {
 ' <option>Pieter de Hooch — Paintings & Drawings</option> ' + 
 ' <option>Adélaïde Labille-Guiard — Paintings & Drawings</option> ' + 
 ' <option>Sofonisba Anguissola — Paintings & Drawings</option> ' + 
-' <option>Maurice Prendergast — Paintings & Drawings Vol 1</option> ' + 
-' <option>Maurice Prendergast — Paintings & Drawings Vol 2</option> ' + 
+' <option>Maurice Prendergast — Paintings & Drawings</option> ' + 
 ' <option>Mary Beale — Paintings & Drawings</option> ' + 
 ' <option>Christina Robertson — Paintings & Drawings</option> ' + 
-' <option>Ernst Ludwig Kirchner — Paintings & Drawings Vol 1</option> ' + 
-' <option>Ernst Ludwig Kirchner — Paintings & Drawings Vol 2</option> ' + 
+' <option>Ernst Ludwig Kirchner — Paintings & Drawings</option> ' + 
 ' <option>Sophie Gengembre Anderson — Paintings & Drawings</option> ' + 
 ' <option>Marie Bashkirtseff — Paintings & Drawings</option> ' + 
 ' <option>Jean-Baptiste-Camille Corot — Paintings & Drawings Vol 1</option> ' + 
 ' <option>Jean-Baptiste-Camille Corot — Paintings & Drawings Vol 2</option> ' + 
-' <option>Jean-Baptiste-Camille Corot — Paintings & Drawings Vol 3</option> ' + 
 ' <option>Marguerite Gérard — Paintings & Drawings</option> ' + 
 ' <option>Clara Peeters — Paintings & Drawings</option> ' + 
 ' <option>Gustave Caillebotte — Paintings & Drawings</option> ' + 
@@ -121,16 +113,16 @@ function zas_opts(a) {
 ' <option>Marianne North — Paintings & Drawings</option> ' + 
 ' <option>Egon Schiele — Paintings & Drawings Vol 1</option> ' + 
 ' <option>Egon Schiele — Paintings & Drawings Vol 2</option> ' + 
-' <option>Egon Schiele — Paintings & Drawings Vol 3</option> ' + 
 ' <option>Gerardina van de Sande Bakhuyzen — Paintings & Drawings</option> ' + 
 ' <option>Elisabetta Sirani — Paintings & Drawings</option> ' + 
 ' <option>Thomas Moran — Paintings & Drawings</option> ' + 
 ' <option>Cecilia Beaux — Paintings & Drawings</option> ' + 
 ' <option>Margaret Sarah Carpenter — Paintings & Drawings</option> ' + 
-' <option>Gustave Courbet — Paintings & Drawings Vol 1</option> ' + 
-' <option>Gustave Courbet — Paintings & Drawings Vol 2</option> ' + 
+' <option>Gustave Courbet — Paintings & Drawings</option> ' + 
 ' <option>Marie Ellenrieder — Paintings & Drawings</option> ' + 
 ' <option>Louise Moillon — Paintings & Drawings</option> ' + 
+' <option>Martin Johnson Heade — Paintings & Drawings</option> ' + 
+' <option>Marie-Victoire Lemoine — Paintings & Drawings</option> ' + 
 
 		// 
 		///////// PASTE TILL ABOVE

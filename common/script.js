@@ -10,8 +10,6 @@ function zas_opts(a) {
 		/////// PASTE FROM GDOC COL FROM BELOW ///
 		// 
 		
-
-
 ' <option>Claude Monet — Paintings & Drawings Vol 1</option> ' + 
 ' <option>Claude Monet — Paintings & Drawings Vol 2</option> ' + 
 ' <option>Édouard Manet — Paintings & Drawings</option> ' + 
@@ -123,6 +121,7 @@ function zas_opts(a) {
 ' <option>Louise Moillon — Paintings & Drawings</option> ' + 
 ' <option>Martin Johnson Heade — Paintings & Drawings</option> ' + 
 ' <option>Marie-Victoire Lemoine — Paintings & Drawings</option> ' + 
+' <option>Henri Fantin-Latour — Paintings & Drawings</option> ' + 
 
 		// 
 		///////// PASTE TILL ABOVE

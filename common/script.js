@@ -10,6 +10,11 @@ function zas_opts(a) {
 		/////// PASTE FROM GDOC COL FROM BELOW ///
 		// 
 		
+
+
+
+
+
 ' <option>Claude Monet — Paintings & Drawings Vol 1</option> ' + 
 ' <option>Claude Monet — Paintings & Drawings Vol 2</option> ' + 
 ' <option>Édouard Manet — Paintings & Drawings</option> ' + 
@@ -122,6 +127,18 @@ function zas_opts(a) {
 ' <option>Martin Johnson Heade — Paintings & Drawings</option> ' + 
 ' <option>Marie-Victoire Lemoine — Paintings & Drawings</option> ' + 
 ' <option>Henri Fantin-Latour — Paintings & Drawings</option> ' + 
+' <option>Frans Hals — Paintings & Drawings</option> ' + 
+' <option>Armand Guillaumin — Paintings & Drawings</option> ' + 
+' <option>Gustav Klimt — Paintings & Drawings</option> ' + 
+' <option>Olga Rozanova — Paintings & Drawings</option> ' + 
+' <option>John Constable — Paintings & Drawings Vol 1</option> ' + 
+' <option>John Constable — Paintings & Drawings Vol 2</option> ' + 
+' <option>Emily Carr — Paintings & Drawings</option> ' + 
+
+
+
+
+
 
 		// 
 		///////// PASTE TILL ABOVE

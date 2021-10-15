@@ -134,6 +134,7 @@ function zas_opts(a) {
 ' <option>John Constable — Paintings & Drawings Vol 1</option> ' + 
 ' <option>John Constable — Paintings & Drawings Vol 2</option> ' + 
 ' <option>Emily Carr — Paintings & Drawings</option> ' + 
+' <option>Carl Larsson — Paintings & Drawings</option> ' + 
 
 
 

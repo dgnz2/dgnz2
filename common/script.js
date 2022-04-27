@@ -5,6 +5,14 @@ function zas_opts(a) {
 		'<option>Bag</option> ' +
 		'<option>T-Shirt</option>' +
 		'<option>Signature Poster</option>' +
+
+	if (a == 2) return '' +
+		/////// PASTE FROM GDOC COL FROM BELOW ///
+		// 
+		
+
+
+
 ' <option>Claude Monet — Paintings & Drawings Vol 1</option> ' + 
 ' <option>Claude Monet — Paintings & Drawings Vol 2</option> ' + 
 ' <option>Édouard Manet — Paintings & Drawings</option> ' + 
@@ -128,22 +136,11 @@ function zas_opts(a) {
 ' <option>Anna Althea Hills — Paintings & Drawings</option> ' + 
 ' <option>George Frederic Watts — Paintings & Drawings</option> ' + 
 ' <option>Akseli Gallen-Kallela — Paintings & Drawings</option> ' + 
-' <option>Théo van Rysselberghe — Paintings & Drawings</option> ' + 		' ';
-	if (a == 2) return '' +
-		/////// PASTE FROM GDOC COL FROM BELOW ///
-		// 
-		
-
-
-
-
-
-
-
-
-
-
-
+' <option>Théo van Rysselberghe — Paintings & Drawings</option> ' + 
+' <option>James McNeill Whistler — Paintings & Drawings Vol 1</option> ' + 
+' <option>James McNeill Whistler — Paintings & Drawings Vol 2</option> ' + 
+' <option>Maxime Maufra — Paintings & Drawings</option> ' + 
+' <option>Mikalojus Konstantinas Čiurlionis — Paintings & Drawings</option> ' + 
 
 
 

@@ -12,7 +12,6 @@ function zas_opts(a) {
 		
 
 
-
 ' <option>Claude Monet — Paintings & Drawings Vol 1</option> ' + 
 ' <option>Claude Monet — Paintings & Drawings Vol 2</option> ' + 
 ' <option>Édouard Manet — Paintings & Drawings</option> ' + 
@@ -141,6 +140,7 @@ function zas_opts(a) {
 ' <option>James McNeill Whistler — Paintings & Drawings Vol 2</option> ' + 
 ' <option>Maxime Maufra — Paintings & Drawings</option> ' + 
 ' <option>Mikalojus Konstantinas Čiurlionis — Paintings & Drawings</option> ' + 
+' <option>John La Farge — Paintings & Drawings</option> ' + 
 
 
 

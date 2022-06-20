@@ -743,7 +743,7 @@ $(window).on("load", function() {
 	//////
 	if (siteSection == "single") {
 		// ** amazon amLocalize IS >>OFF<< in affLocalize() (using onelink) **
-		affLocalize("", "", thsBlg_zzl);
+		// affLocalize("", "", thsBlg_zzl);
 	}
 });
 //

@@ -426,11 +426,11 @@ if (siteSection == "item") {
 		// console.log(l);
 		var item = data.split("|");
 		var link = 'https://www.zazzle.com/' + item[0] + '?rf=238115903514203736';
-		var img = ('https://rlv.zcache.com/' + item[1] + '?max_dim=200');
+		var img = ('https://rlv.zcache.com/' + item[1] + '?max_dim=500');
 		var zas = item[2];
 		var title = item[3].replace(/^(.+) \- (.+)$/, "$2");
 		var slug = item[4];
-		html += '<div class="col-sm-6 col-md-4"> <div class="thumbnail"> <a rel="nofollow" href="' + link + '"> <img class="lazy" data-src="' + img + '" src="" alt="' + title + '"> <div class="caption"> <h4>' + title + '</h4> </div> </a>  ' +
+		html += '<div class="col-sm-6 col-md-4"> <div class="thumbnail"> <a rel="nofollow" href="' + link + '"> <img style="width:200px" class="lazy" data-src="' + img + '" src="" alt="' + title + '"> <div class="caption"> <h4>' + title + '</h4> </div> </a>  ' +
 		// 
 		' <a href="' + slug + '.html" style="color:#444!important"> ' +
 			'  <span class="glyphicon glyphicon-link" aria-hidden="true"></span>  &nbsp;  ' +

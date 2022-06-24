@@ -335,16 +335,29 @@ function scRollToTopButton() {
 	document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
 }
 
-function paginateHTML(pHref, pTxt, nHref, nTxt) {
+function paginateHTML(opt, pHref, pTxt, nHref, nTxt) {
 	try {
-		var a = '<div style="margin:50px auto"> <center><h5> ——— MORE ——— </h5></center>' +
-			'<nav style="text-transform:uppercase" aria-label="..."> <ul class="pager"> ' +
-			// 
-			((pTxt.trim() == "") ? '' : '<li><a href="' + pHref + '"> &#9668; ' + pTxt + '</a></li> ') +
-			// 
-			((nTxt.trim() == "") ? '' : '<li><a href="' + nHref + '"> ' + nTxt + ' &#9658; </a></li> ') +
-			// 
-			'</ul> </nav> </div>';
+		var pH = '<li><a href="' + pHref + '"> <b>&lt;&lt;</b> ' + pTxt + '</a></li> ';
+		var nH = '<li><a href="' + nHref + '"> ' + nTxt + ' <b>&gt;&gt;</b> </a></li> ';
+		// 
+		if (opt == "single") {
+			var b = (
+				(pHref.trim().match(/_/igm)) ? pH : ''
+			) + (
+				(nHref.trim().match(/_/igm)) ? nH : ''
+			);
+		}
+		// 
+		if (opt == "item") {
+			var b = (
+				(pHref.trim().match(/.+/igm)) ? pH : ''
+			) + (
+				(nHref.trim().match(/.+/igm)) ? nH : ''
+			);
+		}
+		// 
+		var a = '<div style="margin:50px auto"> <center><h5> — MORE — </h5></center>' +
+			'<nav style="text-transform:uppercase" aria-label="..."> <ul class="pager"> ' + b + '</ul> </nav> </div>';
 		return a;
 	} catch (e) {}
 }
@@ -412,7 +425,7 @@ if (siteSection == "item") {
 	//// BREADCRUMS
 	$('h1').before(
 		//////// BREADCRUMBS
-		'<ol class="breadcrumb" style="text-transform: capitalize"> <li><a href="/zas/">Home</a></li> <li><a href="../../#' + catslug + '">' + catname + '</a></li>  <li><a href="./">' + dirname.replace(/\-/ig, " ") + '</a></li> </ol>' +
+		'<ol class="breadcrumb" style="text-transform: capitalize"> <li><a href="/zas/">Home</a></li> <li><a href="../../#' + catslug + '">' + catname + '</a></li>  <li><a href="./">' + dirname + '</a></li> </ol>' +
 		// 
 		'');
 	// ITEM BODY
@@ -445,10 +458,11 @@ if (siteSection == "item") {
 	// 
 	//
 	//////// PAGINATION //////////
-	var prev = aData.p.trim() ? '../../' + aData.p.trim() + '/' + dirname + '/' : "#";
-	var next = aData.n.trim() ? '../../' + aData.n.trim() + '/' + dirname + '/' : "#";
+	var prev = aData.p.trim() ? '../../' + aData.p.trim() + '/' + dirslug + '/' : "#";
+	var next = aData.n.trim() ? '../../' + aData.n.trim() + '/' + dirslug + '/' : "#";
 	$('.container').append(
 		paginateHTML(
+			siteSection,
 			prev,
 			aData.p.trim().replace(/\-/g, " "),
 			next,
@@ -500,7 +514,7 @@ if (siteSection == "single") {
 	//// LOGO AND BREADCRUMS
 	$('.container').append(
 		//////// BREADCRUMBS
-		'<ol class="breadcrumb" style="text-transform: capitalize"> <li><a href="/zas/">Home</a></li> <li><a href="../../#' + catslug + '">' + catname + '</a></li>  <li><a href="./">' + dirname.replace(/\-/ig, " ") + '</a></li> </ol>' +
+		'<ol class="breadcrumb" style="text-transform: capitalize"> <li><a href="/zas/">Home</a></li> <li><a href="../../#' + catslug + '">' + catname + '</a></li>  <li><a href="./">' + dirname + '</a></li> </ol>' +
 		// 
 		'');
 	/// SINGLE BODY
@@ -517,6 +531,7 @@ if (siteSection == "single") {
 	//
 	$('.container').append(
 		paginateHTML(
+			siteSection,
 			$('#prevnext li:eq(0) a').attr('href'),
 			$('#prevnext li:eq(0) a').text(),
 			$('#prevnext li:eq(1) a').attr('href'),

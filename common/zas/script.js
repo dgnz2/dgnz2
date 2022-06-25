@@ -390,8 +390,20 @@ if (siteSection == "main") {
 		var content = ($(this).attr('data-d')).split('|');
 		// console.log(content[4]);
 		html += '<hr/> <div id="' + content[0] + '" class="media"> <div class="media-left" style=""> <img style="width:' + viewport(25, 'vw') + 'px; max-width:130px;" class="lazy media-object" data-src="https://books.zedign.com/i/e/' + content[4] + '.jpg" src="" alt=""> </div> <div class="media-body"> <h3 class="media-heading">' + content[1] + '</h3>' +
-			'<div class="btn-group btn-group-sm" role="group" aria-label=""> <a href="' + content[0] + '/signature-posters/" role="button" class="btn btn-default">Signature Posters</a> <!-- <a href="" role="button" class="btn btn-default">Standard Posters</a> -->  </div> ' +
-			'</div> </div> ';
+		/// buttons 
+		// '<div class="btn-group btn-group-sm" role="group" aria-label="">' +
+		/// signature 
+		/// sig btn only if sigs are there, ie content[5] is 'y'
+		(
+			(content[5] == "y") ?
+			' <a style="margin: 5px" href="' + content[0] + '/signature-posters/" role="button" class="btn btn-default">Signature Posters</a>  ' : ""
+		) +
+		/// plain 
+		' <a style="margin: 5px" href="' + content[0] + '/posters/" role="button" class="btn btn-default">Classic Posters</a> ' +
+		/// buttons 
+		// '  </div> ' +
+		// 
+		'</div> </div> ';
 	});
 	$('#items').remove();
 	$('#allitems').append(html);

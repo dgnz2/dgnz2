@@ -11,199 +11,199 @@ if (typeof siteSection == "undefined") {
 // 
 /////////////// funcs ////////////////////////
 function affLocalize(objAmAffIds, strEPNId, strZzlId) {
-	// v5
-	// req: jq
-	function zzlLocalize(strTLD, url) {
-		if (strTLD) {
-			switch (strTLD) {
-				case 'UK':
-				case 'JP':
-				case 'NZ':
-					strTLD = 'co.' + strTLD;
-					break;
-				case 'AU':
-				case 'BR':
-					strTLD = 'com.' + strTLD;
-					break;
-				case 'CA':
-				case 'DE':
-				case 'ES':
-				case 'FR':
-				case 'PT':
-				case 'SE':
-				case 'NL':
-				case 'AT':
-				case 'CH':
-				case 'BE':
-					strTLD = strTLD;
-					break;
-				default:
-					strTLD = 'com';
+	try {
+		// v6
+		// req: jq
+		function zzlLocalize(strTLD, url) {
+			if (strTLD) {
+				switch (strTLD) {
+					case 'UK':
+					case 'JP':
+					case 'NZ':
+						strTLD = 'co.' + strTLD;
+						break;
+					case 'AU':
+					case 'BR':
+						strTLD = 'com.' + strTLD;
+						break;
+					case 'CA':
+					case 'DE':
+					case 'ES':
+					case 'FR':
+					case 'PT':
+					case 'SE':
+					case 'NL':
+					case 'AT':
+					case 'CH':
+					case 'BE':
+						strTLD = strTLD;
+						break;
+					default:
+						strTLD = 'com';
+				}
 			}
+			var affUrl, zProd, zAffTag;
+			zProd = parseURL(url.replace(/[\?\&]rf\=[0-9]+/, ""));
+			affUrl = 'https://www.zazzle.' + strTLD + zProd.path + zProd.querystring;
+			zAffTag = (affUrl.match(/\?/) ? '&rf=' : '?rf=') + strZzlId;
+			affUrl = affUrl + zAffTag;
+			return affUrl;
 		}
-		var affUrl, zProd, zAffTag;
-		zProd = parseURL(url.replace(/[\?\&]rf\=[0-9]+/, ""));
-		affUrl = 'https://www.zazzle.' + strTLD + zProd.path + zProd.querystring;
-		zAffTag = (affUrl.match(/\?/) ? '&rf=' : '?rf=') + strZzlId;
-		affUrl = affUrl + zAffTag;
-		return affUrl;
-	}
 
-	function ebLocalize(strTLD, url) {
-		if (strTLD) {
-			switch (strTLD) {
-				case 'AT':
-					cntry = "5221-53469-19255-0";
-					icep = "229473";
-					break;
-				case 'AU':
-					cntry = "705-53470-19255-0";
-					icep = "229515";
-					break;
-				case 'BE':
-					cntry = "1553-53471-19255-0";
-					icep = "229522";
-					break;
-				case 'CA':
-					cntry = "706-53473-19255-0";
-					icep = "229529";
-					break;
-				case 'CH':
-					cntry = "5222-53480-19255-0";
-					icep = "229536";
-					break;
-				case 'DE':
-					cntry = "707-53477-19255-0";
-					icep = "229487";
-					break;
-				case 'ES':
-					cntry = "1185-53479-19255-0";
-					icep = "229501";
-					break;
-				case 'FR':
-					cntry = "709-53476-19255-0";
-					icep = "229480";
-					break;
-				case 'IE':
-					cntry = "5282-53468-19255-0";
-					icep = "229543";
-					break;
-				case 'IN':
-					cntry = "4686-53472-19255-0";
-					icep = "229550";
-					break;
-				case 'IT':
-					cntry = "724-53478-19255-0";
-					icep = "229494";
-					break;
-				case 'NL':
-					cntry = "1346-53482-19255-0";
-					icep = "229557";
-					break;
-				case 'UK':
-					cntry = "710-53481-19255-0";
-					icep = "229508";
-					break;
-				default:
-					cntry = "711-53200-19255-0";
-					icep = "229466";
+		function ebLocalize(strTLD, url) {
+			if (strTLD) {
+				switch (strTLD) {
+					case 'AT':
+						cntry = "5221-53469-19255-0";
+						icep = "229473";
+						break;
+					case 'AU':
+						cntry = "705-53470-19255-0";
+						icep = "229515";
+						break;
+					case 'BE':
+						cntry = "1553-53471-19255-0";
+						icep = "229522";
+						break;
+					case 'CA':
+						cntry = "706-53473-19255-0";
+						icep = "229529";
+						break;
+					case 'CH':
+						cntry = "5222-53480-19255-0";
+						icep = "229536";
+						break;
+					case 'DE':
+						cntry = "707-53477-19255-0";
+						icep = "229487";
+						break;
+					case 'ES':
+						cntry = "1185-53479-19255-0";
+						icep = "229501";
+						break;
+					case 'FR':
+						cntry = "709-53476-19255-0";
+						icep = "229480";
+						break;
+					case 'IE':
+						cntry = "5282-53468-19255-0";
+						icep = "229543";
+						break;
+					case 'IN':
+						cntry = "4686-53472-19255-0";
+						icep = "229550";
+						break;
+					case 'IT':
+						cntry = "724-53478-19255-0";
+						icep = "229494";
+						break;
+					case 'NL':
+						cntry = "1346-53482-19255-0";
+						icep = "229557";
+						break;
+					case 'UK':
+						cntry = "710-53481-19255-0";
+						icep = "229508";
+						break;
+					default:
+						cntry = "711-53200-19255-0";
+						icep = "229466";
+				}
+			}
+			var affUrl = url;
+			affUrl = affUrl.replace(/\/[0-9]+\-[0-9]+\-19255\-0\//, '/' + cntry + '/');
+			affUrl = affUrl.replace(/vectorid\=[0-9]+/, 'icep_vectorid=' + icep);
+			return affUrl;
+		}
+		// 
+		function amLocalize(itmId, strTLD) {
+			if (strTLD) {
+				switch (strTLD) {
+					case 'JP':
+						strTLD = 'co.jp';
+						break;
+					case 'GB':
+					case 'JE':
+					case 'GG':
+					case 'IM':
+					case 'IE':
+					case 'UK':
+						strTLD = 'co.uk';
+						break;
+					case 'CH':
+					case 'AT':
+						strTLD = 'de';
+						break;
+					case 'PT':
+						strTLD = 'es';
+						break;
+					default:
+						strTLD = (objAmAffIds[strTLD.toLowerCase()] != null ? strTLD.toLowerCase() : 'com');
+						break;
+				}
+				affId = objAmAffIds[strTLD.toLowerCase()];
+			}
+			// OneLink Mod  DEL IF NOT USING OneLink <script> in html
+			strTLD = (strTLD == 'ca' || strTLD == 'co.uk') ? "com" : strTLD;
+			affId = thsBlg_amz.com; ///// default US tag for this site
+			// /OneLink Mod
+			return "https://www.amazon." + strTLD + "/exec/obidos/ASIN/" + itmId + "/" + affId;
+		}
+		// 
+		function parseURL(href) {
+			// v2 returns url parths as given. works with relative ones too.
+			var match = href.match(/^(?:(https?\:)\/\/)?(([^:\/?#]*)(?:\:([0-9]+))?)([\/]{0,1}[^?#]*)(\?[^#]*|)(#.*|)$/);
+			return match && {
+				href: href,
+				protocol: match[1],
+				host: match[2],
+				hostname: match[3],
+				port: match[4],
+				path: match[5],
+				querystring: match[6],
+				hash: match[7]
 			}
 		}
-		var affUrl = url;
-		affUrl = affUrl.replace(/\/[0-9]+\-[0-9]+\-19255\-0\//, '/' + cntry + '/');
-		affUrl = affUrl.replace(/vectorid\=[0-9]+/, 'icep_vectorid=' + icep);
-		return affUrl;
-	}
-	// 
-	function amLocalize(itmId, strTLD) {
-		if (strTLD) {
-			switch (strTLD) {
-				case 'JP':
-					strTLD = 'co.jp';
-					break;
-				case 'GB':
-				case 'JE':
-				case 'GG':
-				case 'IM':
-				case 'IE':
-				case 'UK':
-					strTLD = 'co.uk';
-					break;
-				case 'CH':
-				case 'AT':
-					strTLD = 'de';
-					break;
-				case 'PT':
-					strTLD = 'es';
-					break;
-				default:
-					strTLD = (objAmAffIds[strTLD.toLowerCase()] != null ? strTLD.toLowerCase() : 'com');
-					break;
-			}
-			affId = objAmAffIds[strTLD.toLowerCase()];
-		}
-		// OneLink Mod  DEL IF NOT USING OneLink <script> in html
-		strTLD = (strTLD == 'ca' || strTLD == 'co.uk') ? "com" : strTLD;
-		affId = thsBlg_amz.com; ///// default US tag for this site
-		// /OneLink Mod
-		return "https://www.amazon." + strTLD + "/exec/obidos/ASIN/" + itmId + "/" + affId;
-	}
-	// 
-	function parseURL(href) {
-		// v1 returns url parths as given. works with relative ones too.
-		var match = href.match(/^(?:(https?\:)\/\/)?(([^:\/?#]*)(?:\:([0-9]+))?)([\/]{0,1}[^?#]*)(\?[^#]*|)(#.*|)$/);
-		return match && {
-			href: href,
-			protocol: match[1],
-			host: match[2],
-			hostname: match[3],
-			port: match[4],
-			path: match[5],
-			querystring: match[6],
-			hash: match[7]
-		}
-	}
-	// 
-	$.ajax({
-		method: "GET",
-		dataType: "json",
-		cache: true,
-		// kaput
-		// url: "https://freegeoip.net/json/" // OR (no HTTPS) // url: "http://api.ipstack.com/186.116.207.169?access_key="+thsBlg_ipsapi+"&output=json&legacy=1"
-		// url: "https://geoip.tools/v1/json" // 
-		url: "https://freegeoip.app/json/" // new 11/18
-	}).done(function(json) {
-		try {
-			var strTLD = json.country_code;
-			// var strTLD = "AU"; // for tstng
-			var zzlUrlReg = /zazzle\./;
-			var epnUrlReg = /vectorid/;
-			var amzUrlReg = RegExp("/([a-zA-Z0-9]{10})(?:[/?]|$)");
-			// var amzUrlReg = RegExp("/(?!/e|st)../([A-Z0-9]{10})");
-			// "/(?!/e|st)../([A-Z0-9]{10})"
-			$('a').each(function(index) {
-				var url = unescape($(this).attr('href'));
-				// AMZ
-				if (url.match(amzUrlReg)) {
-					var itmId = url.match(amzUrlReg)[1];
-					// console.log(itmId)
-					// amLocalize is OFF (USING ONELINK) (uncommnt to enable)
-					// $(this).attr('href', amLocalize(itmId, strTLD));
-				}
-				// EPN
-				if (url.match(epnUrlReg)) {
-					$(this).attr('href', ebLocalize(strTLD, url));
-				}
-				// ZZL
-				if (url.match(zzlUrlReg)) {
-					$(this).attr('href', zzlLocalize(strTLD, url));
-				}
-			});
-			// 
-		} catch (e) {}
-	}).fail(function(error) {
-		// console.log(error);
-	});
+		// 
+		$.ajax({
+			method: "GET",
+			dataType: "json",
+			cache: true,
+			/// for latest https://stackoverflow.com/q/391979
+			url: "https://hutils.loxal.net/whois" // new 06/22
+		}).done(function(json) {
+			// console.log('affLocalize: json: ' + json)
+			try {
+				var strTLD = json.countryIso;
+				// console.log('affLocalize: strTLD: ' + strTLD)
+				// var strTLD = "AU"; // for tstng
+				var zzlUrlReg = /zazzle\./;
+				var epnUrlReg = /vectorid/;
+				var amzUrlReg = RegExp("/([a-zA-Z0-9]{10})(?:[/?]|$)");
+				$('a').each(function(index) {
+					var url = unescape($(this).attr('href'));
+					// AMZ
+					if (url.match(amzUrlReg)) {
+						var itmId = url.match(amzUrlReg)[1];
+						// console.log(itmId)
+						// amLocalize is OFF (USING ONELINK) (uncommnt to enable)
+						// $(this).attr('href', amLocalize(itmId, strTLD));
+					}
+					// EPN
+					if (url.match(epnUrlReg)) {
+						$(this).attr('href', ebLocalize(strTLD, url));
+					}
+					// ZZL
+					if (url.match(zzlUrlReg)) {
+						$(this).attr('href', zzlLocalize(strTLD, url));
+					}
+				});
+				// 
+			} catch (e) {}
+		}).fail(function(error) {
+			// console.log(error);
+		});
+	} catch (e) {}
 }
 ///////////////////  QS   //////////////////
 /// qs.get("s") ...
@@ -762,15 +762,9 @@ if (siteSection == "dyn_catcher") {
 ////////////////
 ///////////////
 $(window).on("load", function() {
-	///// wip cse
-	///// off (many ads on top!)
-	// $('.breadcrumbs').before('<table style="margin-top:10px;width:99%;"><tr><td style="max-width:50px;"><span style="font: 12px/1em sans-serif; display: inline-block;">Find a book/artist:</span></td><td><div style="background:grey"><div id="search"></div></div></td></tr></table> ');
-	// gCSE(thsBlg_cse, "search");
-	//////
-	if (siteSection == "single") {
-		// ** amazon amLocalize IS >>OFF<< in affLocalize() (using onelink) **
-		// affLocalize("", "", thsBlg_zzl);
-	}
+	// 
+	affLocalize("", "", thsBlg_zzl);
+	// 
 });
 //
 //

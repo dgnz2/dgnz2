@@ -390,18 +390,17 @@ if (siteSection == "main") {
 		var content = ($(this).attr('data-d')).split('|');
 		// console.log(content[4]);
 		html += '<hr/> <div id="' + content[0] + '" class="media"> <div class="media-left" style=""> <img style="width:' + viewport(25, 'vw') + 'px; max-width:130px;" class="lazy media-object" data-src="https://books.zedign.com/i/e/' + content[4] + '.jpg" src="" alt=""> </div> <div class="media-body"> <h3 class="media-heading">' + content[1] + '</h3>' +
-		/// buttons 
-		// '<div class="btn-group btn-group-sm" role="group" aria-label="">' +
-		/// signature 
-		/// sig btn only if sigs are there, ie content[5] is 'y'
-		(
-			(content[5] == "y") ?
-			' <a style="margin: 5px" href="' + content[0] + '/signature-posters/" role="button" class="btn btn-default">Signature Posters</a>  ' : ""
-		) +
-		/// plain 
+		//// posters button
 		' <a style="margin: 5px" href="' + content[0] + '/posters/" role="button" class="btn btn-default">Classic Posters</a> ' +
+		//// other buttons depending on availability
+		// signature-posters
+		((content[5] == "y") ? ' <a style="margin: 5px" href="' + content[0] + '/signature-posters/" role="button" class="btn btn-default">Signature Posters</a> ' : "") +
+		// postcards
+		((content[6] == "y") ? ' <a style="margin: 5px" href="' + content[0] + '/postcards/" role="button" class="btn btn-default">Postcards</a> ' : "") +
+		// 
+		// 
+		'' +
 		/// buttons 
-		// '  </div> ' +
 		// 
 		'</div> </div> ';
 	});
@@ -437,7 +436,7 @@ if (siteSection == "item") {
 	//// BREADCRUMS
 	$('h1').before(
 		//////// BREADCRUMBS
-		'<ol class="breadcrumb" style="text-transform: capitalize"> <li><a href="/zas/">Fine Art Posters</a></li> <li><a href="../../#' + catslug + '">' + catname + '</a></li>  <li><a href="./">' + dirname + '</a></li> </ol>' +
+		'<ol class="breadcrumb" style="text-transform: capitalize"> <li><a href="/zas/">Home</a></li> <li><a href="../../#' + catslug + '">' + catname + '</a></li>  <li><a href="./">' + dirname + '</a></li> </ol>' +
 		// 
 		'');
 	// ITEM BODY
@@ -526,7 +525,7 @@ if (siteSection == "single") {
 	//// LOGO AND BREADCRUMS
 	$('.container').append(
 		//////// BREADCRUMBS
-		'<ol class="breadcrumb" style="text-transform: capitalize"> <li><a href="/zas/">Fine Art Posters</a></li> <li><a href="../../#' + catslug + '">' + catname + '</a></li>  <li><a href="./">' + dirname + '</a></li> </ol>' +
+		'<ol class="breadcrumb" style="text-transform: capitalize"> <li><a href="/zas/">Home</a></li> <li><a href="../../#' + catslug + '">' + catname + '</a></li>  <li><a href="./">' + dirname + '</a></li> </ol>' +
 		// 
 		'');
 	/// SINGLE BODY

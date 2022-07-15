@@ -2,7 +2,6 @@
 // 
 // 
 thsBlg_zzl = "\x32\x33\x38\x31\x31\x35\x39\x30\x33\x35\x31\x34\x32\x30\x33\x37\x33\x36";
-thsBlg_cse = "00" + (73986844630617.38 + 11121455924030.328 + 156076660893376.3) + "\x37\x37\x34\x31" + ":\x36\x73\x2D\x72\x30\x68\x67\x77\x62\x6D\x63";
 // 
 if (typeof siteSection == "undefined") {
 	siteSection = "main";

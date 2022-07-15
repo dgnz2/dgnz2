@@ -521,6 +521,8 @@ if (siteSection == "item") {
 }
 //////////////////////  SINGLE  ////////////////////////////
 if (siteSection == "single") {
+	var zasnum = "";
+	var zasnum = content.split("|")[2] || "";
 	//// LOGO AND BREADCRUMS
 	$('.container').append(
 		//////// BREADCRUMBS
@@ -535,7 +537,10 @@ if (siteSection == "single") {
 	$('.panel-heading').html('<h3>' + $('h1').html() + '</h3>');
 	$('h1').remove();
 	$('p').appendTo('.panel-body');
+	/// BUTTONS 
 	$('.panel-footer').html('<div class="row"><div class="col-xs-6"> <a role="button" class="btn btn-primary" href="' + $('p a').attr("href") + '" >  Details </a> </div><div class="col-xs-6"> <a role="button" class="btn btn-warning" href="' + $('p a').attr("href") + '" > Buy Now  </a> </div></div>');
+	// 
+	$('.container').append(' <a style="color:inherit;text-decoration:none;" href="https://books.zedign.com/zas/' + zasnum + '.html"><div style="max-width:320px;margin:10px auto;" class="media"> <div class="media-left"> <img style="width:100px" class="media-object" src="https://books.zedign.com/i/p/' + zasnum + '_2UPCO.png" alt=""> </div> <div class="media-body"> <p> Click here for the full monograph in digital and print editions: <i>' + catname + ' - Paintings &amp; Drawings</i> (Zedign Art Series Book #' + zasnum + ').</p> </div> </div></a> ');
 	// 
 	//////// PAGINATION //////////
 	//
@@ -554,6 +559,9 @@ if (siteSection == "single") {
 	// 
 	// 
 }
+// 
+// 
+// 
 ///////// ON ALL COMMON **AFTER**
 ////////
 //// COMMON FOOTER
@@ -563,199 +571,7 @@ $('.container').append('<div style="text-align:center; margin:100px auto"> <hr/>
 //
 /////////////////    DYN_CATCHER   ///////////////////
 // 
-if (siteSection == "dyn_catcher") {
-	// 
-	// 
-	if (qs.get("s") == "fdbk") {
-		// 
-		function formSubmit() {
-			// alert('hello');
-			// return false;
-			//// join all fields in one to send
-			$('#entry_703433844').val((
-				$('input[name*="wikipedia_url"] ').val() +
-				$('input[name*="namea"] ').val() +
-				$('input[name*="emaila"] ').val() +
-				$('input[name*="namec"] ').val() +
-				$('input[name*="emailc"] ').val() +
-				', ' + $('textarea[name*="messagec"] ').val()
-				// 
-			).trim());
-			/// testing
-			// alert(new URLSearchParams(new FormData(document.getElementById('fdbk'))).toString());
-			// 
-			// $('input[name*="group"] ').remove();
-			// $('input[name*="wikipedia_url"] ').remove();
-			// $('input[id*="name"] ').remove();
-			// $('input[id*="email"] ').remove();
-			// 
-			$('form').trigger('goForward'); // api call for slideform to go forward to the last "thank you" slide
-			return true;
-		}
-		// 
-		$.getScript("../common/slideform/js/slideform.js")
-			.done(function() {
-				$.getScript("https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.min.js")
-					.done(function() {
-						$.getScript("https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/additional-methods.min.js")
-							.done(function() {
-								var gdf = "\x68\x74\x74\x70\x73\x3A\x2F\x2F\x64\x6F\x63\x73\x2E\x67\x6F\x6F\x67\x6C\x65\x2E\x63\x6F\x6D\x2F\x66\x6F\x72\x6D\x73\x2F\x64\x2F\x65\x2F\x31\x46\x41\x49\x70\x51\x4C\x53\x63\x31\x79\x47\x32\x71\x79\x78\x4D\x76\x41\x76\x4B\x5A\x4F\x44\x78\x4A\x4B\x6E\x30\x6A\x4B\x37\x57\x4D\x2D\x76\x49\x73\x43\x57\x31\x34\x64\x44\x57\x7A\x30\x36\x2D\x46\x70\x6F\x7A\x35\x6C\x67\x2F\x66\x6F\x72\x6D\x52\x65\x73\x70\x6F\x6E\x73\x65";
-								//place your code here, the scripts are all loaded
-								$('head').append(
-									'<link rel="stylesheet" href="../common/slideform/css/slideform.css">' +
-									'<style>html, body { font-family:sans-serif; font-size:90%}</style>' +
-									/// no messing with full size as it doesn't show properly
-									// '<style>html, body { font-family:sans-serif; height: 100%; width: 100%; padding: 0; margin: 0; overflow: hidden; position: fixed; top: 0; bottom: 0; left: 0; right: 0; }</style>' +
-									'');
-								$('body').prepend('' +
-									// 
-									'<iframe name="OUR_hidden_iframe" id="OUR_hidden_iframe" style="display:none;" onload=""></iframe> ' +
-									//  onsubmit="doit();"  
-									'<form onsubmit="formSubmit();" action="' + gdf + '" name="unique_frm_name" id="fdbk" target="OUR_hidden_iframe">' +
-									//
-									////// first slide must be an intro for this thing to work
-									'<div class="slideform-slide"> <div class="slideform-group">' +
-									'<h1>Contact us </h1>' +
-									'<p>Please use this form to contact us.</p>' +
-									'</div> </div>' +
-									// 
-									// 1. menu
-									'<div class="slideform-slide"> <div class="slideform-group">' +
-									'<h2>Reason for contacting: </h2>' +
-									'<h3>Please select one</h3>' +
-									'<div class="options options-buttons">' +
-									// Q1
-									'<label for="" > <input type="radio" name="group1" value="reasona"> <span>Request to make a new Zedign Art Series book of a master\'s work not currently part of the series. </span> </label>' +
-									// Q3
-									'<label for="" > <input type="radio" name="group1" value="reasonc"> <span>Hire us to make a book for you</span> </label>' +
-									// Q2
-									'<label for="" onclick="window.top.location.href=\'https://art.zedign.com/order/\';return false;" > <input type="radio" name="group1" value="reasonb"> <span>Request a poster from an image </span> </label>' +
-									// 
-									'</div> </div> </div>' +
-									// 
-									// 2. sub menu
-									'<div class="slideform-slide"> <div class="slideform-group">' +
-									// Q1
-									'<div data-condition="input.group1 == \'reasona\'">' +
-									'<h2>Which Artist</h2><p>Enter a wikipedia URL (e.g. <a target="_blank" href="https://en.wikipedia.org/wiki/Claude_Monet">https://en.wikipedia.org/wiki/Claude_Monet</a>)</p>' +
-									'<label><input data-msg="Please enter valid wikipedia url" pattern=".+[Ww]ikipedia.+" type="text" name="wikipedia_url" placeholder="URL"></label>' +
-									'</div>' +
-									// Q2
-									'<div data-condition="input.group1 == \'reasonc\'">' +
-									'<h2>Hire us for less</h2><p>If you\'re an artist with a portfolio of works of art, and wish to have it published in digital and paper formats… or an author with a manuscript who needs professional quality books designed… contact us. We\'ll give you a complete package of ebook and paper book, ready to be uploaded and published on Amazon. (We can even show you how to set up an Amazon account for yourself so that you will have complete control and rewards.)</p>' +
-									'</div>' +
-									// 
-									'<div data-condition="input.group1 == \'reasonb\'"> </div>' +
-									'</div> </div>' +
-									// 
-									// 3. form
-									'<div class="slideform-slide"> <div class="slideform-group">' +
-									/// Q1
-									'<div data-condition="input.group1 == \'reasona\'"> ' +
-									'<label> <span>Your Name</span> <input id="namea" type="text" name="namea" placeholder="Your name"> </label>' +
-									'<label> <span>Your Email</span> <input id="emaila" type="text" name="emaila" placeholder="Your email"> </label> ' +
-									// ' <input name="entry.703433844" id="entry_703433844" data-comment="Feedback" value="" type="hidden"> ' +
-									'</div>' +
-									// 
-									/// Q2
-									'<div data-condition="input.group1 == \'reasonc\'"> ' +
-									'<label> <span>Your Name</span> <input id="namec" type="text" name="namec" placeholder="Your name"> </label>' +
-									'<label> <span>Your Email</span> <input id="emailc" type="text" name="emailc" placeholder="Your email"> </label> ' +
-									'<label> <span>Your Message</span> <textarea name="messagec"></textarea> </label>' +
-									// '<input name="entry.703433844" id="entry_703433844" data-comment="Feedback" value="" type="hidden"> ' +
-									'</div>' +
-									// 
-									'</div> </div>' +
-									// 
-									// 4. final submit button (combines allinto gd input)
-									'<div class="slideform-slide"> <div class="slideform-group">' +
-									'<p>Hit Submit to send...</p>' +
-									'<input name="entry.703433844" id="entry_703433844" data-comment="Feedback" value="" type="hidden"> ' +
-									'</div> </div>' +
-									// 
-									// 
-									//// LAST THANK YOU SLIDE AFTER FORM SUBMIT VIA formSubmit()
-									////// last slide must be a dummy like this for this thing to work
-									'<div class="slideform-slide"> <div class="slideform-group">' +
-									'<h2 _NOTANYMORE_style="height:' + viewport(25, "vh") + 'px;">Thank you! Your feedback is sent.<h2><div class="options options-list">' +
-									'</div> </div> </div>' +
-									// 
-									// 
-									// 
-									// '<footer class="slideform-footer">' +
-									// '<div class="buttons">' +
-									// '<button class="slideform-btn slideform-btn-next">Next' +
-									// '</button>' +
-									// '<button class="slideform-btn slideform-btn-prev">Prev' +
-									// '</button>' +
-									// '</div>' +
-									// '</footer>' +
-									'</form>' +
-									'');
-								// 
-								// 
-								//// disable enter key on form because entering it doesn't send always!
-								$('form').keypress(
-									function(event) {
-										if (event.which == '13') {
-											event.preventDefault();
-										}
-									});
-								// 
-								var $form = $('form');
-								$form.slideform({
-									// submit: null,
-									nextButtonText: 'Next',
-									prevButtonText: 'Prev',
-									submitButtonText: 'Submit',
-									// 
-									// submit: function(event, form) {
-									// 	// $form.trigger('goForward');
-									// 	// $form.submit();
-									// },
-									// form validation using jquery.validate
-									// NEW: using html tags now
-									//// NOTE: THIS IS JUST TO REQUIRE THE ENTIRE group1 of multiple choices,
-									//// the <inputs> enterable fields are validated via html tags in markup
-									validate: {
-										rules: {
-											group1: {
-												required: true,
-											},
-											wikipedia_url: {
-												required: true,
-											}
-											// 
-										},
-									},
-									//// /form validation using jquery.validate
-								});
-							});
-					});
-			});
-		// 
-		// 
-		// 
-		// 
-		// 
-	}
-	// 
-	if (qs.get("s") == "amz") {
-		var qry = decodeURIComponent(qs.get("n"));
-		var title = decodeURIComponent(qs.get("a") || "");
-		amzNtv_sync(
-			'custom', // type
-			qry, // qry
-			'zdn-20', // affId
-			'9732ec60fea4e122cb9626c8ab23caa2', // linkId
-			title, // title
-			'' // defCat
-		);
-		$.getScript("https://cdnjs.cloudflare.com/ajax/libs/iframe-resizer/3.5.14/iframeResizer.contentWindow.min.js")
-			.done(function() {});
-	}
-	// 
-}
+if (siteSection == "dyn_catcher") {}
 // 
 /////////////////    /DYN_CATCHER   ///////////////////
 ////////////////

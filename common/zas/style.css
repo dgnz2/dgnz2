@@ -10,7 +10,9 @@ h1 {}
 
 .container p img {
   width: 95%;
-  max-width: 500px;
+  max-width: 300px;
+  display: block;
+  margin: 0 auto;
 }
 
 /* --------------- /SINGLE ---------------- */

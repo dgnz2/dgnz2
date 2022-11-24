@@ -389,14 +389,17 @@ if (siteSection == "main") {
 		var content = ($(this).attr('data-d')).split('|');
 		// console.log(content[4]);
 		html += '<hr/> <div id="' + content[0] + '" class="media"> <div class="media-left" style=""> <img style="width:' + viewport(25, 'vw') + 'px; max-width:130px;" class="lazy media-object" data-src="https://books.zedign.com/i/e/' + content[4] + '.jpg" src="" alt=""> </div> <div class="media-body"> <h3 class="media-heading">' + content[1] + '</h3>' +
-		//// posters button
-		' <a style="margin: 5px" href="' + content[0] + '/posters/" role="button" class="btn btn-default">Classic Posters</a> ' +
+		//// classic posters button
+		' <a style="background: #d8d9ff; margin: 5px" href="' + content[0] + '/posters/" role="button" class="btn btn-default">Classic Posters</a> ' +
+		// 
 		//// other buttons depending on availability
 		// signature-posters
-		((content[5] == "y") ? ' <a style="margin: 5px" href="' + content[0] + '/signature-posters/" role="button" class="btn btn-default">Signature Posters</a> ' : "") +
+		((content[5] == "y") ? ' <a style="background: #fff2e7; margin: 5px" href="' + content[0] + '/signature-posters/" role="button" class="btn btn-default">Signature Posters</a> ' : "") +
 		// postcards
-		((content[6] == "y") ? ' <a style="margin: 5px" href="' + content[0] + '/postcards/" role="button" class="btn btn-default">Postcards</a> ' : "") +
+		((content[6] == "y") ? ' <a style="background: #effcd1;  margin: 5px" href="' + content[0] + '/postcards/" role="button" class="btn btn-default">Postcards</a> ' : "") +
 		// 
+		// monographs
+		((content[4].match(/[0-9]+/)) ? ' <a style="background: #e1f6f7; margin: 5px; font-size: 80%; padding: 5px;" href="https://books.zedign.com/zas/' + content[4] + '.html" role="button" class="btn btn-default">MONOGRAPH</a> ' : "") +
 		// 
 		'' +
 		/// buttons 

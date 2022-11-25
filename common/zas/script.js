@@ -453,6 +453,13 @@ if (siteSection == "item") {
 		var item = data.split("|");
 		var link = 'https://www.zazzle.com/' + item[0] + '?rf=238115903514203736';
 		var img = ('https://rlv.zcache.com/' + item[1] + '?max_dim=500');
+
+		/// skip if product is deleted (we've put http://art.zedign.com/common/404.jpg in it in the source via gd)
+		if (img.match(/404\.jpg/)) {
+			return true; /// skip iteration
+		}
+		// img = img.match(/404\.jpg/) ? "http://art.zedign.com/common/404.jpg" : img;
+
 		var zas = item[2];
 		var title = item[3].replace(/^(.+) \- (.+)$/, "$2");
 		var slug = item[4];

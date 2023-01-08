@@ -109,6 +109,7 @@ https://art.zedign.com/zas/mikalojus-konstantinas-ciurlionis/postcards/
 https://art.zedign.com/zas/olga-rozanova/postcards/
 https://art.zedign.com/zas/theo-van-rysselberghe/postcards/
 https://art.zedign.com/zas/thomas-moran/postcards/
+https://art.zedign.com/zas/rosalba-carriera/postcards/
 https://art.zedign.com/zas/amedeo-modigliani/postcards/jeanne-hebuterne_2.html
 https://art.zedign.com/zas/amedeo-modigliani/postcards/leopold-zborowski_3.html
 https://art.zedign.com/zas/amedeo-modigliani/postcards/jeanne-hebuterne-in-a-yellow-jumper_4.html
@@ -4674,3 +4675,18 @@ https://art.zedign.com/zas/raphael/postcards/head-of-an-apostle-in-the-transfigu
 https://art.zedign.com/zas/raphael/postcards/madonna_4680.html
 https://art.zedign.com/zas/raphael/postcards/the-transfiguration-of-christ_4681.html
 https://art.zedign.com/zas/raphael/postcards/the-virgin-seated-on-clouds_4682.html
+https://art.zedign.com/zas/rosalba-carriera/postcards/africa_4684.html
+https://art.zedign.com/zas/rosalba-carriera/postcards/louis-xv-of-france-as-dauphin_4685.html
+https://art.zedign.com/zas/rosalba-carriera/postcards/portrait-of-a-woman_4686.html
+https://art.zedign.com/zas/rosalba-carriera/postcards/singer-faustina-bordoni-with-musical-score_4687.html
+https://art.zedign.com/zas/rosalba-carriera/postcards/a-gentleman-in-a-gold-patterned-coat_4688.html
+https://art.zedign.com/zas/rosalba-carriera/postcards/a-venetian-lady-from-the-house-of-barbarigo_4689.html
+https://art.zedign.com/zas/rosalba-carriera/postcards/maria-theresa-archduchess-of-habsburg_4690.html
+https://art.zedign.com/zas/rosalba-carriera/postcards/self-portrait-as-winter_4691.html
+https://art.zedign.com/zas/rosalba-carriera/postcards/crown-prince-friedrich-christian-of-saxony_4692.html
+https://art.zedign.com/zas/rosalba-carriera/postcards/a-gentleman-in-a-gray-cape_4693.html
+https://art.zedign.com/zas/rosalba-carriera/postcards/elector-clemens-augustus-of-cologne_4694.html
+https://art.zedign.com/zas/rosalba-carriera/postcards/a-tyrolean-innkeeper_4695.html
+https://art.zedign.com/zas/rosalba-carriera/postcards/portrait-of-a-gentleman_4696.html
+https://art.zedign.com/zas/rosalba-carriera/postcards/pisana-mocenigo-nee-corner-or-cornaro_4697.html
+https://art.zedign.com/zas/rosalba-carriera/postcards/faustina-bordoni-rezzonico_4698.html

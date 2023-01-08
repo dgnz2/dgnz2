@@ -110,6 +110,7 @@ https://art.zedign.com/zas/james-mcneill-whistler/signature-posters/
 https://art.zedign.com/zas/maxime-maufra/signature-posters/
 https://art.zedign.com/zas/mikalojus-konstantinas-ciurlionis/signature-posters/
 https://art.zedign.com/zas/john-la-farge/signature-posters/
+https://art.zedign.com/zas/rosalba-carriera/signature-posters/
 https://art.zedign.com/zas/adelaide-labille-guiard/signature-posters/madame-de-genlis_2.html
 https://art.zedign.com/zas/adelaide-labille-guiard/signature-posters/self-portrait-with-two-pupils_3.html
 https://art.zedign.com/zas/adelaide-labille-guiard/signature-posters/study-of-a-seated-woman-seen-from-behind_4.html
@@ -4696,3 +4697,19 @@ https://art.zedign.com/zas/raphael/signature-posters/head-of-an-apostle-in-the-t
 https://art.zedign.com/zas/raphael/signature-posters/madonna_4702.html
 https://art.zedign.com/zas/raphael/signature-posters/the-transfiguration-of-christ_4703.html
 https://art.zedign.com/zas/raphael/signature-posters/the-virgin-seated-on-clouds_4704.html
+https://art.zedign.com/zas/rosalba-carriera/signature-posters/africa_4706.html
+https://art.zedign.com/zas/rosalba-carriera/signature-posters/louis-xv-of-france-as-dauphin_4707.html
+https://art.zedign.com/zas/rosalba-carriera/signature-posters/portrait-of-a-woman_4708.html
+https://art.zedign.com/zas/rosalba-carriera/signature-posters/singer-faustina-bordoni-with-musical-score_4709.html
+https://art.zedign.com/zas/rosalba-carriera/signature-posters/a-gentleman-in-a-gold-patterned-coat_4710.html
+https://art.zedign.com/zas/rosalba-carriera/signature-posters/a-venetian-lady-from-the-house-of-barbarigo_4711.html
+https://art.zedign.com/zas/rosalba-carriera/signature-posters/maria-theresa-archduchess-of-habsburg_4712.html
+https://art.zedign.com/zas/rosalba-carriera/signature-posters/self-portrait-as-winter_4713.html
+https://art.zedign.com/zas/rosalba-carriera/signature-posters/crown-prince-friedrich-christian-of-saxony_4714.html
+https://art.zedign.com/zas/rosalba-carriera/signature-posters/a-gentleman-in-a-gray-cape_4715.html
+https://art.zedign.com/zas/rosalba-carriera/signature-posters/elector-clemens-augustus-of-cologne_4716.html
+https://art.zedign.com/zas/rosalba-carriera/signature-posters/a-tyrolean-innkeeper_4717.html
+https://art.zedign.com/zas/rosalba-carriera/signature-posters/portrait-of-a-gentleman_4718.html
+https://art.zedign.com/zas/rosalba-carriera/signature-posters/pisana-mocenigo-nee-corner-or-cornaro_4719.html
+https://art.zedign.com/zas/rosalba-carriera/signature-posters/faustina-bordoni-rezzonico_4720.html
+https://art.zedign.com/zas/rosalba-carriera/signature-posters/sir-james-gray-second-baronet_4721.html

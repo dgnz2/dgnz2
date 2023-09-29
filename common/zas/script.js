@@ -432,7 +432,9 @@ if (siteSection == "main") {
 //////////////////////  MAIN  ////////////////////////////
 //
 //////////////////////  ITEMPAGES  ////////////////////////////
+/// ITEMPAGES ARE THESE: /zas/claude-monet/posters/ 
 if (siteSection == "item") {
+
 	/// REMOVE HARDCODED LINKS
 	$('.container > ul').remove();
 	//// BREADCRUMS
@@ -442,9 +444,13 @@ if (siteSection == "item") {
 		// 
 		'');
 	// ITEM BODY
-	$('.container').append(
-		'<div id="items" class="row">' +
-		'');
+
+	//// change bg to gradient to blend zaz's grey
+	// if (window.location.href.indexOf("/posters/") > -1) {
+	$('head').append('<style>#items .thumbnail {background:linear-gradient(to right, #b4b0af, #e6e4e5);} .thumbnail img {border-width:5px; border-style:solid; border-color: #b4b0af #e6e4e5 #e6e4e5 #b4b0af }</style>');
+	// }
+
+	$('.container').append('<div id="items" class="row">' + '');
 	// 
 	// 
 	var html = "";
@@ -489,6 +495,14 @@ if (siteSection == "item") {
 			aData.n.trim().replace(/\-/g, " ")
 		)
 	);
+
+	//// APPEND MONOGRAPH LINK
+	/// zasnum get from: aData.d[1] for "item", content for "single"
+	var zasnum = "";
+	zasnum = aData.d[1].split("|")[2] || "";
+	/// HTML "item":  $('#items').after and "single":  $('.container').append
+	$('#items').after(' <a style="color:inherit;text-decoration:none;" href="https://books.zedign.com/zas/' + zasnum + '.html"><div style="max-width:320px;margin:10px auto;" class="media"> <div class="media-left"> <img style="width:100px" class="media-object" src="https://books.zedign.com/i/p/' + zasnum + '_2UPCO.png" alt=""> </div> <div class="media-body"> <p>Full monograph in digital and print editions: <i>' + catname + ' - Paintings &amp; Drawings</i> (Zedign Art Series Book #' + zasnum + ').</p> </div> </div></a> ');
+
 	// 
 	$(document).ready(function() {
 		///// JQUERY LAZY  https://github.com/dkern/jquery.lazy
@@ -529,16 +543,22 @@ if (siteSection == "item") {
 		////
 	}); // (document).ready
 }
+
 //////////////////////  SINGLE  ////////////////////////////
+/// SINGLE ARE /zas/claude-monet/posters/a-corner-of-the-apartment_2261.html
 if (siteSection == "single") {
-	var zasnum = "";
-	var zasnum = content.split("|")[2] || "";
 	//// LOGO AND BREADCRUMS
 	$('.container').append(
 		//////// BREADCRUMBS
 		'<ol class="breadcrumb" style="text-transform: capitalize"> <li><a href="/zas/">Home</a></li> <li><a href="../../#' + catslug + '">' + catname + '</a></li>  <li><a href="./">' + dirname + '</a></li> </ol>' +
 		// 
 		'');
+
+	//// change bg to gradient to blend zaz's grey
+	// if (window.location.href.indexOf("/posters/") > -1) {
+	$('head').append('<style> .panel-body {background:linear-gradient(to right, #b4b0af, #e6e4e5);} .panel-body img {border-width:5px; border-style:solid; border-color: #b4b0af #e6e4e5 #e6e4e5 #b4b0af} </style>');
+	// }
+
 	/// SINGLE BODY
 	$('.container').append(
 		// 
@@ -549,8 +569,14 @@ if (siteSection == "single") {
 	$('p').appendTo('.panel-body');
 	/// BUTTONS 
 	$('.panel-footer').html('<div class="row"><div class="col-xs-6"> <a role="button" class="btn btn-primary" href="' + $('p a').attr("href") + '" >  Details </a> </div><div class="col-xs-6"> <a role="button" class="btn btn-warning" href="' + $('p a').attr("href") + '" > Buy Now  </a> </div></div>');
-	// 
+
+	//// APPEND MONOGRAPH LINK
+	/// zasnum get from: aData.d[1] for "item", content for "single"
+	var zasnum = "";
+	zasnum = content.split("|")[2] || "";
+	/// HTML "item":  $('#items').after and "single":  $('.container').append
 	$('.container').append(' <a style="color:inherit;text-decoration:none;" href="https://books.zedign.com/zas/' + zasnum + '.html"><div style="max-width:320px;margin:10px auto;" class="media"> <div class="media-left"> <img style="width:100px" class="media-object" src="https://books.zedign.com/i/p/' + zasnum + '_2UPCO.png" alt=""> </div> <div class="media-body"> <p>Full monograph in digital and print editions: <i>' + catname + ' - Paintings &amp; Drawings</i> (Zedign Art Series Book #' + zasnum + ').</p> </div> </div></a> ');
+
 	// 
 	//////// PAGINATION //////////
 	//

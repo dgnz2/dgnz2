@@ -12,6 +12,10 @@ function zas_opts(a) {
 			/////// PASTE FROM GDOC COL FROM BELOW ///
 			// 
 
+
+
+
+
 ' <option>Claude Monet — Paintings & Drawings Vol 1</option> ' + 
 ' <option>Claude Monet — Paintings & Drawings Vol 2</option> ' + 
 ' <option>Édouard Manet — Paintings & Drawings</option> ' + 
@@ -101,7 +105,8 @@ function zas_opts(a) {
 ' <option>Maurice Prendergast — Paintings & Drawings</option> ' + 
 ' <option>Mary Beale — Paintings & Drawings</option> ' + 
 ' <option>Christina Robertson — Paintings & Drawings</option> ' + 
-' <option>Ernst Ludwig Kirchner — Paintings & Drawings</option> ' + 
+' <option>Ernst Ludwig Kirchner — Paintings & Drawings Vol 1</option> ' + 
+' <option>Ernst Ludwig Kirchner — Paintings & Drawings Vol 2</option> ' + 
 ' <option>Sophie Gengembre Anderson — Paintings & Drawings</option> ' + 
 ' <option>Marie Bashkirtseff — Paintings & Drawings</option> ' + 
 ' <option>Jean-Baptiste-Camille Corot — Paintings & Drawings Vol 1</option> ' + 
@@ -141,6 +146,16 @@ function zas_opts(a) {
 ' <option>Maxime Maufra — Paintings & Drawings</option> ' + 
 ' <option>Mikalojus Konstantinas Čiurlionis — Paintings & Drawings</option> ' + 
 ' <option>John La Farge — Paintings & Drawings</option> ' + 
+
+
+
+
+
+
+
+
+
+
 
 
 			// 

@@ -431,6 +431,152 @@ function image_src_of_housepages_standalone() {
 	//
 }
 
+function shuffleArray(array) {
+	var currentIndex = array.length,
+		temporaryValue, randomIndex;
+
+	// While there remain elements to shuffle...
+	while (0 !== currentIndex) {
+
+		// Pick a remaining element...
+		randomIndex = Math.floor(Math.random() * currentIndex);
+		currentIndex -= 1;
+
+		// And swap it with the current element.
+		temporaryValue = array[currentIndex];
+		array[currentIndex] = array[randomIndex];
+		array[randomIndex] = temporaryValue;
+	}
+
+	return array;
+}
+
+// 		url: '/art.zedign.com/common/sitemap/posters.txt',
+
+//  + "?max_dim=200";
+
+function searchPosters(url, keyword, callback) {
+	$.ajax({
+		url: url,
+		dataType: 'text',
+		success: function(data) {
+			var lines = data.split('\n');
+			lines = shuffleArray(lines);
+			var matches = lines.filter(line => line.includes(keyword));
+			var index = 0;
+			var loadMore = function() {
+				if (index < matches.length) {
+					var nextMatches = matches.slice(index, index + 5);
+					index += 3;
+					var divs = nextMatches.map(function(match) {
+						var div = $('<div style="inline-block;height:100%"><a href="' + match + '"><img style="height:100%;width:auto" loading="lazy" src="" alt /></a></div>')[0];
+						var url = div.querySelector('a').href;
+						$.ajax({
+							url: url,
+							dataType: 'html',
+							success: function(data) {
+								data = data.replace(/_680\.jpg/igm, "_200.jpg"); // IMP: Replace **ALL** _680.jpg with _200.jpg in the HTML data or else it'll fetch both!
+								console.log(data);
+								var linkTag = $(data).filter('link[rel="image_src"]');
+								if (linkTag.length > 0) {
+									var imgSrc = linkTag.attr('href');
+									imgSrc = imgSrc.replace("_680.jpg", "_200.jpg");
+									div.querySelector('img').src = imgSrc;
+								}
+							}
+						});
+						return div;
+					});
+					callback(divs);
+				}
+			};
+			loadMore();
+			$('#results').scroll(function() {
+				if ($(this).scrollTop() + $(this).innerHeight() >= this.scrollHeight || $(this).scrollLeft() + $(this).innerWidth() >= this.scrollWidth) {
+					loadMore();
+				}
+			});
+		}
+	});
+}
+
+// 
+// 
+// 
+
+///// orig /// keep!
+// function searchPosters(url, keyword, callback) {
+// 	$.ajax({
+// 		url: url,
+// 		dataType: 'text',
+// 		success: function(data) {
+// 			var lines = data.split('\n');
+// 			lines = shuffleArray(lines);
+// 			var matches = lines.filter(line => line.includes(keyword));
+// 			var index = 0;
+// 			var loadMore = function() {
+// 				if (index < matches.length) {
+// 					var nextMatches = matches.slice(index, index + 5);
+// 					index += 3;
+// 					var divs = nextMatches.map(function(match) {
+// 						var div = $('<div style="inline-block;height:100%"><a href="' + match + '"><img style="height:100%;width:auto" loading="lazy" src="" alt /></a></div>')[0];
+// 						var url = div.querySelector('a').href;
+// 						$.ajax({
+// 							url: url,
+// 							dataType: 'html',
+// 							success: function(data) {
+// data = data.replace(/_680\.jpg/igm, "_200.jpg"); // IMP: Replace **ALL** _680.jpg with _200.jpg in the HTML data or else it'll fetch both!
+// console.log(data);
+// 								var linkTag = $(data).filter('link[rel="image_src"]');
+// 								if (linkTag.length > 0) {
+// 									var imgSrc = linkTag.attr('href');
+// 									imgSrc = imgSrc.replace("_680.jpg", "_200.jpg");
+// 									div.querySelector('img').src = imgSrc;
+// 								}
+// 							}
+// 						});
+// 						return div;
+// 					});
+// 					callback(divs);
+// 				}
+// 			};
+// 			loadMore();
+// 			$('#results').scroll(function() {
+// 				if ($(this).scrollTop() + $(this).innerHeight() >= this.scrollHeight || $(this).scrollLeft() + $(this).innerWidth() >= this.scrollWidth) {
+// 					loadMore();
+// 				}
+// 			});
+// 		}
+// 	});
+// }
+
+function embedded_images_lazyload() {
+	// Define a function to load images
+	var loadImages = function() {
+		$('.lazyload').each(function() {
+			var top_of_element = $(this).offset().top;
+			var bottom_of_element = $(this).offset().top + $(this).outerHeight();
+			var bottom_of_screen = $(window).scrollTop() + $(window).innerHeight();
+			var top_of_screen = $(window).scrollTop();
+
+			if ((bottom_of_screen > top_of_element) && (top_of_screen < bottom_of_element)) {
+				// the element is visible, load the image
+				var img = $(this).find('img');
+				if (!img.data('loaded')) { // check if the image has not been loaded
+					img.attr('src', img.data('src'));
+					img.data('loaded', true); // mark the image as loaded
+				}
+			}
+		});
+	};
+
+	// Call the function once to load images that are in view upon page load
+	loadImages();
+
+	// Call the function again whenever the window is scrolled
+	$(window).scroll(loadImages);
+}
+
 //////////////////   /funcs   ///////////////////////
 
 //////////////////////  MAIN  ////////////////////////////
@@ -532,8 +678,13 @@ $(document).ready(function() {
 		var html = "";
 		$.each(aData.d.slice(1), function(i, data) { /// remove 1st empty item!
 			// console.log(l);
-			var item = data.split("|");
+			var items = data.split("|");
+
+			// IMP! js var aData has trailing spaces because of gd limits workarounds!
+			var item = items.map(item => item.trim());
+
 			var link = 'https://www.zazzle.com/' + item[0] + '?rf=238115903514203736';
+
 			var img = ('https://rlv.zcache.com/' + item[1] + '?max_dim=500');
 
 			/// skip if product is deleted (we've put http://art.zedign.com/common/404.jpg in it in the source via gd)
@@ -707,8 +858,46 @@ $(document).ready(function() {
 	// 
 	if (siteSection == "dyn_catcher") {
 
-		//// IMAGE_SRC_OF_LOCPAGES 1/2
+		//// search
+		if (qs.get("s") == "s") {
 
+			$('body').append('<div id="your_carousel"></div>');
+
+			var kw = qs.get("n");
+
+			var url = '/art.zedign.com/common/sitemap/posters.txt';
+
+			// var res = searchPosters(kw);
+
+			// $('body').append(
+			// '<style>#mother {height:200px; display: flex; justify-content: space-between; align-items: stretch;} #scroll-left, #scroll-right {background-color:grey; border: none; color: white; padding:0 2px; text-align: center; text-decoration: none; display: inline-block; font-size: 16px; transition-duration: 0.4s; cursor: pointer;} #scroll-left:hover, #scroll-right:hover { background-color:darkgrey; } #results{ flex-grow: 1; overflow-x: scroll; overflow-y: hidden; height: 100%; }</style>' +
+
+			// '<div id="mother"> <button id="scroll-left">&#9668;</button> <div style="height:100%;display: flex; overflow-x: auto; overflow-y:hidden;" id="results"></div><button id="scroll-right">&#9658;</button></div>' +
+			// '');
+
+			// var url = '/art.zedign.com/common/sitemap/posters.txt';
+
+			// searchPosters(url, 'portrait', function(divs) {
+			// 	$('#results').append(divs);
+			// });
+
+			// $('#scroll-left').click(function() {
+			// 	$('#results').animate({
+			// 		scrollLeft: "-=100px"
+			// 	}, "slow");
+			// });
+
+			// $('#scroll-right').click(function() {
+			// 	$('#results').animate({
+			// 		scrollLeft: "+=100px"
+			// 	}, "slow");
+			// });
+
+			// // embedded_images_lazyload();
+
+		}
+
+		//// IMAGE_SRC_OF_LOCPAGES 1/2
 		if (qs.get("s") == "imgsrc") {
 
 			var url = qs.get("n");
@@ -773,14 +962,15 @@ $(document).ready(function() {
 	////////////////
 	///////////////
 
-	image_src_of_housepages_standalone();
+	// image_src_of_housepages_standalone();
 
 });
 
-$(window).on("load", function() {
-	// 
-	affLocalize("", "", thsBlg_zzl);
-	// 
-});
+// $(window).on("load", function() {
+
+// 	// 
+// 	// affLocalize("", "", thsBlg_zzl);
+// 	// 
+// });
 //
 //

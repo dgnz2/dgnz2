@@ -821,14 +821,14 @@ $(document).ready(function() {
 
 		var purl = ($('#prevnext li:eq(0) a').attr('href')).replace("../../",
 			//
-			"/zas/" /// <<< prod!
+			"https://art.zedign.com/zas/" /// <<< prod!
 			// "/art.zedign.com/zas/" // <<< testing!
 
 		);
 
 		var nurl = ($('#prevnext li:eq(1) a').attr('href')).replace("../../",
 			//
-			"/zas/" /// <<< prod!
+			"https://art.zedign.com/zas/" /// <<< prod!
 			// "/art.zedign.com/zas/" // <<< testing!
 		);
 
@@ -962,7 +962,7 @@ $(document).ready(function() {
 	////////////////
 	///////////////
 
-	// image_src_of_housepages_standalone();
+	image_src_of_housepages_standalone();
 
 });
 

@@ -381,7 +381,7 @@ function image_src_of_housepages_standalone() {
 				el.html('<div class="dddd_linkwrap">' +
 
 					'<iframe class="dddd_iframe" src="../../../common/c/?s=imgsrc&n=' + url + '" scrolling="no" frameborder="0" border="0"></iframe>' +
-					'<a class="dddd_link" href="' + url + '" target="_self"></a></div>' +
+					'<a class="dddd_link" href="' + url + '" target="_top"></a></div>' +
 					'');
 
 			} /// if 

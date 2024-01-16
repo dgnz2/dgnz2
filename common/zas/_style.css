@@ -1,0 +1,22 @@
+/* art.zedign.com/zas */
+
+/* ------------ MAIN ------------------ */
+
+.caption h4 {
+  height: 50px;
+}
+
+/* ------------ /MAIN ------------------ */
+
+/* --------------- SINGLE ---------------- */
+
+h1 {}
+
+.container p img {
+  width: 95%;
+  max-width: 300px;
+  display: block;
+  margin: 0 auto;
+}
+
+/* --------------- /SINGLE ---------------- */

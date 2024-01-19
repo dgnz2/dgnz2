@@ -363,6 +363,65 @@ function paginateHTML(opt, pHref, pTxt, nHref, nTxt) {
 	} catch (e) {}
 }
 
+function commonFooter() {
+	//// COMMON FOOTER
+	$('.container').append('<div style="text-align:center; margin:100px auto"> <hr/> <div class="row"> <div class="col-lg-12"> <p>  &copy; The Zedign House | <a href="/privacy.html">Privacy Policy </a> &nbsp; &nbsp; &nbsp; <a rel="nofollow" href="https://twitter.com/zedign"> ' +
+		'<span class="rrssb-icon"><svg width="26" height="26" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 28 28"><path d="M24.253 8.756C24.69 17.08 18.297 24.182 9.97 24.62a15.093 15.093 0 0 1-8.86-2.32c2.702.18 5.375-.648 7.507-2.32a5.417 5.417 0 0 1-4.49-3.64c.802.13 1.62.077 2.4-.154a5.416 5.416 0 0 1-4.412-5.11 5.43 5.43 0 0 0 2.168.387A5.416 5.416 0 0 1 2.89 4.498a15.09 15.09 0 0 0 10.913 5.573 5.185 5.185 0 0 1 3.434-6.48 5.18 5.18 0 0 1 5.546 1.682 9.076 9.076 0 0 0 3.33-1.317 5.038 5.038 0 0 1-2.4 2.942 9.068 9.068 0 0 0 3.02-.85 5.05 5.05 0 0 1-2.48 2.71z"/></svg></span>' +
+		' </a> </p> </div> </div></div>');
+}
+
+function monographPanel() {
+	//// ------------ MONOGRAPH LINK -----------
+	/// zasnum get from: aData.d[1] for "item", content for "single"
+	var zasnum = "";
+	zasnum = content.split("|")[2] || "";
+	/// HTML "item":  $('#items').after and "single":  $('.container').append
+	$('.container').append(' <a style="color:inherit;text-decoration:none;" href="https://books.zedign.com/zas/' + zasnum + '.html"><div style="max-width:320px;margin:10px auto;" class="media"> <div class="media-left"> <img style="width:100px" class="media-object" src="https://books.zedign.com/i/p/' + zasnum + '_2UPCO.png" alt=""> </div> <div class="media-body"> <p>Full monograph in digital and print editions: <i>' + catname + ' - Paintings &amp; Drawings</i> (Zedign Art Series Book #' + zasnum + ').</p> </div> </div></a> ');
+
+}
+
+function singlePagination() {
+
+	// 
+	//////// PAGINATION //////////
+	//
+
+	// $('.container').append(
+	// 	paginateHTML(
+	// 		siteSection,
+	// 		$('#prevnext li:eq(0) a').attr('href'),
+	// 		$('#prevnext li:eq(0) a').text(),
+	// 		$('#prevnext li:eq(1) a').attr('href'),
+	// 		$('#prevnext li:eq(1) a').text()
+	// 	)
+	// );
+
+	var purl = ($('#prevnext li:eq(0) a').attr('href')).replace("../../",
+		//
+		"https://art.zedign.com/zas/" /// <<< prod!
+		// "/art.zedign.com/zas/" // <<< testing!
+	);
+
+	var nurl = ($('#prevnext li:eq(1) a').attr('href')).replace("../../",
+		//
+		"https://art.zedign.com/zas/" /// <<< prod!
+		// "/art.zedign.com/zas/" // <<< testing!
+	);
+
+	$('.container').append(
+		'<table style="margin:10px auto;font-size:90%"><tr><td colspan="3" style="text-align:center"> &lt;&lt; BROWSE &gt;&gt; </td></tr><tr>' +
+		'<td style="padding:5px;background:#aaa"><x-cmemblnk class="cmemblnk" href="' + purl + '"> </x-cmemblnk></td>' +
+		'<td>&nbsp;&nbsp;</td>' +
+		'<td style="padding:5px;background:#aaa"><x-cmemblnk class="cmemblnk" href="' + nurl + '"> </x-cmemblnk></td> </tr></table><hr/>'
+	);
+
+	// <x-cmemblnk class="cmemblnk" href="https://www..com/"> </x-cmemblnk>
+
+	/// remove hardcoded #prevnext
+	$('#prevnext').remove();
+
+}
+
 function image_src_of_housepages_standalone() {
 
 	// v2
@@ -772,6 +831,7 @@ $(document).ready(function() {
 	}
 
 	//////////////////////  SINGLE  ////////////////////////////
+
 	/// SINGLE ARE /zas/claude-monet/posters/a-corner-of-the-apartment_2261.html
 	if (siteSection == "single") {
 
@@ -792,67 +852,24 @@ $(document).ready(function() {
 			// 
 			'<div class="panel panel-default"> <div class="panel-heading"> </div> <div class="panel-body"> </div> <div class="panel-footer"> </div> </div>');
 		//
-		$('.panel-heading').html('<h3>' + $('h1').html() + '</h3>');
-		$('h1').remove();
+		$('.panel-heading').prepend($('h1')); // Prepend it to .panel-heading
 		$('p').appendTo('.panel-body');
 		/// BUTTONS 
-		$('.panel-footer').html('<div class="row"><div class="col-xs-6"> <a role="button" class="btn btn-primary" href="' + $('p a').attr("href") + '" >  Details </a> </div><div class="col-xs-6"> <a role="button" class="btn btn-warning" href="' + $('p a').attr("href") + '" > Buy Now  </a> </div></div>');
+		$('.panel-footer').html('<div class="row"><div class="col-xs-6 text-right"> <a role="button" class="btn btn-primary" href="' + $('p a').attr("href") + '" >  Details </a> </div><div class="col-xs-6"> <a role="button" class="btn btn-warning" href="' + $('p a').attr("href") + '" > Buy Now  </a> </div></div>');
 
-		//// APPEND MONOGRAPH LINK
-		/// zasnum get from: aData.d[1] for "item", content for "single"
-		var zasnum = "";
-		zasnum = content.split("|")[2] || "";
-		/// HTML "item":  $('#items').after and "single":  $('.container').append
-		$('.container').append(' <a style="color:inherit;text-decoration:none;" href="https://books.zedign.com/zas/' + zasnum + '.html"><div style="max-width:320px;margin:10px auto;" class="media"> <div class="media-left"> <img style="width:100px" class="media-object" src="https://books.zedign.com/i/p/' + zasnum + '_2UPCO.png" alt=""> </div> <div class="media-body"> <p>Full monograph in digital and print editions: <i>' + catname + ' - Paintings &amp; Drawings</i> (Zedign Art Series Book #' + zasnum + ').</p> </div> </div></a> ');
+		singlePagination();
 
-		// 
-		//////// PAGINATION //////////
-		//
+		monographPanel();
 
-		// $('.container').append(
-		// 	paginateHTML(
-		// 		siteSection,
-		// 		$('#prevnext li:eq(0) a').attr('href'),
-		// 		$('#prevnext li:eq(0) a').text(),
-		// 		$('#prevnext li:eq(1) a').attr('href'),
-		// 		$('#prevnext li:eq(1) a').text()
-		// 	)
-		// );
-
-		var purl = ($('#prevnext li:eq(0) a').attr('href')).replace("../../",
-			//
-			"https://art.zedign.com/zas/" /// <<< prod!
-			// "/art.zedign.com/zas/" // <<< testing!
-
-		);
-
-		var nurl = ($('#prevnext li:eq(1) a').attr('href')).replace("../../",
-			//
-			"https://art.zedign.com/zas/" /// <<< prod!
-			// "/art.zedign.com/zas/" // <<< testing!
-		);
-
-		$('.container').append('<table style="margin:10px auto;font-size:90%"><tr><td  colspan="3" style="text-align:center"> &lt;&lt; BROWSE &gt;&gt; </td></tr><tr> <td><x-cmemblnk class="cmemblnk" href="' + purl + '"> </x-cmemblnk></td><td>&nbsp;&nbsp;</td><td><x-cmemblnk class="cmemblnk" href="' + nurl + '"> </x-cmemblnk></td> </tr></table>');
-
-		// <x-cmemblnk class="cmemblnk" href="https://www..com/"> </x-cmemblnk>
-
-		/// remove hardcoded #prevnext
-		$('#prevnext').remove();
-
-		// 
-		// 
-		// 
 	}
-	// 
-	// 
-	// 
-	///////// ON ALL COMMON **AFTER**
-	////////
-	//// COMMON FOOTER
-	$('.container').append('<div style="text-align:center; margin:100px auto"> <hr/> <div class="row"> <div class="col-lg-12"> <p>  &copy; The Zedign House | <a href="/privacy.html">Privacy Policy </a> &nbsp; &nbsp; &nbsp; <a rel="nofollow" href="https://twitter.com/zedign"> ' +
-		'<span class="rrssb-icon"><svg width="26" height="26" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 28 28"><path d="M24.253 8.756C24.69 17.08 18.297 24.182 9.97 24.62a15.093 15.093 0 0 1-8.86-2.32c2.702.18 5.375-.648 7.507-2.32a5.417 5.417 0 0 1-4.49-3.64c.802.13 1.62.077 2.4-.154a5.416 5.416 0 0 1-4.412-5.11 5.43 5.43 0 0 0 2.168.387A5.416 5.416 0 0 1 2.89 4.498a15.09 15.09 0 0 0 10.913 5.573 5.185 5.185 0 0 1 3.434-6.48 5.18 5.18 0 0 1 5.546 1.682 9.076 9.076 0 0 0 3.33-1.317 5.038 5.038 0 0 1-2.4 2.942 9.068 9.068 0 0 0 3.02-.85 5.05 5.05 0 0 1-2.48 2.71z"/></svg></span>' +
-		' </a> </p> </div> </div></div>');
-	//
+
+	//////////////////////  /SINGLE  ////////////////////////////
+
+	///////// ON ALL COMMON **AFTER** //////////////////////////
+
+	commonFooter();
+
+	///////// /ON ALL COMMON **AFTER** //////////////////////////
 
 	/////////////////    DYN_CATCHER   ///////////////////
 	// 
@@ -929,7 +946,7 @@ $(document).ready(function() {
 						'<style> ' +
 						'.dddd_mother{overflow:hidden:width:120px;height:144px}' +
 						//// title 
-						'.dddd_w {width:120px; font-family: "Times New Roman", Times, serif; font-weight: bold; font-size: 120%; line-height: 1em; font-variant: small-caps; text-align: center; height:24px; overflow:hidden;} .dddd { height: 24px; overflow: hidden; width:120px; display:table-cell;text-align:center; vertical-align:middle; font-size:14px;  color:black; background: darkgrey; line-height: 0.8;} ' +
+						'.dddd_w {width:120px;font-family:Arial,Helvetica,sans-serif;font-weight: bold; text-transform:uppercase; font-size: 11px; line-height: 1em; text-align: center; height:24px; overflow:hidden;} .dddd { height: 24px; overflow: hidden; width:120px; display:table-cell;text-align:center; vertical-align:middle;color:black; background: darkgrey; line-height: 0.8;} ' +
 						//// image
 						' .container { width: 120px; height: 120px; position: relative; display: flex; align-items: center; justify-content: center; overflow: hidden; } .container::before { content: ""; background-image: url(\'' + image_src + '\'); background-size: cover; filter: blur(8px); position: absolute; width: 200%; height: 200%; top: -50%; left: -50%; } .fit-and-centered { position: relative; max-height: 100%; max-width: 100%; }' +
 						'</style>' +

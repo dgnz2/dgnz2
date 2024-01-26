@@ -220,14 +220,17 @@ function sc_qstrng(qs) {
 		this.params[name] = value;
 	}
 }
+
 sc_qstrng.prototype.get = function(key, default_) {
 	var value = this.params[key];
 	return (value != null) ? value : default_;
 }
+
 sc_qstrng.prototype.contains = function(key) {
 	var value = this.params[key];
 	return (value != null);
 }
+
 var qs = new sc_qstrng();
 ///////////////////  /QS   //////////////////
 function gCSE(cseId, divId, phText, target) {
@@ -271,6 +274,14 @@ function gCSE(cseId, divId, phText, target) {
 			$('input.gsc-input').attr('placeholder', ' ' + placeholder);
 		}
 	})();
+}
+
+function detectmob() {
+	if (window.innerWidth < 760) {
+		return true;
+	} else {
+		return false;
+	}
 }
 
 function viewport(percentage, property) {
@@ -409,7 +420,7 @@ function singlePagination() {
 	);
 
 	$('.container').append(
-		'<table style="margin:10px auto;font-size:90%"><tr><td colspan="3" style="text-align:center"> &lt;&lt; BROWSE &gt;&gt; </td></tr><tr>' +
+		'<table style="margin:10px auto;font-size:90%"><tr><td colspan="3" style="text-align:center"> &lt;&lt; BROWSE ' + catname + ' COLLECTION &gt;&gt; </td></tr><tr>' +
 		'<td style="padding:5px;background:#aaa"><x-cmemblnk class="cmemblnk" href="' + purl + '"> </x-cmemblnk></td>' +
 		'<td>&nbsp;&nbsp;</td>' +
 		'<td style="padding:5px;background:#aaa"><x-cmemblnk class="cmemblnk" href="' + nurl + '"> </x-cmemblnk></td> </tr></table><hr/>'
@@ -434,7 +445,7 @@ function image_src_of_housepages_standalone() {
 			if ((el.attr('href').trim()).match('\/')) {
 
 				var url = el.attr('href').trim();
-				console.log(url)
+				// console.log(url)
 				// var slug = url.match('zedign.com/(.+)$')[1];
 				var title = (el.text()).slice(0, -1);
 				el.html('<div class="dddd_linkwrap">' +
@@ -510,104 +521,119 @@ function shuffleArray(array) {
 	return array;
 }
 
-// 		url: '/art.zedign.com/common/sitemap/posters.txt',
+function jqFetchRSS(gasID, url) {
+	// v4 - req, JQ, GAS SCR JSONPROXY
+	// returns array of items
 
-//  + "?max_dim=200";
+	try {
 
-function searchPosters(url, keyword, callback) {
-	$.ajax({
-		url: url,
-		dataType: 'text',
-		success: function(data) {
-			var lines = data.split('\n');
-			lines = shuffleArray(lines);
-			var matches = lines.filter(line => line.includes(keyword));
-			var index = 0;
-			var loadMore = function() {
-				if (index < matches.length) {
-					var nextMatches = matches.slice(index, index + 5);
-					index += 3;
-					var divs = nextMatches.map(function(match) {
-						var div = $('<div style="inline-block;height:100%"><a href="' + match + '"><img style="height:100%;width:auto" loading="lazy" src="" alt /></a></div>')[0];
-						var url = div.querySelector('a').href;
-						$.ajax({
-							url: url,
-							dataType: 'html',
-							success: function(data) {
-								data = data.replace(/_680\.jpg/igm, "_200.jpg"); // IMP: Replace **ALL** _680.jpg with _200.jpg in the HTML data or else it'll fetch both!
-								console.log(data);
-								var linkTag = $(data).filter('link[rel="image_src"]');
-								if (linkTag.length > 0) {
-									var imgSrc = linkTag.attr('href');
-									imgSrc = imgSrc.replace("_680.jpg", "_200.jpg");
-									div.querySelector('img').src = imgSrc;
-								}
-							}
-						});
-						return div;
-					});
-					callback(divs);
-				}
-			};
-			loadMore();
-			$('#results').scroll(function() {
-				if ($(this).scrollTop() + $(this).innerHeight() >= this.scrollHeight || $(this).scrollLeft() + $(this).innerWidth() >= this.scrollWidth) {
-					loadMore();
-				}
-			});
-		}
-	});
+		var rand = (typeof rand == 'undefined') ? "" : "rand";
+		var items = [];
+		var proxyUrl = 'https://script.google.com/macros/s/' + gasID + '/exec?url=' + encodeURIComponent(url) + '&callback=?';
+
+		$.ajax({
+			crossOrigin: true,
+			cache: true,
+			url: proxyUrl,
+			dataType: "json",
+			success: function(data) {
+				var xml = $.parseXML(data.result);
+				var $xml = $(xml);
+				var $items = $xml.find("item");
+
+				$items.each(function() {
+					var $item = $(this);
+					var title = $item.find("title").text().replace(/\s+/igm, " ").trim();
+					var link = $item.find("link").text().replace(/\s+/igm, " ").trim();
+					var description = $item.find("description").text().replace(/\s+/igm, " ").trim();
+					// console.log("Title: " + title);
+					// console.log("Link: " + link);
+					// console.log("Description: " + description);
+					var item = [title, description, link];
+					items.push(item);
+				});
+
+			},
+			error: function(jqXHR, textStatus, errorThrown) {
+				// console.log(textStatus + '' + errorThrown);
+			}
+		});
+
+		return items;
+
+	} catch (e) {}
+
 }
 
-// 
-// 
-// 
-
-///// orig /// keep!
-// function searchPosters(url, keyword, callback) {
-// 	$.ajax({
-// 		url: url,
-// 		dataType: 'text',
-// 		success: function(data) {
-// 			var lines = data.split('\n');
-// 			lines = shuffleArray(lines);
-// 			var matches = lines.filter(line => line.includes(keyword));
-// 			var index = 0;
-// 			var loadMore = function() {
-// 				if (index < matches.length) {
-// 					var nextMatches = matches.slice(index, index + 5);
-// 					index += 3;
-// 					var divs = nextMatches.map(function(match) {
-// 						var div = $('<div style="inline-block;height:100%"><a href="' + match + '"><img style="height:100%;width:auto" loading="lazy" src="" alt /></a></div>')[0];
-// 						var url = div.querySelector('a').href;
-// 						$.ajax({
-// 							url: url,
-// 							dataType: 'html',
-// 							success: function(data) {
-// data = data.replace(/_680\.jpg/igm, "_200.jpg"); // IMP: Replace **ALL** _680.jpg with _200.jpg in the HTML data or else it'll fetch both!
-// console.log(data);
-// 								var linkTag = $(data).filter('link[rel="image_src"]');
-// 								if (linkTag.length > 0) {
-// 									var imgSrc = linkTag.attr('href');
-// 									imgSrc = imgSrc.replace("_680.jpg", "_200.jpg");
-// 									div.querySelector('img').src = imgSrc;
-// 								}
-// 							}
-// 						});
-// 						return div;
-// 					});
-// 					callback(divs);
-// 				}
-// 			};
-// 			loadMore();
-// 			$('#results').scroll(function() {
-// 				if ($(this).scrollTop() + $(this).innerHeight() >= this.scrollHeight || $(this).scrollLeft() + $(this).innerWidth() >= this.scrollWidth) {
-// 					loadMore();
-// 				}
-// 			});
-// 		}
-// 	});
-// }
+function _jqFetchRSS(gasID, url) {
+	// v3 - req, JQ, GAS SCR JSONPROXY
+	// returns array of items
+	var rand = (typeof rand == 'undefined') ? "" : "rand";
+	var items = [];
+	try {
+		var prxJsn = '\x68\x74\x74\x70\x73\x3A\x2F\x2F\x73\x63\x72\x69\x70\x74\x2E\x67\x6F\x6F\x67\x6C\x65\x2E\x63\x6F\x6D\x2F\x6D\x61\x63\x72\x6F\x73\x2F\x73\x2F' + gasID + '/exec';
+		//////////// json prx jp plugin by mcpher /////////////
+		if (!jQuery().ajaxOrig) {
+			jQuery.ajaxOrig = jQuery.ajax;
+			jQuery.ajax = function(a, b) {
+				function d(a) {
+					a = encodeURI(a).replace(/&/g, "%26");
+					return prxJsn + "?url=" + a + "&callback=?"
+				}
+				var c = "object" === typeof a ? a : b || {};
+				c.url = c.url || ("string" === typeof a ? a : "");
+				var c = jQuery.ajaxSetup({}, c),
+					e = function(a, c) {
+						var b = document.createElement("a");
+						b.href = a;
+						return c.crossOrigin && "http" == a.substr(0, 4).toLowerCase() && "localhost" != b.hostname && "127.0.0.1" != b.hostname && b.hostname != window.location.hostname
+					}(c.url, c);
+				c.proxy && 0 < c.proxy.length && (prxJsn = c.proxy, "object" === typeof a ?
+					a.crossDomain = !0 : "object" === typeof b && (b.crossDomain = !0));
+				e && ("object" === typeof a ? a.url && (a.url = d(a.url), a.charset && (a.url += "&charset=" + a.charset), a.dataType = "json") : "string" === typeof a && "object" === typeof b && (a = d(a), b.charset && (a += "&charset=" + b.charset), b.dataType = "json"));
+				return jQuery.ajaxOrig.apply(this, arguments)
+			};
+			jQuery.ajax.prototype = new jQuery.ajaxOrig;
+			jQuery.ajax.prototype.constructor = jQuery.ajax;
+			//////////// json prx jp plugin by mcpher /////////////
+		}
+		//////////// /json prx jp plugin by mcpher /////////////
+		$.ajax({
+			crossOrigin: true,
+			cache: true,
+			url: url,
+			success: function(data) {
+				try {
+					var xml = $.parseXML(data.result.trim().replace(/[^\x09\x0A\x0D\x20-\xFF\x85\xA0-\uD7FF\uE000-\uFDCF\uFDE0-\uFFFD]/gm, '').replace(/&(?!(?:#\d+|#x[0-9a-f]+|\w+);)/, "&amp;"));
+					// console.log(xml);
+					var counter;
+					// $(xml).find("item")
+					/// lt(n) is number of items 
+					$("item:lt(15)", xml)
+						.each(function(index) {
+							// console.log(index);
+							counter = index + 1;
+							var el = $(this);
+							// 
+							var title = el.find("title").text().replace(/\s+/igm, " ").trim();
+							var desc = el.find("description").text().replace(/\s+/igm, " ").trim();
+							var link = el.find("link").text().replace(/http\:/, 'https\:').replace(/\s+/igm, " ").trim() || '';
+							// 
+							// 
+							var item = [title, desc, link];
+							// 
+							items.push(item);
+						});
+					if (rand == "rand") {
+						shuffle(items);
+					}
+					// console.log(items.length);
+					return items;
+				} catch (e) {};
+			}
+		});
+	} catch (e) {}
+}
 
 function embedded_images_lazyload() {
 	// Define a function to load images
@@ -634,6 +660,78 @@ function embedded_images_lazyload() {
 
 	// Call the function again whenever the window is scrolled
 	$(window).scroll(loadImages);
+}
+
+function waitForElement(selector, timeout = 5000) {
+	return new Promise((resolve, reject) => {
+		if (document.querySelector(selector)) {
+			return resolve(document.querySelector(selector));
+		}
+		const observer = new MutationObserver(mutations => {
+			if (document.querySelector(selector)) {
+				observer.disconnect();
+				resolve(document.querySelector(selector));
+			}
+		});
+		observer.observe(document.body, {
+			childList: true,
+			subtree: true
+		});
+		// Set a timeout to reject promise after waiting for a certain amount of time
+		setTimeout(() => {
+			observer.disconnect();
+			reject(new Error('Waiting for element timed out'));
+		}, timeout);
+	});
+}
+
+function relatedFromFeed() {
+
+	// Define our list of stop words
+	var stopWords = ['the', 'a', 'an', 'is', 'it', 'this', 'that', 'of', 'from', 'and', 'to', 'in', 'out', 'by', 'as', 'at', 'be', 'about', 'above', 'after', 'again', 'against', 'all', 'am', 'an', 'and', 'any', 'are', 'aren\'t', 'as', 'at', 'be', 'because', 'been', 'before', 'being', 'below', 'between', 'both', 'but', 'by', 'can\'t', 'cannot', 'could', 'couldn\'t', 'did', 'didn\'t', 'do', 'does', 'doesn\'t', 'doing', 'don\'t', 'down', 'during', 'each', 'few', 'for', 'from', 'further', 'had', 'hadn\'t', 'has', 'hasn\'t', 'have', 'haven\'t', 'having', 'he', 'he\'d', 'he\'ll', 'he\'s', 'her', 'here', 'here\'s', 'hers', 'herself', 'him', 'himself', 'his', 'how', 'how\'s', 'i', 'i\'d', 'i\'ll', 'i\'m', 'i\'ve', 'if', 'in', 'into', 'is', 'isn\'t', 'it', 'it\'s', 'its', 'itself', 'let\'s', 'me', 'more', 'most', 'mustn\'t', 'my', 'myself', 'no', 'nor', 'not', 'of', 'off', 'on', 'once', 'only', 'or', 'other', 'ought', 'our', 'ours', 'ourselves', 'out', 'over', 'own', 'same', 'shan\'t', 'she', 'she\'d', 'she\'ll', 'she\'s', 'should', 'shouldn\'t', 'so', 'some', 'such', 'than', 'that', 'that\'s', 'the', 'their', 'theirs', 'them', 'themselves', 'then', 'there', 'there\'s', 'these', 'they', 'they\'d', 'they\'ll', 'they\'re', 'they\'ve', 'this', 'those', 'through', 'to', 'too', 'under', 'until', 'up', 'very', 'was', 'wasn\'t', 'we', 'we\'d', 'we\'ll', 'we\'re', 'we\'ve', 'were', 'weren\'t', 'what', 'what\'s', 'when', 'when\'s', 'where', 'where\'s', 'which', 'while', 'who', 'who\'s', 'whom', 'why', 'why\'s', 'with', 'won\'t', 'would', 'wouldn\'t', 'you', 'you\'d', 'you\'ll', 'you\'re', 'you\'ve', 'your', 'yours', 'yourself', 'yourselves'];
+
+	////  github.com/spencermountain/compromise
+	$.getScript("https://unpkg.com/compromise")
+		.done(function(script, textStatus) {
+
+			var nlp = window.nlp;
+			// var title = 'Figure Study In Colors';
+			var title = content.split("|")[3] || "";
+
+			// Remove stop words, prepositions, conjunctions, determiners
+			var doc = nlp(title);
+			stopWords.forEach(function(word) {
+				doc.remove('#' + word);
+			});
+			doc.remove('#Preposition');
+			doc.remove('#Conjunction');
+			doc.remove('#Determiner');
+			// Extract terms
+			var terms = doc.terms().out('array');
+			// Select a random term
+			var randomTerm = terms[Math.floor(Math.random() * terms.length)];
+
+			// disabled: zedignpostcards won't search by kw! 
+			// var kw = (dirname == "Fine Art Postcards") ? randomTerm : randomTerm + " poster"; // poster to prevent other items
+			// var st = (dirname == "Fine Art Postcards") ? "zedignpostcards" : "zedign";
+			// // console.log(st);
+
+			var kw = randomTerm;
+			var st = "zedign"; 
+
+			var css = detectmob() ? "height:560px;width:328px;" : "height:374px;width:492px;";
+
+			$('.container').append('<hr/><div id="relatedFromFeed"><div style="text-align: center; font-size: 24px; margin: 10px 0;">You may also like...</div><iframe style="' + css + 'display:block; margin:0 auto;" class="" src="../../../common/c/?s=zs&st=' + st + '&n=' + kw + '" scrolling="no" frameborder="0" border="0"></iframe></div>');
+
+		})
+		.fail(function(jqxhr, settings, exception) {
+			// $( "div.log" ).text( "Triggered ajaxError handler." );
+		});
+
+	// try {
+
+	// } catch (e) {}
+
 }
 
 //////////////////   /funcs   ///////////////////////
@@ -704,7 +802,7 @@ $(document).ready(function() {
 					effectTime: 1000,
 					visibleOnly: true,
 					onError: function(element) {
-						console.log('error loading ' + element.data('src'));
+						// console.log('error loading ' + element.data('src'));
 					}
 				});
 			}
@@ -803,7 +901,7 @@ $(document).ready(function() {
 					effectTime: 1000,
 					visibleOnly: true,
 					onError: function(element) {
-						console.log('error loading ' + element.data('src'));
+						// console.log('error loading ' + element.data('src'));
 					}
 				});
 			}
@@ -861,19 +959,101 @@ $(document).ready(function() {
 
 		monographPanel();
 
+		try {
+			relatedFromFeed();
+		} catch (e) {}
+
 	}
 
 	//////////////////////  /SINGLE  ////////////////////////////
 
 	///////// ON ALL COMMON **AFTER** //////////////////////////
 
-	commonFooter();
+	if (siteSection == "single") {
+
+		waitForElement('#relatedFromFeed', 10000).then((elm) => {
+			commonFooter();
+		});
+
+	} else {
+		commonFooter();
+	}
 
 	///////// /ON ALL COMMON **AFTER** //////////////////////////
 
 	/////////////////    DYN_CATCHER   ///////////////////
 	// 
 	if (siteSection == "dyn_catcher") {
+
+		//// WIP zazzle related
+		if (qs.get("s") == "zs") {
+
+			try {
+
+				var kw = qs.get("n");
+				var st = qs.get("st");
+
+				$('head').append('<style>body{margin:0;padding:0} .zs {margin:2px; border-radius:4px; background: linear-gradient(to right, #b4b0af, #e6e4e5); padding:4px; text-transform:uppercase; display: inline-block; width: 152px; height: 172px; overflow:hidden; font-family:sans-serif;font-size:10px; line-height:1em; } .zs a, div span, div img { max-width: 100%; max-height: 100%; object-fit: scale-down; overflow:hidden; } .zs a {text-decoration:none;color: black;} .zs span{height:20px;display:block;}</style>');
+
+				$('body').append('<div class="container"></div>');
+
+				//// USNG OUR gd JSNPRXY
+
+				var gasID = "AKfycbwu10Uml2V4z_UuV8RhWb2I6JVc0QAylXsh7VsojIHCmvO6Pwc";
+
+				// https://feed.zazzle.com/store/zedign/rss?ps=6&st=popularity&qs=Figures
+
+				var url = 'https://feed.zazzle.com/store/' + st + '/rss?ps=6&st=popularity&qs=' + kw
+
+				// console.log(url)
+
+				var items = "";
+				var proxyUrl = '\x68\x74\x74\x70\x73\x3A\x2F\x2F\x73\x63\x72\x69\x70\x74\x2E\x67\x6F\x6F\x67\x6C\x65\x2E\x63\x6F\x6D\x2F\x6D\x61\x63\x72\x6F\x73\x2F\x73\x2F' + gasID + '/exec?url=' + encodeURIComponent(url) + '&callback=?';
+
+				// console.log(proxyUrl);
+
+				$.ajax({
+					crossOrigin: true,
+					cache: false,
+					url: proxyUrl,
+					dataType: "json",
+					success: function(data) {
+						var xml = $.parseXML(data.result);
+						var $xml = $(xml);
+						var $items = $xml.find("item");
+
+						$items.each(function() {
+							var $item = $(this);
+							var title = $item.find("title").text().replace(/\s+/igm, " ").trim();
+							var link = $item.find("link").text().replace(/\s+/igm, " ").trim();
+							var description = $item.find("description").text().replace(/\s+/igm, " ").trim();
+
+							title = title.replace(/(Poster|Signature Poster|Postcard)/igm, "").trim();
+							link += "?rf=238115903514203736";
+
+							var img = description.match(/http[^"]+_152\.jpg/)[0];
+
+							if (img.match(/\.jpg/)) {
+
+								items += '<div class="zs"><a href="' + link + '" target="_blank" rel="nofollow"><span>' + title + '</span><img src="' + img + '" alt /></a></div>';
+							}
+
+						});
+
+						$('.container').append(items);
+
+					},
+					error: function(jqXHR, textStatus, errorThrown) {
+						// console.log(textStatus + '' + errorThrown);
+					}
+				});
+
+			} catch (e) {}
+
+			// 
+			// 
+
+		}
 
 		//// search
 		if (qs.get("s") == "s") {

@@ -721,7 +721,7 @@ $(document).ready(function() {
 		//// BREADCRUMS
 		$('h1').before(
 			//////// BREADCRUMBS
-			'<ol class="breadcrumb" style="text-transform: capitalize"> <li><a href="/zas/">Home</a></li> <li><a href="../../#' + catslug + '">' + catname + '</a></li>  <li><a href="./">' + dirname + '</a></li> </ol>' +
+			'<ol class="breadcrumb" style="text-transform: uppercase"> <li><a href="/zas/">Home</a></li> <li><a href="../../#' + catslug + '">' + catname + '</a></li>  <li><a href="./">' + dirname + '</a></li> </ol>' +
 			// 
 			'');
 		// ITEM BODY
@@ -838,7 +838,7 @@ $(document).ready(function() {
 		//// LOGO AND BREADCRUMS
 		$('.container').append(
 			//////// BREADCRUMBS
-			'<ol class="breadcrumb" style="text-transform: capitalize"> <li><a href="/zas/">Home</a></li> <li><a href="../../#' + catslug + '">' + catname + '</a></li>  <li><a href="./">' + dirname + '</a></li> </ol>' +
+			'<ol class="breadcrumb" style="text-transform: uppercase"> <li><a href="/zas/">Home</a></li> <li><a href="../../#' + catslug + '">' + catname + '</a></li>  <li><a href="./">' + dirname + '</a></li> </ol>' +
 			// 
 			'');
 
@@ -941,12 +941,14 @@ $(document).ready(function() {
 					// 
 					var elementHtml = $('#locpgsb2 .p1 > .ad > b', tempDom).text();
 
+					$('head').append('<link href="https://fonts.googleapis.com/css2?family=Oswald&display=swap" rel="stylesheet">');
+
 					$('body').append(
 						// 
 						'<style> ' +
 						'.dddd_mother{overflow:hidden:width:120px;height:144px}' +
 						//// title 
-						'.dddd_w {width:120px;font-family:Arial,Helvetica,sans-serif;font-weight: bold; text-transform:uppercase; font-size: 11px; line-height: 1em; text-align: center; height:24px; overflow:hidden;} .dddd { height: 24px; overflow: hidden; width:120px; display:table-cell;text-align:center; vertical-align:middle;color:black; background: darkgrey; line-height: 0.8;} ' +
+						'.dddd_w {font-family:Oswald,Arial,Helvetica,sans-serif; width:120px;font-weight: bold; text-transform:uppercase; font-size: 11px; line-height: 1em; text-align: center; height:24px; overflow:hidden;} .dddd { height: 24px; overflow: hidden; width:120px; display:table-cell;text-align:center; vertical-align:middle;color:black; background: darkgrey; line-height: 0.8;} ' +
 						//// image
 						' .container { width: 120px; height: 120px; position: relative; display: flex; align-items: center; justify-content: center; overflow: hidden; } .container::before { content: ""; background-image: url(\'' + image_src + '\'); background-size: cover; filter: blur(8px); position: absolute; width: 200%; height: 200%; top: -50%; left: -50%; } .fit-and-centered { position: relative; max-height: 100%; max-width: 100%; }' +
 						'</style>' +

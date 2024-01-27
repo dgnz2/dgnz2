@@ -714,27 +714,31 @@ function relatedFromFeed() {
 			// Select a random term
 			var randomTerm = terms[Math.floor(Math.random() * terms.length)];
 
-			// disabled: zedignpostcards won't search by kw! 
-			// var kw = (dirname == "Fine Art Postcards") ? randomTerm : randomTerm + " poster"; // poster to prevent other items
-			// var st = (dirname == "Fine Art Postcards") ? "zedignpostcards" : "zedign";
-			// // console.log(st);
+			// IMP! proxy url must be constructed as it is now in /c/, doing it here doesn't work for zaz feeds for some reason
 
 			var kw = randomTerm;
-			var feed_url = 'zedign/rss?ps=6&st=popularity&qs=' + kw
+			var kw = kw;
+			var feed = encodeURIComponent('https://feed.zazzle.com/store/zedign/rss?ps=6&st=popularity&qs=poster ' + kw);
 
 			if (dirname == "Signature Posters") {
-				feed_url = 'zedign/rss?ps=6&st=popularity&qs="zedign art poster"'
+				// Signature Posters zazz feed is a redirect!! workaround to pass double-quotes in querystring to our jsonproxy (no other way!) see its html src for feed url
+				// also feed is zazz's root feed `https://feed.zazzle.com/rss?ps=6&st=popularity&qs="zedign art poster", not our store's because only that gets diverse results
+				feed = encodeURIComponent('https://art.zedign.com/common/zazz_rss_redir.html');
 			}
 
 			if (dirname == "Fine Art Postcards") {
-				feed_url = 'zedignpostcards/rss?ps=6&st=popularity'
+				// feed = encodeURIComponent('https://feed.zazzle.com/store/zedignpostcards/rss?ps=6&st=popularity');
+				feed = encodeURIComponent('https://feed.zazzle.com/rss?ps=6&st=popularity&qs=zedign postcard'); // keep it zazz's default, it's more diverse
+
 			}
 
 			var css = detectmob() ? "height:560px;width:328px;" : "height:374px;width:492px;";
 
-			// console.log(feed_url);
+			var ifrSrc = '../../../common/c/?s=zs&n=' + feed;
 
-			$('.container').append('<hr/><div id="relatedFromFeed"><div style="text-align: center; font-size: 24px; margin: 10px 0;">You may also like...</div><iframe style="' + css + 'display:block; margin:0 auto;" class="" src="../../../common/c/?s=zs&n=' + encodeURIComponent(feed_url) + '" scrolling="no" frameborder="0" border="0"></iframe></div>');
+			// console.log(ifrSrc);
+
+			$('.container').append('<hr/><div id="relatedFromFeed"><div style="text-align: center; font-size: 24px; margin: 10px 0;">You may also like...</div><iframe style="' + css + 'display:block; margin:0 auto;" class="" src="' + ifrSrc + '" scrolling="no" frameborder="0" border="0"></iframe></div>');
 
 		})
 		.fail(function(jqxhr, settings, exception) {
@@ -1003,10 +1007,7 @@ $(document).ready(function() {
 
 			try {
 
-				var feed_url = qs.get("n");
-
-				// console.log(feed_url);
-				// var st = qs.get("st");
+				var feed = qs.get("n");
 
 				$('head').append('<style>body{margin:0;padding:0} .zs {margin:2px; border-radius:4px; background: linear-gradient(to right, #b4b0af, #e6e4e5); padding:4px; text-transform:uppercase; display: inline-block; width: 152px; height: 172px; overflow:hidden; font-family:sans-serif;font-size:10px; line-height:1em; } .zs a, div span, div img { max-width: 100%; max-height: 100%; object-fit: scale-down; overflow:hidden; } .zs a {text-decoration:none;color: black;} .zs span{height:20px;display:block;}</style>');
 
@@ -1016,16 +1017,20 @@ $(document).ready(function() {
 
 				var gasID = "AKfycbwu10Uml2V4z_UuV8RhWb2I6JVc0QAylXsh7VsojIHCmvO6Pwc";
 
-				// https://feed.zazzle.com/store/zedign/rss?ps=6&st=popularity&qs=Figures
-
-				// var url = 'https://feed.zazzle.com/store/' + st + '/rss?ps=6&st=popularity&qs=' + kw
-
-				// console.log(url)
-
 				var items = "";
-				var proxyUrl = '\x68\x74\x74\x70\x73\x3A\x2F\x2F\x73\x63\x72\x69\x70\x74\x2E\x67\x6F\x6F\x67\x6C\x65\x2E\x63\x6F\x6D\x2F\x6D\x61\x63\x72\x6F\x73\x2F\x73\x2F' + gasID + '/exec?url=' + ("https://feed.zazzle.com/store/" + feed_url) + '&callback=?';
+				var proxyUrl = '\x68\x74\x74\x70\x73\x3A\x2F\x2F\x73\x63\x72\x69\x70\x74\x2E\x67\x6F\x6F\x67\x6C\x65\x2E\x63\x6F\x6D\x2F\x6D\x61\x63\x72\x6F\x73\x2F\x73\x2F' + gasID + '/exec?url=' +
+
+					encodeURIComponent(feed) + // must encode it again!
+
+					// 'https://feed.zazzle.com/rss?ps=6&st=popularity&qs=%2522zedign%2520art%2520poster%2522' + // <<<< TESTING ONLY
+
+					// '&callback=?' +
+
+					'';
 
 				// console.log(proxyUrl);
+
+				// return
 
 				$.ajax({
 					crossOrigin: true,

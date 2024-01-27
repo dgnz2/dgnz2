@@ -376,9 +376,12 @@ function paginateHTML(opt, pHref, pTxt, nHref, nTxt) {
 
 function commonFooter() {
 	//// COMMON FOOTER
-	$('.container').append('<div style="text-align:center; margin:100px auto"> <hr/> <div class="row"> <div class="col-lg-12"> <p>  &copy; The Zedign House | <a href="/privacy.html">Privacy Policy </a> &nbsp; &nbsp; &nbsp; <a rel="nofollow" href="https://twitter.com/zedign"> ' +
-		'<span class="rrssb-icon"><svg width="26" height="26" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 28 28"><path d="M24.253 8.756C24.69 17.08 18.297 24.182 9.97 24.62a15.093 15.093 0 0 1-8.86-2.32c2.702.18 5.375-.648 7.507-2.32a5.417 5.417 0 0 1-4.49-3.64c.802.13 1.62.077 2.4-.154a5.416 5.416 0 0 1-4.412-5.11 5.43 5.43 0 0 0 2.168.387A5.416 5.416 0 0 1 2.89 4.498a15.09 15.09 0 0 0 10.913 5.573 5.185 5.185 0 0 1 3.434-6.48 5.18 5.18 0 0 1 5.546 1.682 9.076 9.076 0 0 0 3.33-1.317 5.038 5.038 0 0 1-2.4 2.942 9.068 9.068 0 0 0 3.02-.85 5.05 5.05 0 0 1-2.48 2.71z"/></svg></span>' +
-		' </a> </p> </div> </div></div>');
+	$('.container').append('<div style="text-align:center; margin:100px auto"> <hr/> <div class="row"> <div class="col-lg-12"> <p>  &copy; The Zedign House | <a href="/privacy.html">Privacy Policy </a> <br><br> ' +
+		// 
+		'<a rel="nofollow" href="https://www.pinterest.com/zedign"> <span class="rrssb-icon"><svg width="26" height="26" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 28 28"><path d="M14.021 1.57C6.96 1.57 1.236 7.293 1.236 14.355S6.96 27.14 14.021 27.14s12.785-5.725 12.785-12.785C26.807 7.294 21.082 1.57 14.021 1.57zm1.24 17.085c-1.161-.09-1.649-.666-2.559-1.219-.501 2.626-1.113 5.145-2.925 6.458-.559-3.971.822-6.951 1.462-10.116-1.093-1.84.132-5.545 2.438-4.632 2.837 1.123-2.458 6.842 1.099 7.557 3.711.744 5.227-6.439 2.925-8.775-3.325-3.374-9.678-.077-8.897 4.754.19 1.178 1.408 1.538.489 3.168-2.128-.472-2.763-2.15-2.682-4.388.131-3.662 3.291-6.227 6.46-6.582 4.007-.448 7.771 1.474 8.29 5.239.579 4.255-1.816 8.865-6.102 8.533l.002.003z"/></svg></span></a> &nbsp; ' +
+		'<a rel="nofollow" href="https://twitter.com/zedign"> <span class="rrssb-icon"><svg width="26" height="26" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 28 28"><path d="M24.253 8.756C24.69 17.08 18.297 24.182 9.97 24.62a15.093 15.093 0 0 1-8.86-2.32c2.702.18 5.375-.648 7.507-2.32a5.417 5.417 0 0 1-4.49-3.64c.802.13 1.62.077 2.4-.154a5.416 5.416 0 0 1-4.412-5.11 5.43 5.43 0 0 0 2.168.387A5.416 5.416 0 0 1 2.89 4.498a15.09 15.09 0 0 0 10.913 5.573 5.185 5.185 0 0 1 3.434-6.48 5.18 5.18 0 0 1 5.546 1.682 9.076 9.076 0 0 0 3.33-1.317 5.038 5.038 0 0 1-2.4 2.942 9.068 9.068 0 0 0 3.02-.85 5.05 5.05 0 0 1-2.48 2.71z"/></svg></span></a> &nbsp; ' +
+		'<a rel="nofollow" href="https://www.facebook.com/TheZedignHouse"> <span class="rrssb-icon"><svg width="26" height="26" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 28 28"><path d="M26.4 0H2.6C1.714 0 0 1.715 0 2.6v23.8c0 .884 1.715 2.6 2.6 2.6h12.393V17.988h-3.996v-3.98h3.997v-3.062c0-3.746 2.835-5.97 6.177-5.97 1.6 0 2.444.173 2.845.226v3.792H21.18c-1.817 0-2.156.9-2.156 2.168v2.847h5.045l-.66 3.978h-4.386V29H26.4c.884 0 2.6-1.716 2.6-2.6V2.6c0-.885-1.716-2.6-2.6-2.6z"/></svg></span></a> &nbsp; ' +
+		'</p> </div> </div></div>');
 }
 
 function monographPanel() {
@@ -717,11 +720,21 @@ function relatedFromFeed() {
 			// // console.log(st);
 
 			var kw = randomTerm;
-			var st = "zedign"; 
+			var feed_url = 'zedign/rss?ps=6&st=popularity&qs=' + kw
+
+			if (dirname == "Signature Posters") {
+				feed_url = 'zedign/rss?ps=6&st=popularity&qs="zedign art poster"'
+			}
+
+			if (dirname == "Fine Art Postcards") {
+				feed_url = 'zedignpostcards/rss?ps=6&st=popularity'
+			}
 
 			var css = detectmob() ? "height:560px;width:328px;" : "height:374px;width:492px;";
 
-			$('.container').append('<hr/><div id="relatedFromFeed"><div style="text-align: center; font-size: 24px; margin: 10px 0;">You may also like...</div><iframe style="' + css + 'display:block; margin:0 auto;" class="" src="../../../common/c/?s=zs&st=' + st + '&n=' + kw + '" scrolling="no" frameborder="0" border="0"></iframe></div>');
+			// console.log(feed_url);
+
+			$('.container').append('<hr/><div id="relatedFromFeed"><div style="text-align: center; font-size: 24px; margin: 10px 0;">You may also like...</div><iframe style="' + css + 'display:block; margin:0 auto;" class="" src="../../../common/c/?s=zs&n=' + encodeURIComponent(feed_url) + '" scrolling="no" frameborder="0" border="0"></iframe></div>');
 
 		})
 		.fail(function(jqxhr, settings, exception) {
@@ -990,8 +1003,10 @@ $(document).ready(function() {
 
 			try {
 
-				var kw = qs.get("n");
-				var st = qs.get("st");
+				var feed_url = qs.get("n");
+
+				// console.log(feed_url);
+				// var st = qs.get("st");
 
 				$('head').append('<style>body{margin:0;padding:0} .zs {margin:2px; border-radius:4px; background: linear-gradient(to right, #b4b0af, #e6e4e5); padding:4px; text-transform:uppercase; display: inline-block; width: 152px; height: 172px; overflow:hidden; font-family:sans-serif;font-size:10px; line-height:1em; } .zs a, div span, div img { max-width: 100%; max-height: 100%; object-fit: scale-down; overflow:hidden; } .zs a {text-decoration:none;color: black;} .zs span{height:20px;display:block;}</style>');
 
@@ -1003,12 +1018,12 @@ $(document).ready(function() {
 
 				// https://feed.zazzle.com/store/zedign/rss?ps=6&st=popularity&qs=Figures
 
-				var url = 'https://feed.zazzle.com/store/' + st + '/rss?ps=6&st=popularity&qs=' + kw
+				// var url = 'https://feed.zazzle.com/store/' + st + '/rss?ps=6&st=popularity&qs=' + kw
 
 				// console.log(url)
 
 				var items = "";
-				var proxyUrl = '\x68\x74\x74\x70\x73\x3A\x2F\x2F\x73\x63\x72\x69\x70\x74\x2E\x67\x6F\x6F\x67\x6C\x65\x2E\x63\x6F\x6D\x2F\x6D\x61\x63\x72\x6F\x73\x2F\x73\x2F' + gasID + '/exec?url=' + encodeURIComponent(url) + '&callback=?';
+				var proxyUrl = '\x68\x74\x74\x70\x73\x3A\x2F\x2F\x73\x63\x72\x69\x70\x74\x2E\x67\x6F\x6F\x67\x6C\x65\x2E\x63\x6F\x6D\x2F\x6D\x61\x63\x72\x6F\x73\x2F\x73\x2F' + gasID + '/exec?url=' + ("https://feed.zazzle.com/store/" + feed_url) + '&callback=?';
 
 				// console.log(proxyUrl);
 
@@ -1028,7 +1043,7 @@ $(document).ready(function() {
 							var link = $item.find("link").text().replace(/\s+/igm, " ").trim();
 							var description = $item.find("description").text().replace(/\s+/igm, " ").trim();
 
-							title = title.replace(/(Poster|Signature Poster|Postcard)/igm, "").trim();
+							title = title.replace(/(- Signature Poster| - Fine Art Postcard|Zedign Art Poster|- Poster|- Postcard| Poster)/igm, "").trim();
 							link += "?rf=238115903514203736";
 
 							var img = description.match(/http[^"]+_152\.jpg/)[0];

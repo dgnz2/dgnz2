@@ -875,7 +875,7 @@ $(document).ready(function() {
 			var zas = item[2];
 			var title = item[3].replace(/^(.+) \- (.+)$/, "$2");
 			var slug = item[4];
-			html += '<div class="col-sm-6 col-md-4"> <div class="thumbnail"> <a target="_blank" rel="nofollow" href="' +
+			html += '<div class="col-sm-6 col-md-4"> <div class="thumbnail"> <a rel="nofollow" href="' +
 
 			// link + // zazz url 
 			slug + '.html' + // our url 2024-01-29
@@ -993,7 +993,7 @@ $(document).ready(function() {
 		$('p').appendTo('.panel-body');
 
 		var zURL = zazzURL((content.split("|")[0] || ""));
-		console.log(zURL);
+		// console.log(zURL);
 		
 		$("img").wrap('<a rel="nofollow" href="' + zURL + '"></a>');
 		// $('p span').remove();

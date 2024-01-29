@@ -693,62 +693,67 @@ function relatedFromFeed() {
 	// Define our list of stop words
 	var stopWords = ['the', 'a', 'an', 'is', 'it', 'this', 'that', 'of', 'from', 'and', 'to', 'in', 'out', 'by', 'as', 'at', 'be', 'about', 'above', 'after', 'again', 'against', 'all', 'am', 'an', 'and', 'any', 'are', 'aren\'t', 'as', 'at', 'be', 'because', 'been', 'before', 'being', 'below', 'between', 'both', 'but', 'by', 'can\'t', 'cannot', 'could', 'couldn\'t', 'did', 'didn\'t', 'do', 'does', 'doesn\'t', 'doing', 'don\'t', 'down', 'during', 'each', 'few', 'for', 'from', 'further', 'had', 'hadn\'t', 'has', 'hasn\'t', 'have', 'haven\'t', 'having', 'he', 'he\'d', 'he\'ll', 'he\'s', 'her', 'here', 'here\'s', 'hers', 'herself', 'him', 'himself', 'his', 'how', 'how\'s', 'i', 'i\'d', 'i\'ll', 'i\'m', 'i\'ve', 'if', 'in', 'into', 'is', 'isn\'t', 'it', 'it\'s', 'its', 'itself', 'let\'s', 'me', 'more', 'most', 'mustn\'t', 'my', 'myself', 'no', 'nor', 'not', 'of', 'off', 'on', 'once', 'only', 'or', 'other', 'ought', 'our', 'ours', 'ourselves', 'out', 'over', 'own', 'same', 'shan\'t', 'she', 'she\'d', 'she\'ll', 'she\'s', 'should', 'shouldn\'t', 'so', 'some', 'such', 'than', 'that', 'that\'s', 'the', 'their', 'theirs', 'them', 'themselves', 'then', 'there', 'there\'s', 'these', 'they', 'they\'d', 'they\'ll', 'they\'re', 'they\'ve', 'this', 'those', 'through', 'to', 'too', 'under', 'until', 'up', 'very', 'was', 'wasn\'t', 'we', 'we\'d', 'we\'ll', 'we\'re', 'we\'ve', 'were', 'weren\'t', 'what', 'what\'s', 'when', 'when\'s', 'where', 'where\'s', 'which', 'while', 'who', 'who\'s', 'whom', 'why', 'why\'s', 'with', 'won\'t', 'would', 'wouldn\'t', 'you', 'you\'d', 'you\'ll', 'you\'re', 'you\'ve', 'your', 'yours', 'yourself', 'yourselves'];
 
-	////  github.com/spencermountain/compromise
-	$.getScript("https://unpkg.com/compromise")
-		.done(function(script, textStatus) {
+	try {
 
-			var nlp = window.nlp;
-			// var title = 'Figure Study In Colors';
-			var title = content.split("|")[3] || "";
+		////  github.com/spencermountain/compromise
+		$.getScript("https://unpkg.com/compromise")
+			.done(function(script, textStatus) {
 
-			// Remove stop words, prepositions, conjunctions, determiners
-			var doc = nlp(title);
-			stopWords.forEach(function(word) {
-				doc.remove('#' + word);
-			});
-			doc.remove('#Preposition');
-			doc.remove('#Conjunction');
-			doc.remove('#Determiner');
-			// Extract terms
-			var terms = doc.terms().out('array');
-			// Select a random term
-			var randomTerm = terms[Math.floor(Math.random() * terms.length)];
+				var nlp = window.nlp;
+				// var title = 'Figure Study In Colors';
+				var title = content.split("|")[3] || "";
 
-			// IMP! proxy url must be constructed as it is now in /c/, doing it here doesn't work for zaz feeds for some reason
+				// Remove stop words, prepositions, conjunctions, determiners
+				var doc = nlp(title);
+				stopWords.forEach(function(word) {
+					doc.remove('#' + word);
+				});
+				doc.remove('#Preposition');
+				doc.remove('#Conjunction');
+				doc.remove('#Determiner');
+				// Extract terms
+				var terms = doc.terms().out('array');
+				// Select a random term
+				var randomTerm = terms[Math.floor(Math.random() * terms.length)];
 
-			var kw = randomTerm;
-			var kw = kw;
-			var feed = encodeURIComponent('https://feed.zazzle.com/store/zedign/rss?ps=6&st=popularity&qs=poster ' + kw);
+				// IMP! proxy url must be constructed as it is now in /c/, doing it here doesn't work for zaz feeds for some reason
 
-			if (dirname == "Signature Posters") {
-				// Signature Posters zazz feed is a redirect!! workaround to pass double-quotes in querystring to our jsonproxy (no other way!) see its html src for feed url
-				// also feed is zazz's root feed `https://feed.zazzle.com/rss?ps=6&st=popularity&qs="zedign art poster", not our store's because only that gets diverse results
-				feed = encodeURIComponent('https://art.zedign.com/common/zazz_rss_redir.html');
-			}
+				var kw = randomTerm;
+				var kw = kw;
+				var feed = encodeURIComponent('https://feed.zazzle.com/store/zedign/rss?ps=6&st=popularity&qs=poster ' + kw);
 
-			if (dirname == "Fine Art Postcards") {
-				// feed = encodeURIComponent('https://feed.zazzle.com/store/zedignpostcards/rss?ps=6&st=popularity');
-				feed = encodeURIComponent('https://feed.zazzle.com/rss?ps=6&st=popularity&qs=zedign postcard'); // keep it zazz's default, it's more diverse
+				if (dirname == "Signature Posters") {
+					// Signature Posters zazz feed is a redirect!! workaround to pass double-quotes in querystring to our jsonproxy (no other way!) see its html src for feed url
+					// also feed is zazz's root feed `https://feed.zazzle.com/rss?ps=6&st=popularity&qs="zedign art poster", not our store's because only that gets diverse results
+					feed = encodeURIComponent('https://art.zedign.com/common/zazz_rss_redir.html');
+				}
 
-			}
+				if (dirname == "Fine Art Postcards") {
+					// feed = encodeURIComponent('https://feed.zazzle.com/store/zedignpostcards/rss?ps=6&st=popularity');
+					feed = encodeURIComponent('https://feed.zazzle.com/rss?ps=6&st=popularity&qs=zedign postcard'); // keep it zazz's default, it's more diverse
 
-			var css = detectmob() ? "height:560px;width:328px;" : "height:374px;width:492px;";
+				}
 
-			var ifrSrc = '../../../common/c/?s=zs&n=' + feed;
+				var css = detectmob() ? "height:560px;width:328px;" : "height:374px;width:492px;";
 
-			// console.log(ifrSrc);
+				var ifrSrc = '../../../common/c/?s=zs&n=' + feed;
 
-			$('.container').append('<hr/><div id="relatedFromFeed"><div style="text-align: center; font-size: 24px; margin: 10px 0;">You may also like...</div><iframe style="' + css + 'display:block; margin:0 auto;" class="" src="' + ifrSrc + '" scrolling="no" frameborder="0" border="0"></iframe></div>');
+				// console.log(ifrSrc);
 
-		})
-		.fail(function(jqxhr, settings, exception) {
-			// $( "div.log" ).text( "Triggered ajaxError handler." );
-		});
+				$('.container').append('<hr/><div id="relatedFromFeed"><div style="text-align: center; font-size: 24px; margin: 10px 0;">You may also like...</div><iframe style="' + css + 'display:block; margin:0 auto;" class="" src="' + ifrSrc + '" scrolling="no" frameborder="0" border="0"></iframe></div>');
 
-	// try {
+			})
+		// .fail(function(jqxhr, settings, exception) {
+		// 	// $( "div.log" ).text( "Triggered ajaxError handler." );
+		// });
 
-	// } catch (e) {}
+	} catch (e) {}
 
+}
+
+function zazzURL(slug) {
+	// https://www.zazzle.com/ernst_ludwig_kirchner_402_fine_art_postcard-256989000740249596?rf=238115903514203736
+	return 'https://www.zazzle.com/' + slug.trim() + '?rf=238115903514203736';
 }
 
 //////////////////   /funcs   ///////////////////////
@@ -857,7 +862,7 @@ $(document).ready(function() {
 			// IMP! js var aData has trailing spaces because of gd limits workarounds!
 			var item = items.map(item => item.trim());
 
-			var link = 'https://www.zazzle.com/' + item[0] + '?rf=238115903514203736';
+			var link = zazzURL(item[0]);
 
 			var img = ('https://rlv.zcache.com/' + item[1] + '?max_dim=500');
 
@@ -870,13 +875,28 @@ $(document).ready(function() {
 			var zas = item[2];
 			var title = item[3].replace(/^(.+) \- (.+)$/, "$2");
 			var slug = item[4];
-			html += '<div class="col-sm-6 col-md-4"> <div class="thumbnail"> <a rel="nofollow" href="' + link + '"> <img style="width:200px" class="lazy" data-src="' + img + '" src="" alt="' + title + '"> <div class="caption"> <h4>' + title + '</h4> </div> </a>  ' +
+			html += '<div class="col-sm-6 col-md-4"> <div class="thumbnail"> <a target="_blank" rel="nofollow" href="' +
+
+			// link + // zazz url 
+			slug + '.html' + // our url 2024-01-29
+
+			'"> <img style="width:200px" class="lazy" data-src="' + img + '" src="" alt="' + title + '"> <div class="caption"> <h4>' + title + '</h4> </div> </a>  ' +
 			// 
-			' <a href="' + slug + '.html" style="color:#444!important"> ' +
-				'  <span class="glyphicon glyphicon-link" aria-hidden="true"></span>  &nbsp;  ' +
-				'  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>  &nbsp;  ' +
-				'  <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>  &nbsp;  ' +
-				'</a>   ' +
+			' <a href="' +
+
+			slug + // our url
+
+			'.html" style="color:#444!important"> ' +
+
+			//  meta
+
+			// '  <span class="glyphicon glyphicon-link" aria-hidden="true"></span>  &nbsp;  ' +
+			// '  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>  &nbsp;  ' +
+			// '  <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>  &nbsp;  ' +
+
+			// 
+
+			'</a>   ' +
 			// 
 			'     </div> </div>   ';
 			// console.log(slug);
@@ -967,10 +987,30 @@ $(document).ready(function() {
 			// 
 			'<div class="panel panel-default"> <div class="panel-heading"> </div> <div class="panel-body"> </div> <div class="panel-footer"> </div> </div>');
 		//
+
 		$('.panel-heading').prepend($('h1')); // Prepend it to .panel-heading
+
 		$('p').appendTo('.panel-body');
+
+		var zURL = zazzURL((content.split("|")[0] || ""));
+		console.log(zURL);
+		
+		$("img").wrap('<a rel="nofollow" href="' + zURL + '"></a>');
+		// $('p span').remove();
+
 		/// BUTTONS 
-		$('.panel-footer').html('<div class="row"><div class="col-xs-6 text-right"> <a role="button" class="btn btn-primary" href="' + $('p a').attr("href") + '" >  Details </a> </div><div class="col-xs-6"> <a role="button" class="btn btn-warning" href="' + $('p a').attr("href") + '" > Buy Now  </a> </div></div>');
+
+		$('.panel-footer').html('<div class="row"><div class="col-xs-6 text-right"> <a rel="nofollow" role="button" class="btn btn-primary" href="' +
+
+			zURL +
+			// $('p a').attr("href") +
+
+			'" >  Details </a> </div><div class="col-xs-6"> <a rel="nofollow" role="button" class="btn btn-warning" href="' +
+
+			zURL +
+			// $('p a').attr("href") +
+
+			'" > Get it now  </a> </div></div>');
 
 		singlePagination();
 
@@ -988,9 +1028,11 @@ $(document).ready(function() {
 
 	if (siteSection == "single") {
 
-		waitForElement('#relatedFromFeed', 10000).then((elm) => {
-			commonFooter();
-		});
+		try {
+			waitForElement('#relatedFromFeed', 10000).then((elm) => {
+				commonFooter();
+			});
+		} catch (e) {}
 
 	} else {
 		commonFooter();
@@ -1002,7 +1044,12 @@ $(document).ready(function() {
 	// 
 	if (siteSection == "dyn_catcher") {
 
-		//// WIP zazzle related
+		// redirs 
+		if (qs.get("s") == "r") {
+
+		}
+
+		//// relatedFromFeed zazzle related
 		if (qs.get("s") == "zs") {
 
 			try {

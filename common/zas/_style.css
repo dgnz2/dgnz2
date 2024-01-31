@@ -1,6 +1,6 @@
 /* art.zedign.com/zas */
 
-@import url("https://fonts.googleapis.com/css2?family=Oswald&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Oswald:ital,wght@0,400;0,700;1,400;1,700&display=swap");
 
 body {
   font-family: Oswald, Arial, Helvetica, sans-serif;
@@ -42,7 +42,7 @@ h1 {
 
 .container p img {
   width: 95%;
-  max-width: 300px;
+  max-width: 500px;
   display: block;
   margin: 0 auto;
 }

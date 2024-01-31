@@ -992,9 +992,13 @@ $(document).ready(function() {
 
 		$('p').appendTo('.panel-body');
 
-		var zURL = zazzURL((content.split("|")[0] || ""));
+		var zslug = (content.split("|")[0]).trim();
+
+		// var zURL = zazzURL(zslug);
+		var zURL = '../../../common/c/?s=zr&n=' + zslug;
+
 		// console.log(zURL);
-		
+
 		$("img").wrap('<a rel="nofollow" href="' + zURL + '"></a>');
 		// $('p span').remove();
 
@@ -1045,7 +1049,13 @@ $(document).ready(function() {
 	if (siteSection == "dyn_catcher") {
 
 		// redirs 
-		if (qs.get("s") == "r") {
+		if (qs.get("s") == "zr") {
+
+			var zslug = qs.get("n");
+			var url = zazzURL(zslug.trim());
+			// console.log(url);
+
+			window.location.href = url;
 
 		}
 

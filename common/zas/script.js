@@ -760,6 +760,8 @@ function zazzURL(slug) {
 
 //////////////////////  MAIN  ////////////////////////////
 
+// document.getElementsByTagName('body')[0].insertAdjacentHTML("afterbegin", '<div id="zedign_logo" style="height:74px;"></div>')
+
 $(document).ready(function() {
 
 	///////// ON ALL COMMON **BEFORE**
@@ -778,9 +780,13 @@ $(document).ready(function() {
 			pthComn = '/common';
 	}
 	// 
+
 	$('.container').prepend(
 		// LOGO
-		' <img style="display:block; margin:10px auto; width:125px" src="' + pthComn + '/zedign_logo.jpg" /> ');
+		' <a href="/zas/"><img style="display:block; margin:10px auto; width:125px" src="' + pthComn + '/zedign_logo.jpg" /></a> '
+	);
+
+
 	// 
 	// 
 	if (siteSection == "main") {
@@ -999,7 +1005,7 @@ $(document).ready(function() {
 
 		// console.log(zURL);
 
-		$("img").wrap('<a rel="nofollow" href="' + zURL + '"></a>');
+		$(".panel-body img").wrap('<a rel="nofollow" href="' + zURL + '"></a>');
 		// $('p span').remove();
 
 		/// BUTTONS 

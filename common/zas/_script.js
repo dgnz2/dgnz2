@@ -308,38 +308,6 @@ function viewport(percentage, property) {
 	}
 }
 
-function addthis_a(aTid, divId, customUrlTitle, url, title, contId, inStyle, addServHtml) {
-	/**
-	- V3 - 
-	*/
-	var addthis_id = aTid;
-	var markup = addServHtml;
-	//
-	if (customUrlTitle == "custom") {
-		var customUrlHtml = ' addthis:url="' + url + '" addthis:title="' + title + '" class="addthis_button_';
-		try {
-			markup = addServHtml.replace(/class\="addthis_button_/gm, customUrlHtml);
-		} catch (e) {}
-	}
-	var html = '<style>' + inStyle + '</style>' +
-		'<div id="' + contId + '" class="addthis_toolbox addthis_32x32_style ' + contId + '"> ' + markup + '</div>';
-	var addthis_config = addthis_config || {};
-	addthis_config.pubid = addthis_id;
-	// 
-	if (document.getElementById('addthisAsyncScript')) {
-		/////////////////////
-	} else {
-		var addthisScript = document.createElement('script');
-		addthisScript.setAttribute('src', '//s7.addthis.com/js/300/addthis_widget.js#domready=1');
-		addthisScript.setAttribute('id', 'addthisAsyncScript');
-		document.body.appendChild(addthisScript);
-	}
-	document.getElementById(divId).insertAdjacentHTML("beforeend", html);
-	try {
-		addthis.toolbox('.' + contId);
-	} catch (e) {}
-}
-
 function scRollToTopButton() {
 	document.body.scrollTop = 0; // For Safari
 	document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
@@ -786,7 +754,6 @@ $(document).ready(function() {
 		' <a href="/zas/"><img style="display:block; margin:10px auto; width:125px" src="' + pthComn + '/zedign_logo.jpg" /></a> '
 	);
 
-
 	// 
 	// 
 	if (siteSection == "main") {
@@ -1010,17 +977,25 @@ $(document).ready(function() {
 
 		/// BUTTONS 
 
-		$('.panel-footer').html('<div class="row"><div class="col-xs-6 text-right"> <a rel="nofollow" role="button" class="btn btn-primary" href="' +
+		$('.panel-footer').html(
 
-			zURL +
-			// $('p a').attr("href") +
+			'<div class="row">' +
 
-			'" >  Details </a> </div><div class="col-xs-6"> <a rel="nofollow" role="button" class="btn btn-warning" href="' +
+			'<div class="col-xs-6 text-right">' +
+			' <a rel="nofollow" role="button" class="btn btn-primary" href="' + zURL + '" > Details </a> ' +
+			'</div>' +
 
-			zURL +
-			// $('p a').attr("href") +
+			'<div class="col-xs-6"> ' +
+			' <a rel="nofollow" role="button" class="btn btn-warning" href="' + zURL + '" > Buy now </a> ' +
+			'</div>' +
 
-			'" > Get it now  </a> </div></div>');
+			'</div>' +
+
+			'<div class="row">' +
+			'<div id="sharing"></div>' +
+			'</div>' +
+
+			'');
 
 		singlePagination();
 
@@ -1047,6 +1022,9 @@ $(document).ready(function() {
 	} else {
 		commonFooter();
 	}
+
+	image_src_of_housepages_standalone();
+
 
 	///////// /ON ALL COMMON **AFTER** //////////////////////////
 
@@ -1244,7 +1222,6 @@ $(document).ready(function() {
 	////////////////
 	///////////////
 
-	image_src_of_housepages_standalone();
 
 });
 

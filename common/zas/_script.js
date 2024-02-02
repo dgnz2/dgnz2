@@ -724,6 +724,29 @@ function zazzURL(slug) {
 	return 'https://www.zazzle.com/' + slug.trim() + '?rf=238115903514203736';
 }
 
+function loadAddToAnyAsync(divId) {
+	// v1 req jq
+
+	// Define the a2a_config object before loading the AddToAny script
+	window.a2a_config = window.a2a_config || {};
+	window.a2a_config.onclick = 1;
+	window.a2a_config.num_services = 6; // Specify the number of services
+
+	var a2a = document.createElement('script');
+	a2a.type = 'text/javascript';
+	a2a.async = true;
+	a2a.src = 'https://static.addtoany.com/menu/page.js';
+	a2a.onload = function() {
+		$('#' + divId).html('<div class="a2a_kit a2a_kit_size_32 a2a_default_style"><a class="a2a_dd" href="https://www.addtoany.com/share"></a><a class="a2a_button_facebook"></a><a class="a2a_button_pinterest"></a><a class="a2a_button_twitter"></a><a class="a2a_button_email"></a><a class="a2a_button_copy_link"></a></div>');
+	};
+	document.body.appendChild(a2a);
+}
+
+// Call the function from inside jQuery's document.ready
+$(document).ready(function() {
+	loadAddToAnyAsync('sharing');
+});
+
 //////////////////   /funcs   ///////////////////////
 
 //////////////////////  MAIN  ////////////////////////////
@@ -992,7 +1015,7 @@ $(document).ready(function() {
 			'</div>' +
 
 			'<div class="row">' +
-			'<div id="sharing"></div>' +
+			'<div style="opacity:0.8;display:table;margin:30px auto 16px;" id="sharing"></div>' +
 			'</div>' +
 
 			'');
@@ -1000,6 +1023,8 @@ $(document).ready(function() {
 		singlePagination();
 
 		monographPanel();
+
+		loadAddToAnyAsync("sharing");
 
 		try {
 			relatedFromFeed();
@@ -1024,7 +1049,6 @@ $(document).ready(function() {
 	}
 
 	image_src_of_housepages_standalone();
-
 
 	///////// /ON ALL COMMON **AFTER** //////////////////////////
 
@@ -1221,7 +1245,6 @@ $(document).ready(function() {
 	/////////////////    /DYN_CATCHER   ///////////////////
 	////////////////
 	///////////////
-
 
 });
 

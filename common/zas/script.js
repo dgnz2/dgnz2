@@ -724,21 +724,40 @@ function zazzURL(slug) {
 	return 'https://www.zazzle.com/' + slug.trim() + '?rf=238115903514203736';
 }
 
-function loadAddToAnyAsync(divId) {
+function loadAddToAnyAsync(className, float = "float", items = "") {
 	// v1 req jq
+	// items = "<a class="a2a_button_facebook"></a><a class="a2a_button_pinterest"></a><a class="a2a_button_twitter"></a><a class="a2a_button_email"></a><a class="a2a_button_copy_link"></a>"... 
+
+	var nofloat = (float == "float") ? 'a2a_floating_style a2a_vertical_style" style = "right:15px; bottom:15px; background:none;' : 'a2a_default_style';
 
 	// Define the a2a_config object before loading the AddToAny script
 	window.a2a_config = window.a2a_config || {};
 	window.a2a_config.onclick = 1;
-	window.a2a_config.num_services = 6; // Specify the number of services
+	window.a2a_config.prioritize = ['copy_link', 'email', 'twitter', 'facebook', 'pinterest', 'whatsapp', 'reddit', 'linkedin'];
+
+	// window.a2a_config.num_services = 6; // Specify the number of services
 
 	var a2a = document.createElement('script');
 	a2a.type = 'text/javascript';
 	a2a.async = true;
 	a2a.src = 'https://static.addtoany.com/menu/page.js';
 	a2a.onload = function() {
-		$('#' + divId).html('<div class="a2a_kit a2a_kit_size_32 a2a_default_style"><a class="a2a_dd" href="https://www.addtoany.com/share"></a><a class="a2a_button_facebook"></a><a class="a2a_button_pinterest"></a><a class="a2a_button_twitter"></a><a class="a2a_button_email"></a><a class="a2a_button_copy_link"></a></div>');
+		$('.' + className).html('<div class="a2a_kit a2a_kit_size_32 ' +
+
+			nofloat +
+			// 'a2a_default_style' +
+			// 'a2a_floating_style a2a_vertical_style" style="right:0px; bottom:150px;"' +
+
+			' "><a class="a2a_dd" href="https://www.addtoany.com/share"></a>' + items + '</div>');
+
+		// Add custom CSS to center the mini menu
+		var css = document.createElement('style');
+		css.type = 'text/css';
+		css.innerHTML = '.a2a_menu { position: fixed !important; top: 50% !important; left: 50% !important; transform: translate(-50%, -50%) !important; box-shadow: 0 0 20px #000; }';
+		document.body.appendChild(css);
+
 	};
+
 	document.body.appendChild(a2a);
 }
 
@@ -828,8 +847,20 @@ $(document).ready(function() {
 	}
 	//////////////////////  MAIN  ////////////////////////////
 	//
+
+	/////////////////////////////////////////////
+	/////////////////////////////////////////////
+	/////////////////////////////////////////////
+	/////////////////////////////////////////////
+	/////////////////////////////////////////////
 	//////////////////////  ITEMPAGES  ////////////////////////////
 	/// ITEMPAGES ARE THESE: /zas/claude-monet/posters/ 
+	/////////////////////////////////////////////
+	/////////////////////////////////////////////
+	/////////////////////////////////////////////
+	/////////////////////////////////////////////
+	/////////////////////////////////////////////
+
 	if (siteSection == "item") {
 
 		/// REMOVE HARDCODED LINKS
@@ -958,10 +989,23 @@ $(document).ready(function() {
 			// 		});
 			// 	});
 			////
+
 		}); // (document).ready
 	}
 
-	//////////////////////  SINGLE  ////////////////////////////
+	/////////////////////////////////////////////
+	/////////////////////////////////////////////
+	/////////////////////////////////////////////
+	/////////////////////////////////////////////
+	/////////////////////////////////////////////
+	/////////////////////////////////////////////
+	////////////////  SINGLE  ////////////////////////////
+	/////////////////////////////////////////////
+	/////////////////////////////////////////////
+	/////////////////////////////////////////////
+	/////////////////////////////////////////////
+	/////////////////////////////////////////////
+	/////////////////////////////////////////////
 
 	/// SINGLE ARE /zas/claude-monet/posters/a-corner-of-the-apartment_2261.html
 	if (siteSection == "single") {
@@ -1014,17 +1058,15 @@ $(document).ready(function() {
 
 			'</div>' +
 
-			'<div class="row">' +
-			'<div style="opacity:0.8;display:table;margin:30px auto 16px;" id="sharing"></div>' +
-			'</div>' +
+			// '<div class="row">' +
+			// '<div style="opacity:0.8;display:table;margin:30px auto 16px;" class="sharing"></div>' +
+			// '</div>' +
 
 			'');
 
 		singlePagination();
 
 		monographPanel();
-
-		loadAddToAnyAsync("sharing");
 
 		try {
 			relatedFromFeed();
@@ -1035,6 +1077,11 @@ $(document).ready(function() {
 	//////////////////////  /SINGLE  ////////////////////////////
 
 	///////// ON ALL COMMON **AFTER** //////////////////////////
+
+	try {
+		$('body').append('<div class="sharing"></div>');
+		loadAddToAnyAsync("sharing");
+	} catch (e) {}
 
 	if (siteSection == "single") {
 

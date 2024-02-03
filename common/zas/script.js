@@ -697,8 +697,10 @@ function relatedFromFeed() {
 				}
 
 				if (dirname == "Fine Art Postcards") {
-					// feed = encodeURIComponent('https://feed.zazzle.com/store/zedignpostcards/rss?ps=6&st=popularity');
-					feed = encodeURIComponent('https://feed.zazzle.com/rss?ps=6&st=popularity&qs=zedign postcard'); // keep it zazz's default, it's more diverse
+
+					feed = encodeURIComponent('https://feed.zazzle.com/store/zedignpostcards/rss?ps=6&st=popularity&qs=' + kw);
+
+					// feed = encodeURIComponent('https://feed.zazzle.com/rss?ps=6&st=popularity&qs=zedign postcard'); // keep it zazz's default, it's more diverse
 
 				}
 
@@ -1186,7 +1188,10 @@ $(document).ready(function() {
 							title = title.replace(/(- Signature Poster| - Fine Art Postcard|Zedign Art Poster|- Poster|- Postcard| Poster)/igm, "").trim();
 							link += "?rf=238115903514203736";
 
-							var img = description.match(/http[^"]+_152\.jpg/)[0];
+							try {
+								var img = description.match(/http[^"]+_152\.jpg/)[0];
+								img = img.replace("_152.jpg", "_300.jpg");
+							} catch (e) {}
 
 							if (img.match(/\.jpg/)) {
 

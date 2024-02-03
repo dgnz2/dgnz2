@@ -791,12 +791,31 @@ $(document).ready(function() {
 	}
 	// 
 
-	$('.container').prepend(
-		// LOGO
-		' <a href="/zas/"><img style="display:block; margin:10px auto; width:125px" src="' + pthComn + '/zedign_logo.jpg" /></a> '
-	);
+	///// ON ALL BEFORE 
 
-	// 
+	if (siteSection.match(/(single|item|main)/)) {
+
+		$('.container').prepend(
+			// LOGO
+			' <a href="/zas/"><img style="display:block; margin:10px auto; width:125px" src="' + pthComn + '/zedign_logo.jpg" /></a> '
+		);
+
+	}
+
+	///// ON ALL BEFORE 
+
+	/////////////////////////////////////////////
+	/////////////////////////////////////////////
+	/////////////////////////////////////////////
+	/////////////////////////////////////////////
+	/////////////////////////////////////////////
+	/////////////////////////////////////////////
+	////////////// MAIN /////////////////////////////
+	/////////////////////////////////////////////
+	/////////////////////////////////////////////
+	/////////////////////////////////////////////
+	/////////////////////////////////////////////
+	/////////////////////////////////////////////
 	// 
 	if (siteSection == "main") {
 		$('.container').append('<div id="allitems" class="row">');
@@ -1078,24 +1097,28 @@ $(document).ready(function() {
 
 	///////// ON ALL COMMON **AFTER** //////////////////////////
 
-	try {
-		$('body').append('<div class="sharing"></div>');
-		loadAddToAnyAsync("sharing");
-	} catch (e) {}
-
-	if (siteSection == "single") {
+	if (siteSection.match(/(single|item|main)/)) {
 
 		try {
-			waitForElement('#relatedFromFeed', 10000).then((elm) => {
-				commonFooter();
-			});
+			$('body').append('<div class="sharing"></div>');
+			loadAddToAnyAsync("sharing");
 		} catch (e) {}
 
-	} else {
-		commonFooter();
-	}
+		if (siteSection == "single") {
 
-	image_src_of_housepages_standalone();
+			try {
+				waitForElement('#relatedFromFeed', 10000).then((elm) => {
+					commonFooter();
+				});
+			} catch (e) {}
+
+		} else {
+			commonFooter();
+		}
+
+		image_src_of_housepages_standalone();
+
+	}
 
 	///////// /ON ALL COMMON **AFTER** //////////////////////////
 

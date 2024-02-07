@@ -6,6 +6,12 @@ thsBlg_zzl = "\x32\x33\x38\x31\x31\x35\x39\x30\x33\x35\x31\x34\x32\x30\x33\x37\x
 if (typeof siteSection == "undefined") {
 	siteSection = "main";
 }
+
+zstorename = "zedign";
+try {
+	zstorename = (dirslug == "postcards") ? "zedignpostcards" : "zedign";
+} catch (e) {}
+
 // 
 // 
 /////////////// funcs ////////////////////////
@@ -394,7 +400,7 @@ function singlePagination() {
 		'<table style="margin:10px auto;font-size:90%"><tr><td colspan="3" style="text-align:center"> &lt;&lt; BROWSE ' + catname + ' COLLECTION &gt;&gt; </td></tr><tr>' +
 		'<td style="padding:5px;background:#aaa"><x-cmemblnk class="cmemblnk" href="' + purl + '"> </x-cmemblnk></td>' +
 		'<td>&nbsp;&nbsp;</td>' +
-		'<td style="padding:5px;background:#aaa"><x-cmemblnk class="cmemblnk" href="' + nurl + '"> </x-cmemblnk></td> </tr></table><hr/>'
+		'<td style="padding:5px;background:#aaa"><x-cmemblnk class="cmemblnk" href="' + nurl + '"> </x-cmemblnk></td> </tr><tr><td colspan="3" style="text-align:center;padding:5px 0"><a role="button" class="btn btn-default btn-sm" href="./">SEE ALL</a></td></tr></table><hr/>'
 	);
 
 	// <x-cmemblnk class="cmemblnk" href="https://www..com/"> </x-cmemblnk>
@@ -668,6 +674,9 @@ function relatedFromFeed() {
 			.done(function(script, textStatus) {
 
 				var nlp = window.nlp;
+				if (typeof nlp !== 'function') {
+					return
+				}
 				// var title = 'Figure Study In Colors';
 				var title = content.split("|")[3] || "";
 
@@ -708,9 +717,9 @@ function relatedFromFeed() {
 
 				var ifrSrc = '../../../common/c/?s=zs&n=' + feed;
 
-				// console.log(ifrSrc);
+				// console.log(feed);
 
-				$('.container').append('<hr/><div id="relatedFromFeed"><div style="text-align: center; font-size: 24px; margin: 10px 0;">You may also like...</div><iframe style="' + css + 'display:block; margin:0 auto;" class="" src="' + ifrSrc + '" scrolling="no" frameborder="0" border="0"></iframe></div>');
+				$('.container').append('<hr/><div id="relatedFromFeed"><div style="text-align: center; font-size: 24px; margin: 10px 0;">You may also like...</div><iframe style="' + css + 'display:block; margin:0 auto;" class="" src="' + ifrSrc + '" scrolling="no" frameborder="0" border="0"></iframe> <div class="text-center"><a role="button" class="btn btn-default btn-sm" rel="nofollow" href="https://www.zazzle.com/store/' + zstorename + '/products?qs=' + kw + '" target="_blank">M O R E</a></div> </div>');
 
 			})
 		// .fail(function(jqxhr, settings, exception) {
@@ -762,11 +771,6 @@ function loadAddToAnyAsync(className, float = "float", items = "") {
 
 	document.body.appendChild(a2a);
 }
-
-// Call the function from inside jQuery's document.ready
-$(document).ready(function() {
-	loadAddToAnyAsync('sharing');
-});
 
 //////////////////   /funcs   ///////////////////////
 
@@ -970,7 +974,7 @@ $(document).ready(function() {
 		var zasnum = "";
 		zasnum = aData.d[1].split("|")[2] || "";
 		/// HTML "item":  $('#items').after and "single":  $('.container').append
-		$('#items').after(' <a style="color:inherit;text-decoration:none;" href="https://books.zedign.com/zas/' + zasnum + '.html"><div style="max-width:320px;margin:10px auto;" class="media"> <div class="media-left"> <img style="width:100px" class="media-object" src="https://books.zedign.com/i/p/' + zasnum + '_2UPCO.png" alt=""> </div> <div class="media-body"> <p>Full monograph in digital and print editions: <i>' + catname + ' - Paintings &amp; Drawings</i> (Zedign Art Series Book #' + zasnum + ').</p> </div> </div></a> ');
+		$('#items').after(' <a style="color:inherit;text-decoration:none;" href="https://books.zedign.com/zas/' + zasnum + '.html"><div style="max-width:320px;margin:10px auto;" class="media"> <div class="media-left"> <img style="width:100px" class="media-object" src="https://books.zedign.com/i/p/' + zasnum + '_2UPCO.png" alt=""> </div> <div class="media-body"> <p>Full monograph in digital and print editions: <i style="font-size:110%;">' + catname + ' - Paintings &amp; Drawings</i> (Zedign Art Series Book #' + zasnum + ').</p> </div> </div></a> ');
 
 		// 
 		$(document).ready(function() {

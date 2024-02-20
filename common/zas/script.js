@@ -824,7 +824,7 @@ $(document).ready(function() {
 	/////////////////////////////////////////////
 	// 
 	if (siteSection == "main") {
-		$('.container').append('<div id="allitems" class="row">');
+		// $('.container').append('<div id="allitems" class="row"></div>');
 		var html = "";
 		$('.item').each(function(i) {
 			var content = ($(this).attr('data-d')).split('|');
@@ -848,27 +848,36 @@ $(document).ready(function() {
 			'</div> </div> ';
 		});
 		$('#items').remove();
+
 		$('#allitems').append(html);
+
+		// ------ WIP adding side right column 
+		// $('#allitems').wrap('<div id="wrapper" class="row"></div>');
+		// $('#wrapper').append('<div id="more" class="col-md-5"></div>');
+		// $('#allitems').addClass('col-md-7');
+		// $('#more').append('<div style="height:600px;background:#ccc"></div>');
+		// ------ /adding side right column 
+
 		// 
 		// 
-		$(document).ready(function() {
-			///// JQUERY LAZY  https://github.com/dkern/jquery.lazy
-			// 1. prepare <img class="lazy" data-src="image.jpg" src="" <<< !IMP
-			// 2. load content
-			// 3. execute below
-			if (jQuery().Lazy) {
-				$('.lazy').Lazy({
-					// your configuration goes here
-					scrollDirection: 'vertical',
-					effect: 'fadeIn',
-					effectTime: 1000,
-					visibleOnly: true,
-					onError: function(element) {
-						// console.log('error loading ' + element.data('src'));
-					}
-				});
-			}
-		}); // (document).ready
+		// $(document).ready(function() {
+		///// JQUERY LAZY  https://github.com/dkern/jquery.lazy
+		// 1. prepare <img class="lazy" data-src="image.jpg" src="" <<< !IMP
+		// 2. load content
+		// 3. execute below
+		if (jQuery().Lazy) {
+			$('.lazy').Lazy({
+				// your configuration goes here
+				scrollDirection: 'vertical',
+				effect: 'fadeIn',
+				effectTime: 1000,
+				visibleOnly: true,
+				onError: function(element) {
+					// console.log('error loading ' + element.data('src'));
+				}
+			});
+		}
+		// }); // (document).ready
 	}
 	//////////////////////  MAIN  ////////////////////////////
 	//
@@ -1060,8 +1069,8 @@ $(document).ready(function() {
 
 		var zslug = (content.split("|")[0]).trim();
 
-		// var zURL = zazzURL(zslug);
-		var zURL = '../../../common/c/?s=zr&n=' + zslug;
+		var zURL = zazzURL(zslug);
+		// var zURL = '../../../common/c/?s=zr&n=' + zslug;
 
 		// console.log(zURL);
 

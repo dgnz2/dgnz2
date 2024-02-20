@@ -953,6 +953,7 @@ $(document).ready(function() {
 			'     </div> </div>   ';
 			// console.log(slug);
 		});
+
 		$('#items').append(html);
 		// 
 		//
@@ -1128,11 +1129,123 @@ $(document).ready(function() {
 
 	///////// /ON ALL COMMON **AFTER** //////////////////////////
 
+	/////////////////////////////////////////////
+	/////////////////////////////////////////////
+	/////////////////////////////////////////////
+	/////////////////////////////////////////////
 	/////////////////    DYN_CATCHER   ///////////////////
+	/////////////////////////////////////////////
+	/////////////////////////////////////////////
+	/////////////////////////////////////////////
+	/////////////////////////////////////////////
 	// 
 	if (siteSection == "dyn_catcher") {
 
-		// redirs 
+		// random items from index <script>
+		if (qs.get("s") == "ri") {
+
+			var categ = qs.get("x"); // cp/sp/pc
+			var artist = qs.get("n");
+
+			/// NOTE: head and body appends are same for both (qs.get("s") == "zs") and (qs.get("s") == "ri") (for uniformity of template)
+			$('head').append('<style>body{margin:0;padding:0} .zs {margin:2px; border-radius:4px; background: linear-gradient(to right, #b4b0af, #e6e4e5); padding:4px; text-transform:uppercase; display: inline-block; width: 152px; height: 172px; overflow:hidden; font-family:sans-serif;font-size:10px; line-height:1em; } .zs a, div span, div img { max-width: 100%; max-height: 100%; object-fit: scale-down; overflow:hidden; } .zs a {text-decoration:none;color: black;} .zs span{height:20px;display:block;}</style>');
+			$('body').append('<div class="container"></div>');
+
+			switch (categ) {
+				case 'cp':
+					categ = "posters";
+					break;
+				case 'sp':
+					categ = "signature-posters";
+					break;
+				case 'pc':
+					categ = "postcards";
+					break;
+			}
+
+			var url = '../../zas/' + artist + '/' + categ + '/index.html';
+
+			/// get var aData from <script> and store in aData JSON
+
+			$.ajax({
+				url: url,
+				type: 'GET',
+				success: function(data) {
+					// console.log(data)
+
+					var aDataValue = "";
+
+					// 1st try - parser method
+					var parser = new DOMParser();
+					var doc = parser.parseFromString(data, "text/html");
+					var scripts = doc.querySelectorAll('script');
+					for (var i = 0; i < scripts.length; i++) {
+						if (scripts[i].previousSibling.nodeType === Node.COMMENT_NODE &&
+							scripts[i].previousSibling.data.trim() === "PREFIX ENDS") {
+							var scriptContent = scripts[i].innerText;
+							var match = scriptContent.match(/aData=(.*?);/);
+							if (match) {
+								aDataValue = match[1];
+								break;
+							}
+						}
+					}
+
+					/// if we have don't have aDataValue from above
+					// 2nd try - regex method
+					if (aDataValue.match(/\"d\"/m)) {
+						// console.log("FROM PARSER " + aDataValue);
+					} else {
+						// if not, try another way
+						var tempDiv = $('<div>');
+						tempDiv.html(data.match(/<!-- PREFIX ENDS -->([\s\S]*?)<\/script>/m)[1]);
+						var scriptContent = tempDiv.text();
+						var aDataValue = scriptContent.match(/aData=(.*?);/m)[1];
+
+						// console.log("FROM REGEX " + aDataValue);
+
+					}
+
+					// console.log(aDataValue)
+					var aData = JSON.parse(aDataValue);
+
+					// remove all 404.jpg
+					var regex = /404\.jpg/;
+					aData = Object.values(aData.d); // first conv .d to arr 
+					newArr = (aData.filter(item => !regex.test(item))).slice(1);
+
+					function getRandomSixItems(arr) {
+						let shuffled = arr.sort(() => 0.5 - Math.random());
+						return shuffled.slice(0, 6); // num of items
+					}
+
+					var html = "";
+
+					$.each(getRandomSixItems(newArr), function(i, data) {
+						var items = data.split("|");
+						// IMP! js var aData has trailing spaces because of gd limits workarounds!
+						var item = items.map(item => item.trim());
+						var link = zazzURL(item[0]);
+						var img = ('https://rlv.zcache.com/' + item[1] + '?max_dim=500');
+						var zas = item[2];
+						var title = item[3].replace(/^(.+) \- (.+)$/, "$2");
+						var slug = item[4];
+
+						var item_url = 'https://art.zedign.com/zas/' + artist + '/' + categ + '/' + slug + '.html';
+
+						html += '<div class="zs"><a href="' + item_url + '" target="_blank"><span>' + title + '</span><img src="' + img + '" alt /></a></div>';
+
+					}); // each
+
+					// console.log(html);
+
+					$('.container').append(html);
+
+				}
+			});
+		}
+
+		// zazz redirs 
 		if (qs.get("s") == "zr") {
 
 			var zslug = qs.get("n");
@@ -1150,8 +1263,8 @@ $(document).ready(function() {
 
 				var feed = qs.get("n");
 
+				/// NOTE: head and body appends are same for both (qs.get("s") == "zs") and (qs.get("s") == "ri") (for uniformity of template)
 				$('head').append('<style>body{margin:0;padding:0} .zs {margin:2px; border-radius:4px; background: linear-gradient(to right, #b4b0af, #e6e4e5); padding:4px; text-transform:uppercase; display: inline-block; width: 152px; height: 172px; overflow:hidden; font-family:sans-serif;font-size:10px; line-height:1em; } .zs a, div span, div img { max-width: 100%; max-height: 100%; object-fit: scale-down; overflow:hidden; } .zs a {text-decoration:none;color: black;} .zs span{height:20px;display:block;}</style>');
-
 				$('body').append('<div class="container"></div>');
 
 				//// USNG OUR gd JSNPRXY

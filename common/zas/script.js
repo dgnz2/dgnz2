@@ -375,7 +375,7 @@ function paginateHTML(opt, pHref, pTxt, nHref, nTxt) {
 
 function commonFooter() {
 	//// COMMON FOOTER
-	$('.container').append('<div style="text-align:center; margin:100px auto"> <hr/> <div class="row"> <div class="col-lg-12"> <p>  &copy; The Zedign House | <a href="/privacy.html">Privacy Policy </a> <br><br> <span style="opacity:0.7">' +
+	$('.container').append('<div id="commonFooter" style="text-align:center; margin:100px auto"> <hr/> <div class="row"> <div class="col-lg-12"> <p>  &copy; The Zedign House | <a href="/privacy.html">Privacy Policy </a> <br><br> <span style="opacity:0.7">' +
 		// 
 		'<a rel="nofollow" href="https://www.pinterest.com/zedign"> <span class="rrssb-icon"><svg width="26" height="26" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 28 28"><path d="M14.021 1.57C6.96 1.57 1.236 7.293 1.236 14.355S6.96 27.14 14.021 27.14s12.785-5.725 12.785-12.785C26.807 7.294 21.082 1.57 14.021 1.57zm1.24 17.085c-1.161-.09-1.649-.666-2.559-1.219-.501 2.626-1.113 5.145-2.925 6.458-.559-3.971.822-6.951 1.462-10.116-1.093-1.84.132-5.545 2.438-4.632 2.837 1.123-2.458 6.842 1.099 7.557 3.711.744 5.227-6.439 2.925-8.775-3.325-3.374-9.678-.077-8.897 4.754.19 1.178 1.408 1.538.489 3.168-2.128-.472-2.763-2.15-2.682-4.388.131-3.662 3.291-6.227 6.46-6.582 4.007-.448 7.771 1.474 8.29 5.239.579 4.255-1.816 8.865-6.102 8.533l.002.003z"/></svg></span></a> &nbsp; ' +
 		'<a rel="nofollow" href="https://twitter.com/zedign"> <span class="rrssb-icon"><svg width="26" height="26" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 28 28"><path d="M24.253 8.756C24.69 17.08 18.297 24.182 9.97 24.62a15.093 15.093 0 0 1-8.86-2.32c2.702.18 5.375-.648 7.507-2.32a5.417 5.417 0 0 1-4.49-3.64c.802.13 1.62.077 2.4-.154a5.416 5.416 0 0 1-4.412-5.11 5.43 5.43 0 0 0 2.168.387A5.416 5.416 0 0 1 2.89 4.498a15.09 15.09 0 0 0 10.913 5.573 5.185 5.185 0 0 1 3.434-6.48 5.18 5.18 0 0 1 5.546 1.682 9.076 9.076 0 0 0 3.33-1.317 5.038 5.038 0 0 1-2.4 2.942 9.068 9.068 0 0 0 3.02-.85 5.05 5.05 0 0 1-2.48 2.71z"/></svg></span></a> &nbsp; ' +
@@ -727,7 +727,12 @@ function relatedFromFeed() {
 				if (dirname == "Signature Posters") {
 					// Signature Posters zazz feed is a redirect!! workaround to pass double-quotes in querystring to our jsonproxy (no other way!) see its html src for feed url
 					// also feed is zazz's root feed `https://feed.zazzle.com/rss?ps=6&st=popularity&qs="zedign art poster", not our store's because only that gets diverse results
-					feed = encodeURIComponent('https://art.zedign.com/common/zazz_rss_redir.html');
+
+					// 2024-03-14 not anymore: signature posters have a tag "signature now" so no need for double quotes
+					// feed = encodeURIComponent('https://art.zedign.com/common/zazz_rss_redir.html');
+
+					feed = encodeURIComponent('https://feed.zazzle.com/store/zedign/rss?ps=6&st=popularity&qs=signature ' + kw);
+
 				}
 
 				if (dirname == "Fine Art Postcards") {
@@ -1165,7 +1170,9 @@ $(document).ready(function() {
 
 		// DISQUS
 		if (siteSection == "single") {
+
 			$('#monographPanel').after('<hr/> <div id="disqus_thread"></div> ');
+			// $('.container').after('<hr/> <div id="disqus_thread"></div> ');
 			try {
 
 				var disqus_config = function() {
@@ -1175,7 +1182,8 @@ $(document).ready(function() {
 				disqusAsync('zedignart', 'disqus_thread');
 
 			} catch (e) {}
-		}
+
+		} // if
 
 		// 
 
@@ -1183,6 +1191,7 @@ $(document).ready(function() {
 		if (siteSection == "single") {
 
 			try {
+				// because relatedFromFeed might not get published at all (does not on ff because of incompatibality with node related js in commentFooter() )
 				waitForElement('#relatedFromFeed', 10000).then((elm) => {
 					commonFooter();
 				});
@@ -1401,7 +1410,7 @@ $(document).ready(function() {
 
 		}
 
-		//// search
+		//// wip search
 		if (qs.get("s") == "s") {
 
 			$('body').append('<div id="your_carousel"></div>');
@@ -1474,7 +1483,7 @@ $(document).ready(function() {
 						'<style> ' +
 						'.dddd_mother{overflow:hidden:width:120px;height:144px}' +
 						//// title 
-						'.dddd_w {font-family:Oswald,Arial,Helvetica,sans-serif; width:120px;font-weight: bold; text-transform:uppercase; font-size: 11px; line-height: 1em; text-align: center; height:24px; overflow:hidden;} .dddd { height: 24px; overflow: hidden; width:120px; display:table-cell;text-align:center; vertical-align:middle;color:black; background: darkgrey; line-height: 0.8;} ' +
+						'.dddd_w {font-family:Oswald,Arial,Helvetica,sans-serif; width:120px;font-weight: bold; text-transform:uppercase; font-size: 11px; line-height: 1em; text-align: center; height:24px; overflow:hidden;} .dddd { height: 24px; overflow: hidden; width:120px; display:table-cell;text-align:center; vertical-align:middle;color:black; background: darkgrey; line-height: 11px;} ' +
 						//// image
 						' .container { width: 120px; height: 120px; position: relative; display: flex; align-items: center; justify-content: center; overflow: hidden; } .container::before { content: ""; background-image: url(\'' + image_src + '\'); background-size: cover; filter: blur(8px); position: absolute; width: 200%; height: 200%; top: -50%; left: -50%; } .fit-and-centered { position: relative; max-height: 100%; max-width: 100%; }' +
 						'</style>' +

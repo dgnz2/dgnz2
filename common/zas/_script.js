@@ -15,6 +15,7 @@ try {
 // 
 // 
 /////////////// funcs ////////////////////////
+
 function affLocalize(objAmAffIds, strEPNId, strZzlId) {
 	try {
 		// v6
@@ -210,9 +211,33 @@ function affLocalize(objAmAffIds, strEPNId, strZzlId) {
 		});
 	} catch (e) {}
 }
+
+function disqusAsync(disqusId, divId) {
+	// v4 - REQ JQRY
+	var ds_loaded = false;
+	try {
+		var top = $("#" + divId).offset().top;
+	} catch (e) {};
+
+	function check() {
+		if (!ds_loaded && $(window).scrollTop() + $(window).height() > top) {
+			$.ajax({
+				type: "GET",
+				url: "https://" + disqusId + ".disqus.com/embed.js",
+				dataType: "script",
+				cache: true
+			});
+			ds_loaded = true;
+		}
+	}
+	$(window).scroll(check);
+	check();
+}
+
 ///////////////////  QS   //////////////////
 /// qs.get("s") ...
 /// if (qs2.contains("q")) {	pkSrQry = qs2.get("q"); }
+
 function sc_qstrng(qs) {
 	this.params = {};
 	if (qs == null) qs = location.search.substring(1, location.search.length);
@@ -350,12 +375,12 @@ function paginateHTML(opt, pHref, pTxt, nHref, nTxt) {
 
 function commonFooter() {
 	//// COMMON FOOTER
-	$('.container').append('<div style="text-align:center; margin:100px auto"> <hr/> <div class="row"> <div class="col-lg-12"> <p>  &copy; The Zedign House | <a href="/privacy.html">Privacy Policy </a> <br><br> ' +
+	$('.container').append('<div style="text-align:center; margin:100px auto"> <hr/> <div class="row"> <div class="col-lg-12"> <p>  &copy; The Zedign House | <a href="/privacy.html">Privacy Policy </a> <br><br> <span style="opacity:0.7">' +
 		// 
 		'<a rel="nofollow" href="https://www.pinterest.com/zedign"> <span class="rrssb-icon"><svg width="26" height="26" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 28 28"><path d="M14.021 1.57C6.96 1.57 1.236 7.293 1.236 14.355S6.96 27.14 14.021 27.14s12.785-5.725 12.785-12.785C26.807 7.294 21.082 1.57 14.021 1.57zm1.24 17.085c-1.161-.09-1.649-.666-2.559-1.219-.501 2.626-1.113 5.145-2.925 6.458-.559-3.971.822-6.951 1.462-10.116-1.093-1.84.132-5.545 2.438-4.632 2.837 1.123-2.458 6.842 1.099 7.557 3.711.744 5.227-6.439 2.925-8.775-3.325-3.374-9.678-.077-8.897 4.754.19 1.178 1.408 1.538.489 3.168-2.128-.472-2.763-2.15-2.682-4.388.131-3.662 3.291-6.227 6.46-6.582 4.007-.448 7.771 1.474 8.29 5.239.579 4.255-1.816 8.865-6.102 8.533l.002.003z"/></svg></span></a> &nbsp; ' +
 		'<a rel="nofollow" href="https://twitter.com/zedign"> <span class="rrssb-icon"><svg width="26" height="26" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 28 28"><path d="M24.253 8.756C24.69 17.08 18.297 24.182 9.97 24.62a15.093 15.093 0 0 1-8.86-2.32c2.702.18 5.375-.648 7.507-2.32a5.417 5.417 0 0 1-4.49-3.64c.802.13 1.62.077 2.4-.154a5.416 5.416 0 0 1-4.412-5.11 5.43 5.43 0 0 0 2.168.387A5.416 5.416 0 0 1 2.89 4.498a15.09 15.09 0 0 0 10.913 5.573 5.185 5.185 0 0 1 3.434-6.48 5.18 5.18 0 0 1 5.546 1.682 9.076 9.076 0 0 0 3.33-1.317 5.038 5.038 0 0 1-2.4 2.942 9.068 9.068 0 0 0 3.02-.85 5.05 5.05 0 0 1-2.48 2.71z"/></svg></span></a> &nbsp; ' +
 		'<a rel="nofollow" href="https://www.facebook.com/TheZedignHouse"> <span class="rrssb-icon"><svg width="26" height="26" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 28 28"><path d="M26.4 0H2.6C1.714 0 0 1.715 0 2.6v23.8c0 .884 1.715 2.6 2.6 2.6h12.393V17.988h-3.996v-3.98h3.997v-3.062c0-3.746 2.835-5.97 6.177-5.97 1.6 0 2.444.173 2.845.226v3.792H21.18c-1.817 0-2.156.9-2.156 2.168v2.847h5.045l-.66 3.978h-4.386V29H26.4c.884 0 2.6-1.716 2.6-2.6V2.6c0-.885-1.716-2.6-2.6-2.6z"/></svg></span></a> &nbsp; ' +
-		'</p> </div> </div></div>');
+		' </span> </p> </div> </div></div>');
 }
 
 function monographPanel() {
@@ -364,7 +389,7 @@ function monographPanel() {
 	var zasnum = "";
 	zasnum = content.split("|")[2] || "";
 	/// HTML "item":  $('#items').after and "single":  $('.container').append
-	$('.container').append(' <a style="color:inherit;text-decoration:none;" href="https://books.zedign.com/zas/' + zasnum + '.html"><div style="max-width:320px;margin:10px auto;" class="media"> <div class="media-left"> <img style="width:100px" class="media-object" src="https://books.zedign.com/i/p/' + zasnum + '_2UPCO.png" alt=""> </div> <div class="media-body"> <p>Full monograph in digital and print editions: <i>' + catname + ' - Paintings &amp; Drawings</i> (Zedign Art Series Book #' + zasnum + ').</p> </div> </div></a> ');
+	$('.container').append(' <a id="monographPanel" style="color:inherit;text-decoration:none;" href="https://books.zedign.com/zas/' + zasnum + '.html"><div style="max-width:320px;margin:10px auto;" class="media"> <div class="media-left"> <img style="width:100px" class="media-object" src="https://books.zedign.com/i/p/' + zasnum + '_2UPCO.png" alt=""> </div> <div class="media-body"> <p>Full monograph in digital and print editions: <i>' + catname + ' - Paintings &amp; Drawings</i> (Zedign Art Series Book #' + zasnum + ').</p> </div> </div></a> ');
 
 }
 
@@ -772,6 +797,68 @@ function loadAddToAnyAsync(className, float = "float", items = "") {
 	document.body.appendChild(a2a);
 }
 
+function single_breadcrumbs() {
+
+	//// LOGO AND BREADCRUMS
+	$('.container').append(
+		//////// BREADCRUMBS
+		'<ol class="breadcrumb" style="text-transform: uppercase"> <li><a href="/zas/">Home</a></li> <li><a href="../../#' + catslug + '">' + catname + '</a></li>  <li><a href="./">' + dirname + '</a></li> </ol>' +
+		// 
+		'');
+
+}
+
+function single_body() {
+	//// change bg to gradient to blend zaz's grey
+	// if (window.location.href.indexOf("/posters/") > -1) {
+	$('head').append('<style> .panel-body {background:linear-gradient(to right, #b4b0af, #e6e4e5);} .panel-body img {border-width:5px; border-style:solid; border-color: #b4b0af #e6e4e5 #e6e4e5 #b4b0af} </style>');
+	// }
+
+	/// SINGLE BODY
+	$('.container').append(
+		// 
+		'<div class="panel panel-default"> <div class="panel-heading"> </div> <div class="panel-body"> </div> <div class="panel-footer"> </div> </div>');
+	//
+
+	$('.panel-heading').prepend($('h1')); // Prepend it to .panel-heading
+
+	$('p').appendTo('.panel-body');
+
+	var zslug = (content.split("|")[0]).trim();
+
+	var zURL = zazzURL(zslug);
+
+	// 2024-02-20 OFF: gsc massv deindx
+	// var zURL = '../../../common/c/?s=zr&n=' + zslug;
+
+	// console.log(zURL);
+
+	$(".panel-body img").wrap('<a rel="nofollow" href="' + zURL + '"></a>');
+	// $('p span').remove();
+
+	/// BUTTONS 
+
+	$('.panel-footer').html(
+
+		'<div class="row">' +
+
+		'<div class="col-xs-6 text-right">' +
+		' <a rel="nofollow" role="button" class="btn btn-primary" href="' + zURL + '" > Details </a> ' +
+		'</div>' +
+
+		'<div class="col-xs-6"> ' +
+		' <a rel="nofollow" role="button" class="btn btn-warning" href="' + zURL + '" > Buy now </a> ' +
+		'</div>' +
+
+		'</div>' +
+
+		// '<div class="row">' +
+		// '<div style="opacity:0.8;display:table;margin:30px auto 16px;" class="sharing"></div>' +
+		// '</div>' +
+
+		'');
+}
+
 //////////////////   /funcs   ///////////////////////
 
 //////////////////////  MAIN  ////////////////////////////
@@ -898,7 +985,8 @@ $(document).ready(function() {
 	if (siteSection == "item") {
 
 		/// REMOVE HARDCODED LINKS
-		$('.container > ul').remove();
+		$('.container > ul, .container > #hcmenu').remove(); // this is #items
+
 		//// BREADCRUMS
 		$('h1').before(
 			//////// BREADCRUMBS
@@ -914,6 +1002,7 @@ $(document).ready(function() {
 
 		$('.container').append('<div id="items" class="row">' + '');
 		// 
+
 		// 
 		var html = "";
 		$.each(aData.d.slice(1), function(i, data) { /// remove 1st empty item!
@@ -1046,58 +1135,10 @@ $(document).ready(function() {
 	if (siteSection == "single") {
 
 		//// LOGO AND BREADCRUMS
-		$('.container').append(
-			//////// BREADCRUMBS
-			'<ol class="breadcrumb" style="text-transform: uppercase"> <li><a href="/zas/">Home</a></li> <li><a href="../../#' + catslug + '">' + catname + '</a></li>  <li><a href="./">' + dirname + '</a></li> </ol>' +
-			// 
-			'');
 
-		//// change bg to gradient to blend zaz's grey
-		// if (window.location.href.indexOf("/posters/") > -1) {
-		$('head').append('<style> .panel-body {background:linear-gradient(to right, #b4b0af, #e6e4e5);} .panel-body img {border-width:5px; border-style:solid; border-color: #b4b0af #e6e4e5 #e6e4e5 #b4b0af} </style>');
-		// }
+		single_breadcrumbs();
 
-		/// SINGLE BODY
-		$('.container').append(
-			// 
-			'<div class="panel panel-default"> <div class="panel-heading"> </div> <div class="panel-body"> </div> <div class="panel-footer"> </div> </div>');
-		//
-
-		$('.panel-heading').prepend($('h1')); // Prepend it to .panel-heading
-
-		$('p').appendTo('.panel-body');
-
-		var zslug = (content.split("|")[0]).trim();
-
-		var zURL = zazzURL(zslug);
-		// var zURL = '../../../common/c/?s=zr&n=' + zslug;
-
-		// console.log(zURL);
-
-		$(".panel-body img").wrap('<a rel="nofollow" href="' + zURL + '"></a>');
-		// $('p span').remove();
-
-		/// BUTTONS 
-
-		$('.panel-footer').html(
-
-			'<div class="row">' +
-
-			'<div class="col-xs-6 text-right">' +
-			' <a rel="nofollow" role="button" class="btn btn-primary" href="' + zURL + '" > Details </a> ' +
-			'</div>' +
-
-			'<div class="col-xs-6"> ' +
-			' <a rel="nofollow" role="button" class="btn btn-warning" href="' + zURL + '" > Buy now </a> ' +
-			'</div>' +
-
-			'</div>' +
-
-			// '<div class="row">' +
-			// '<div style="opacity:0.8;display:table;margin:30px auto 16px;" class="sharing"></div>' +
-			// '</div>' +
-
-			'');
+		single_body();
 
 		singlePagination();
 
@@ -1120,6 +1161,25 @@ $(document).ready(function() {
 			loadAddToAnyAsync("sharing");
 		} catch (e) {}
 
+		// 
+
+		// DISQUS
+		if (siteSection == "single") {
+			$('#monographPanel').after('<hr/> <div id="disqus_thread"></div> ');
+			try {
+
+				var disqus_config = function() {
+					this.page.url = $('link[rel="canonical"]').attr("href");
+					this.page.identifier = this.page.url;
+				};
+				disqusAsync('zedignart', 'disqus_thread');
+
+			} catch (e) {}
+		}
+
+		// 
+
+		// FOOTER 
 		if (siteSection == "single") {
 
 			try {

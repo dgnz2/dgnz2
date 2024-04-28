@@ -389,7 +389,7 @@ function monographPanel() {
 	var zasnum = "";
 	zasnum = content.split("|")[2] || "";
 	/// HTML "item":  $('#items').after and "single":  $('.container').append
-	$('.container').append(' <a id="monographPanel" style="color:inherit;text-decoration:none;" href="https://books.zedign.com/zas/' + zasnum + '.html"><div style="max-width:320px;margin:10px auto;" class="media"> <div class="media-left"> <img style="width:100px" class="media-object" src="https://books.zedign.com/i/p/' + zasnum + '_2UPCO.png" alt=""> </div> <div class="media-body"> <p>Full monograph in digital and print editions: <i>' + catname + ' - Paintings &amp; Drawings</i> (Zedign Art Series Book #' + zasnum + ').</p> </div> </div></a> ');
+	$('.container').append(' <a id="monographPanel" style="display:block; background:beige; padding: 10px; color:inherit;text-decoration:none;" href="https://books.zedign.com/zas/' + zasnum + '.html"><div style="max-width:320px;margin:10px auto;" class="media"> <div class="media-left"> <img style="width:100px" class="media-object" src="https://books.zedign.com/i/p/' + zasnum + '_2UPCO.png" alt=""> </div> <div class="media-body"> <p>Full monograph in digital and print editions: <i>' + catname + ' - Paintings &amp; Drawings</i> (Zedign Art Series Book #' + zasnum + ').</p> </div> </div></a> ');
 
 }
 
@@ -422,7 +422,7 @@ function singlePagination() {
 	);
 
 	$('.container').append(
-		'<table style="margin:10px auto;font-size:90%"><tr><td colspan="3" style="text-align:center"> &lt;&lt; BROWSE ' + catname + ' COLLECTION &gt;&gt; </td></tr><tr>' +
+		'<hr><table style="margin:10px auto;font-size:90%"><tr><td colspan="3" style="text-align:center"> &lt;&lt; BROWSE ' + catname + ' COLLECTION &gt;&gt; </td></tr><tr>' +
 		'<td style="padding:5px;background:#aaa"><x-cmemblnk class="cmemblnk" href="' + purl + '"> </x-cmemblnk></td>' +
 		'<td>&nbsp;&nbsp;</td>' +
 		'<td style="padding:5px;background:#aaa"><x-cmemblnk class="cmemblnk" href="' + nurl + '"> </x-cmemblnk></td> </tr><tr><td colspan="3" style="text-align:center;padding:5px 0"><a role="button" class="btn btn-default btn-sm" href="./">SEE ALL</a></td></tr></table><hr/>'
@@ -845,15 +845,20 @@ function single_body() {
 
 	$('.panel-footer').html(
 
-		'<div class="row">' +
+		'<div style="max-width:500px; margin: 0 auto;" class="row">' +
 
-		'<div class="col-xs-6 text-right">' +
+		'<div  class="col-xs-4 text-left">' +
 		' <a rel="nofollow" role="button" class="btn btn-primary" href="' + zURL + '" > Details </a> ' +
 		'</div>' +
 
-		'<div class="col-xs-6"> ' +
+		'<div class="col-xs-4 text-center"> ' +
 		' <a rel="nofollow" role="button" class="btn btn-warning" href="' + zURL + '" > Buy now </a> ' +
 		'</div>' +
+
+		'<div class="col-xs-4 text-right"> ' +
+		' <a title="Comments" style="_display:block; _text-align:center;" href="#disqus_thread" > <span style="font-size:28px;" class="glyphicon glyphicon-comment"></span> </a> ' +
+		'</div>' +
+
 
 		'</div>' +
 
@@ -862,6 +867,16 @@ function single_body() {
 		// '</div>' +
 
 		'');
+}
+
+function disqus_wrap() {
+	try {
+		var disqus_config = function() {
+			this.page.url = $('link[rel="canonical"]').attr("href");
+			this.page.identifier = this.page.url;
+		};
+		disqusAsync('zedignart', 'disqus_thread');
+	} catch (e) {}
 }
 
 //////////////////   /funcs   ///////////////////////
@@ -1149,6 +1164,20 @@ $(document).ready(function() {
 
 		monographPanel();
 
+		// // DISQUS
+		// $('#monographPanel').after('<hr/> <div id="disqus_thread"></div> ');
+		// try {
+
+		// 	var disqus_config = function() {
+		// 		this.page.url = $('link[rel="canonical"]').attr("href");
+		// 		this.page.identifier = this.page.url;
+		// 	};
+
+		// 	disqusAsync('zedignart', 'disqus_thread');
+
+		// } catch (e) {}
+		// // /DISQUS
+
 		try {
 			relatedFromFeed();
 		} catch (e) {}
@@ -1168,32 +1197,20 @@ $(document).ready(function() {
 
 		// 
 
-		// DISQUS
-		if (siteSection == "single") {
-
-			$('#monographPanel').after('<hr/> <div id="disqus_thread"></div> ');
-			// $('.container').after('<hr/> <div id="disqus_thread"></div> ');
-			try {
-
-				var disqus_config = function() {
-					this.page.url = $('link[rel="canonical"]').attr("href");
-					this.page.identifier = this.page.url;
-				};
-				disqusAsync('zedignart', 'disqus_thread');
-
-			} catch (e) {}
-
-		} // if
-
-		// 
-
 		// FOOTER 
 		if (siteSection == "single") {
 
 			try {
 				// because relatedFromFeed might not get published at all (does not on ff because of incompatibality with node related js in commentFooter() )
 				waitForElement('#relatedFromFeed', 10000).then((elm) => {
+
+					// DISQUS
+					$('#relatedFromFeed').after('<hr/> <div id="disqus_thread"></div> ');
+					disqus_wrap();
+					// /DISQUS
+
 					commonFooter();
+
 				});
 			} catch (e) {}
 

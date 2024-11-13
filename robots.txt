@@ -1,0 +1,10 @@
+# 2024-11-13 only main dir homes
+
+User-agent: Googlebot
+Disallow: /posters/*
+Disallow: /signature-posters/*
+Disallow: /postcards/*
+Allow: /posters/
+Allow: /signature-posters/
+Allow: /postcards/
+

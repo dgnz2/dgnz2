@@ -852,10 +852,6 @@ function single_body() {
 	$(".panel-body img").wrap('<a rel="nofollow" href="' + zURL + '"></a>');
 	// $('p span').remove();
 
-	//// BLURBS IF EXISTING IN HTML
-	$('#blurb').appendTo('.panel-body');
-	$('#blurb').attr('style','text-transform: none; line-height: 1.1em; font-size: 110%; margin: 20px auto; color: black;');
-
 	/// BUTTONS 
 
 	$('.panel-footer').html(
@@ -873,6 +869,7 @@ function single_body() {
 		'<div class="col-xs-4 text-right"> ' +
 		' <a title="Comments" style="_display:block; _text-align:center;" href="#disqus_thread" > <span style="font-size:28px;" class="glyphicon glyphicon-comment"></span> </a> ' +
 		'</div>' +
+
 
 		'</div>' +
 
@@ -1177,6 +1174,20 @@ $(document).ready(function() {
 		singlePagination();
 
 		monographPanel();
+
+		// // DISQUS
+		// $('#monographPanel').after('<hr/> <div id="disqus_thread"></div> ');
+		// try {
+
+		// 	var disqus_config = function() {
+		// 		this.page.url = $('link[rel="canonical"]').attr("href");
+		// 		this.page.identifier = this.page.url;
+		// 	};
+
+		// 	disqusAsync('zedignart', 'disqus_thread');
+
+		// } catch (e) {}
+		// // /DISQUS
 
 		try {
 			relatedFromFeed();

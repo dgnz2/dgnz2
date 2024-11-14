@@ -367,7 +367,7 @@ function paginateHTML(opt, pHref, pTxt, nHref, nTxt) {
 			);
 		}
 		// 
-		var a = '<div style="margin:50px auto"> <center><h5> — MORE — </h5></center>' +
+		var a = '<div class="paginateHTML" style="margin:50px auto"> <center><h5> — MORE — </h5></center>' +
 			'<nav style="text-transform:uppercase" aria-label="..."> <ul class="pager"> ' + b + '</ul> </nav> </div>';
 		return a;
 	} catch (e) {}
@@ -389,7 +389,7 @@ function monographPanel() {
 	var zasnum = "";
 	zasnum = content.split("|")[2] || "";
 	/// HTML "item":  $('#items').after and "single":  $('.container').append
-	$('.container').append(' <a id="monographPanel" style="display:block; background:beige; padding: 10px; color:inherit;text-decoration:none;" href="https://books.zedign.com/zas/' + zasnum + '.html"><div style="max-width:320px;margin:10px auto;" class="media"> <div class="media-left"> <img style="width:100px" class="media-object" src="https://books.zedign.com/i/p/' + zasnum + '_2UPCO.png" alt=""> </div> <div class="media-body"> <p>Full monograph in digital and print editions: <i>' + catname + ' - Paintings &amp; Drawings</i> (Zedign Art Series Book #' + zasnum + ').</p> </div> </div></a> ');
+	$('.container').append(' <div id="monographPanel_wrap"><a id="monographPanel" style="display:block; background:beige; padding: 10px; color:inherit;text-decoration:none;" href="https://books.zedign.com/zas/' + zasnum + '.html"><div style="max-width:320px;margin:10px auto;" class="media"> <div class="media-left"> <img style="width:100px" class="media-object" src="https://books.zedign.com/i/p/' + zasnum + '_2UPCO.png" alt=""> </div> <div class="media-body"> <p>Full monograph in digital and print editions: <i>' + catname + ' - Paintings &amp; Drawings</i> (Zedign Art Series Book #' + zasnum + ').</p> </div> </div></a></div> ');
 
 }
 
@@ -854,7 +854,7 @@ function single_body() {
 
 	//// BLURBS IF EXISTING IN HTML
 	$('#blurb').appendTo('.panel-body');
-	$('#blurb').attr('style','text-transform: none; line-height: 1.1em; font-size: 110%; margin: 20px auto; color: black;');
+	$('#blurb').attr('style', 'text-transform: none; line-height: 1.1em; font-size: 110%; margin: 20px auto; color: black;');
 
 	/// BUTTONS 
 
@@ -924,7 +924,7 @@ $(document).ready(function() {
 
 		$('.container').prepend(
 			// LOGO
-			' <a href="/zas/"><img style="display:block; margin:10px auto; width:125px" src="' + pthComn + '/zedign_logo.jpg" /></a> '
+			' <a class="zdlogo" href="/zas/"><img style="display:block; margin:10px auto; width:125px" src="' + pthComn + '/zedign_logo.jpg" /></a> '
 		);
 
 	}
@@ -1031,10 +1031,10 @@ $(document).ready(function() {
 
 		//// change bg to gradient to blend zaz's grey
 		// if (window.location.href.indexOf("/posters/") > -1) {
-		$('head').append('<style>#items .thumbnail {background:linear-gradient(to right, #b4b0af, #e6e4e5);} .thumbnail img {border-width:5px; border-style:solid; border-color: #b4b0af #e6e4e5 #e6e4e5 #b4b0af }</style>');
+		// $('head').append('<style>#items .thumbnail {background:linear-gradient(to right, #b4b0af, #e6e4e5);} .thumbnail img {border-width:5px; border-style:solid; border-color: #b4b0af #e6e4e5 #e6e4e5 #b4b0af }</style>');
 		// }
 
-		$('.container').append('<div id="items" class="row">' + '');
+		$('.container').append('<div id="items_wrap"><div style="width:99%;" id="items" class="row">' + '');
 		// 
 
 		// 
@@ -1059,40 +1059,31 @@ $(document).ready(function() {
 			var zas = item[2];
 			var title = item[3].replace(/^(.+) \- (.+)$/, "$2");
 			var slug = item[4];
-			html += '<div class="col-sm-6 col-md-4"> <div class="thumbnail"> <a rel="nofollow" href="' +
+			
+			html += '<div class="col-sm-6 col-md-4"> <div class="thumbnail"> <a target="_blank" rel="nofollow" href="' +
 
-			// link + // zazz url 
-			slug + '.html' + // our url 2024-01-29
+			// slug + '.html' + // our url 2024-01-29
+			link +   // 2024-11-14 revert to zazz (now single pgs excl via robots.txt)
 
-			'"> <img style="width:200px" class="lazy" data-src="' + img + '" src="" alt="' + title + '"> <div class="caption"> <h4>' + title + '</h4> </div> </a>  ' +
+			'"> <img class="lazy" data-src="' + img + '" src="" alt="' + title + '"> <div class="caption"> <h4>' + title + '</h4> </div> </a>  ' +
 			// 
-			' <a href="' +
-
-			slug + // our url
-
-			'.html" style="color:#444!important"> ' +
-
-			//  meta
-
-			// '  <span class="glyphicon glyphicon-link" aria-hidden="true"></span>  &nbsp;  ' +
-			// '  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>  &nbsp;  ' +
-			// '  <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>  &nbsp;  ' +
-
-			// 
+			// ' <a href="' + slug + '.html" style="color:#444!important"> ' +
 
 			'</a>   ' +
 			// 
-			'     </div> </div>   ';
-			// console.log(slug);
+			'</div> </div> </div>  ';
+
 		});
 
 		$('#items').append(html);
 		// 
 		//
+
+
 		//////// PAGINATION //////////
 		var prev = aData.p.trim() ? '../../' + aData.p.trim() + '/' + dirslug + '/' : "#";
 		var next = aData.n.trim() ? '../../' + aData.n.trim() + '/' + dirslug + '/' : "#";
-		$('.container').append(
+		$('#items_wrap').append(
 			paginateHTML(
 				siteSection,
 				prev,
@@ -1107,7 +1098,7 @@ $(document).ready(function() {
 		var zasnum = "";
 		zasnum = aData.d[1].split("|")[2] || "";
 		/// HTML "item":  $('#items').after and "single":  $('.container').append
-		$('#items').after(' <a style="color:inherit;text-decoration:none;" href="https://books.zedign.com/zas/' + zasnum + '.html"><div style="max-width:320px;margin:10px auto;" class="media"> <div class="media-left"> <img style="width:100px" class="media-object" src="https://books.zedign.com/i/p/' + zasnum + '_2UPCO.png" alt=""> </div> <div class="media-body"> <p>Full monograph in digital and print editions: <i style="font-size:110%;">' + catname + ' - Paintings &amp; Drawings</i> (Zedign Art Series Book #' + zasnum + ').</p> </div> </div></a> ');
+		$('#items').after(' <div id="monographPanel_wrap"> <a style="color:inherit;text-decoration:none;" href="https://books.zedign.com/zas/' + zasnum + '.html"><div style="max-width:320px;margin:10px auto;" class="media"> <div class="media-left"> <img style="width:100px" class="media-object" src="https://books.zedign.com/i/p/' + zasnum + '_2UPCO.png" alt=""> </div> <div class="media-body"> <p>Full monograph in digital and print editions: <i style="font-size:110%;">' + catname + ' - Paintings &amp; Drawings</i> (Zedign Art Series Book #' + zasnum + ').</p> </div> </div></a> </div> ');
 
 		// 
 		$(document).ready(function() {

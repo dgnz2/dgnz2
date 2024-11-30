@@ -913,6 +913,9 @@ $(document).ready(function() {
 		case "single":
 			pthComn = '../../../common';
 			break;
+		case "search":
+			pthComn = '../common';
+			break;
 		default:
 			pthComn = '/common';
 	}
@@ -920,7 +923,7 @@ $(document).ready(function() {
 
 	///// ON ALL BEFORE 
 
-	if (siteSection.match(/(single|item|main)/)) {
+	if (siteSection.match(/(single|item|main|search)/)) {
 
 		$('.container').prepend(
 			// LOGO
@@ -1059,26 +1062,43 @@ $(document).ready(function() {
 			var zas = item[2];
 			var title = item[3].replace(/^(.+) \- (.+)$/, "$2");
 			var slug = item[4];
-			
-			html += '<div class="col-sm-6 col-md-4"> <div class="thumbnail"> <a target="_blank" rel="nofollow" href="' +
+
+			html += '<div class="col-sm-6 col-md-4"> <div class="thumbnail" style="position:relative;"> <a target="_blank" rel="nofollow" href="' +
 
 			// slug + '.html' + // our url 2024-01-29
-			link +   // 2024-11-14 revert to zazz (now single pgs excl via robots.txt)
+			link + // 2024-11-14 revert to zazz (now single pgs excl via robots.txt)
 
 			'"> <img class="lazy" data-src="' + img + '" src="" alt="' + title + '"> <div class="caption"> <h4>' + title + '</h4> </div> </a>  ' +
 			// 
 			// ' <a href="' + slug + '.html" style="color:#444!important"> ' +
 
 			'</a>   ' +
+
+						`
+						<div style="text-shadow: 1px 1px 1px #777;position:absolute;right:3px;top:2px;font-size:26px;line-height:1em;display:flex;justify-content:center;align-items:center;">
+
+						<a title="permalink" href="${slug}.html" style="display:block">
+						<span class="glyphicon glyphicon-link"></span>
+						</a>
+
+					
+
+						</div>
+						` +
 			// 
-			'</div> </div> </div>  ';
+			'</div> ' +
+
+
+
+			' </div> ' +
+				' </div>  ' +
+				'';
 
 		});
 
 		$('#items').append(html);
 		// 
 		//
-
 
 		//////// PAGINATION //////////
 		var prev = aData.p.trim() ? '../../' + aData.p.trim() + '/' + dirslug + '/' : "#";
@@ -1214,6 +1234,213 @@ $(document).ready(function() {
 	}
 
 	///////// /ON ALL COMMON **AFTER** //////////////////////////
+
+	/////////////////////////////////////////////
+	/////////////////////////////////////////////
+	/////////////////////////////////////////////
+	/////////////////////////////////////////////
+	/////////////////    SEARCH   ///////////////////
+	/////////////////////////////////////////////
+	/////////////////////////////////////////////
+	/////////////////////////////////////////////
+	/////////////////////////////////////////////
+	// 
+
+	if (siteSection == "search") {
+
+		// Function to get query parameters
+		function getQueryParam(param) {
+			var urlParams = new URLSearchParams(window.location.search);
+			return urlParams.get(param);
+		}
+
+		// Get the 'type' query parameter
+		var typeParam = getQueryParam('type');
+
+		// Check if the type parameter exists and set the relevant input as checked
+		if (typeParam) {
+			if (typeParam === 'type1') {
+				$('#type1').prop('checked', true);
+			} else if (typeParam === 'type2') {
+				$('#type2').prop('checked', true);
+			} else if (typeParam === 'type3') {
+				$('#type3').prop('checked', true);
+			}
+		} else {
+			// If no type parameter, check the first input by default
+			if (!$('input[name="type"]:checked').length) {
+				$('#type1').prop('checked', true);
+			}
+		}
+
+		// Listen for changes on the radio buttons
+		$('input[name="type"]').change(function() {
+			var selectedValue = $(this).val();
+			// Reload the page with the selected input's value as a query parameter
+			window.location.search = '?type=' + selectedValue;
+		});
+
+		function selectionType() {
+
+			if ($('#type1').is(':checked')) {
+				a = 'posters.txt';
+			} else if ($('#type2').is(':checked')) {
+				a = 'posters.txt';
+			} else if ($('#type3').is(':checked')) {
+				a = 'posters.txt';
+			} else {
+				a = null; // or any default value you want
+			}
+			return a;
+		}
+
+		const resultsPerPage = 5; // Number of results to display per page
+		let currentPage = 1; // Current page number
+		let allResults = []; // Store all search results
+
+		// IMP!! async function initSearch() {  // <<<< JS BEAUTIFIER BREAKS IT! USE ES7 const initSearch = async() => {
+		const initSearch = async() => {
+
+			const response = await fetch(selectionType());
+			const text = await response.text();
+			const urls = text.split('\n').filter(url => url.trim() !== '');
+
+			// const slugs = urls.map((url, index) => {
+			// 	const slug = url.split('/').pop().replace('.html', '');			
+			// 	return {
+			// 		id: index,
+			// 		url,
+			// 		slug
+			// 	}; // Add an id field
+			// });
+
+			const slugs = urls.map((url, index) => {
+				const parts = url.split('/'); // Split the URL into parts
+				const lastPart = parts.pop().replace('.html', ''); // Get the last part and remove .html
+
+				// Ensure the index is within bounds
+				const secondLastPart = parts[4] || '';
+
+				const slug = `${secondLastPart}-${lastPart}`;
+				// console.log(slug);
+
+				return {
+					id: index,
+					url,
+					slug
+				}; // Return the object with id, url, and slug
+			});
+
+			// Initialize MiniSearch
+			const miniSearch = new MiniSearch({
+				fields: ['slug'], // fields to index for full-text search
+				storeFields: ['url'], // fields to return with search results
+				idField: 'id', // Specify the id field
+				searchOptions: {
+					fuzzy: 0.2 // Allow for 20% fuzziness
+				}
+			});
+
+			miniSearch.addAll(slugs);
+
+			// Set up search box event listener
+			$('#searchBox').on('input', function() {
+				const query = $(this).val();
+				allResults = miniSearch.search(query);
+				currentPage = 1; // Reset to the first page
+				displayResults();
+			});
+		}
+
+		// Display search results with pagination
+		function displayResults() {
+			const resultsDiv = $('#results');
+			resultsDiv.empty(); // Clear previous results
+
+			if (allResults.length === 0) {
+				resultsDiv.html('<p>No results found.</p>');
+				$('#pagination').hide(); // Hide pagination if no results
+				return;
+			}
+
+			// Calculate the start and end indices for the current page
+			const startIndex = (currentPage - 1) * resultsPerPage;
+			const endIndex = Math.min(startIndex + resultsPerPage, allResults.length);
+			const resultsToShow = allResults.slice(startIndex, endIndex);
+
+			resultsToShow.forEach(result => {
+
+				const url = result.url; // Accessing url directly
+
+				if (url) {
+					// Extract artist name and slug for the title
+					const urlParts = url.split('/');
+					// console.log(urlParts);
+					const artistName = urlParts[4]; // Get the second last part as artist name
+					const slug = urlParts[urlParts.length - 1].replace('.html', ''); // Get the last part and remove .html
+
+					// Create a formatted title
+					const title = `
+
+				${artistName.replace(/-/g, ' ')} - 
+
+				${slug.replace(/-/g, ' ')}
+
+				`;
+
+					const item = $('<div class="result-item"></div>');
+					item.html(`<a href="${url}" target="_blank">${title}</a>`);
+					resultsDiv.append(item);
+				} else {
+					console.error('Result URL is undefined:', result);
+				}
+			});
+
+			// Update pagination
+			updatePagination();
+		}
+
+		// Update pagination controls
+		function updatePagination() {
+			const paginationDiv = $('#pagination');
+			paginationDiv.empty(); // Clear previous pagination
+
+			const totalPages = Math.ceil(allResults.length / resultsPerPage);
+
+			if (totalPages > 1) {
+				// Previous button
+				const prevButton = $('<button>Previous</button>').on('click', function() {
+					if (currentPage > 1) {
+						currentPage--;
+						displayResults();
+					}
+				});
+				paginationDiv.append(prevButton);
+
+				// Page number display
+				paginationDiv.append(` Page ${currentPage} of ${totalPages} `);
+
+				// Next button
+				const nextButton = $('<button>Next</button>').on('click', function() {
+					if (currentPage < totalPages) {
+						currentPage++;
+						displayResults();
+					}
+				});
+				paginationDiv.append(nextButton);
+			}
+
+			paginationDiv.show(); // Show pagination
+		}
+
+		// Initialize the search when the page loads
+
+		// IMP!! (async function() {  // <<<< JS BEAUTIFIER BREAKS IT! USE ES7 `(async() => {`
+		(async() => {
+			await initSearch();
+		})(); // Immediately invoked async function
+
+	}
 
 	/////////////////////////////////////////////
 	/////////////////////////////////////////////

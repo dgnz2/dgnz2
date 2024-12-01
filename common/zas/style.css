@@ -149,6 +149,7 @@ body.item .thumbnail img {
 
 .search h1 {
   overflow: inherit;
+  height: 60px;
 }
 
 .search #typeForm {

@@ -1293,11 +1293,12 @@ $(document).ready(function() {
 		function selectionType() {
 
 			if ($('#type1').is(':checked')) {
-				a = '../common/sitemap/_ORIG_posters.txt';
+				a = '../common/sitemap/ORIG_posters.txt';
+				// no underscore filenames for git!
 			} else if ($('#type2').is(':checked')) {
-				a = '../common/sitemap/_ORIG_signature-posters.txt';
+				a = '../common/sitemap/ORIG_signature-posters.txt';
 			} else if ($('#type3').is(':checked')) {
-				a = '../common/sitemap/_ORIG_postcards.txt';
+				a = '../common/sitemap/ORIG_postcards.txt';
 			} else {
 				a = null; // or any default value you want
 			}

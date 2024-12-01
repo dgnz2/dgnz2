@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1"/>
+		<title>Fine Art Search - Zedign Art</title>
+		<link rel="canonical" href="https://art.zedign.com/search/">
+		<meta name="Description" content="Find your favourite fine art posters, postcards and more!">
+		<!-- ALL IMAGES -->
+		<meta property="og:image" content="https://art.zedign.com/common/zedign_logo.jpg"/>
+		<link rel="shortcut icon" type="image/x-icon" href="https://art.zedign.com/common/zedign_logo.jpg" />
+		<link rel="image_src" href="https://art.zedign.com/common/zedign_logo.jpg" />
+		<meta name="thumbnail" content="https://art.zedign.com/common/zedign_logo.jpg" />
+		<!-- ALL IMAGES -->
+		<script>siteSection = "search";</script>
+		<!--  -->
+		<!-- <link href='https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.1/css/bootstrap.min.css' rel='stylesheet'/> -->
+		<!-- <script src='https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.1/js/bootstrap.min.js'></script> -->
+		<!--  -->
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js'></script>
+		<!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.lazy/1.7.9/jquery.lazy.min.js"></script> -->
+		<!--  -->
+		<script src="index.min.js"></script> <!-- this is https://cdn.jsdelivr.net/npm/minisearch@6.0.0/dist/umd/index.min.js -->
+		<!--  -->
+		<link href="../common/zas/style.css" rel="stylesheet"/>
+		<!-- Google Tag Manager -->
+		<script> (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0], j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src= 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f); })(window,document,'script','dataLayer','GTM-P9T3N78');
+		</script>
+		<!-- End Google Tag Manager -->
+	</head>
+	<body class="search">
+		<!-- Google Tag Manager (noscript) -->
+		<noscript>
+		<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P9T3N78" height="0" width="0" style="display:none;visibility:hidden">
+		</iframe>
+		</noscript>
+		<!-- End Google Tag Manager (noscript) -->
+		<div class="container">
+			<h1><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAeCAMAAABZj73OAAAAGXRFWHRTb2Z0d2Fy ZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAABVQTFRF////zMzMmZmZZmZmMzMzAAAA ////EC4AkQAAAAd0Uk5T////////ABpLA0YAAADESURBVHjatJRRDsQgCERngPb+ R25xzbYiXTXZ8mNM5qGBAezLgb8gED1DOI1AthrGOYTmYlXzU2cQJ5Qor9kD0yI4 ZfLF9XZ5RKQReQIMEISvMP0awiNtlXQz/EY6BWOOBAn/eAmxVURiUSVzDUJSCZ21 UV+sLZmk7e+KemP8NralXp4vU5ANQGyuuueFpBs5Zzo/VGmRW8r0Fqr5zaTOGyfW BehxzSiXNkzGjJZSwgz32IdZW320aKN9gpEXFuwoDgEGAA0ZIJEjie7OAAAAAElF TkSuQmCC" />Fine Art Search
+			</h1>
+			<!-- PREFIX ENDS -->
+			<!-- Search Input -->
+			<!--  -->
+			<div id="types">
+				<form id="typeForm">
+					<div>
+						<input class="form-check-input" type="radio" name="type" id="type1" value="posters">
+						<label class="form-check-label" for="type1">
+							Classic Posters
+						</label>
+					</div>
+					<div>
+						<input class="form-check-input" type="radio" name="type" id="type2" value="type2">
+						<label class="form-check-label" for="type2">
+							Signature Posters
+						</label>
+					</div>
+					<div>
+						<input class="form-check-input" type="radio" name="type" id="type3" value="type3">
+						<label class="form-check-label" for="type3">
+							Postcards
+						</label>
+					</div>
+				</form>
+			</div>
+			<!--  -->
+			<div>
+				<input type="text" id="searchBox" class="form-control" placeholder="Search for an artist or subject..." aria-label="Search for posters...">
+				<!-- <button class="btn btn-outline-secondary" type="button" id="searchButton">Search</button> -->
+			</div>
+			<!-- Results Container -->
+			<div id="results"></div>
+			
+			<!-- Pagination Container -->
+			<div id="pagination"></div>
+			
+			<!-- POSTFIX BEGINS -->
+		</div>
+		<script src="../common/zas/script.js">
+		</script>
+	</body>
+</html>

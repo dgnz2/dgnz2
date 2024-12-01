@@ -927,7 +927,17 @@ $(document).ready(function() {
 
 		$('.container').prepend(
 			// LOGO
-			' <a class="zdlogo" href="/zas/"><img style="display:block; margin:10px auto; width:125px" src="' + pthComn + '/zedign_logo.jpg" /></a> '
+			// ' <a class="zdlogo" href="/zas/"><img style="display:block; margin:10px auto; width:125px" src="' + pthComn + '/zedign_logo.jpg" /></a> '
+
+			`
+			<div style="position:relative">
+			<a class="zdlogo" href="/zas/">
+			<img style="display:block; margin:10px auto; width:125px" src="${pthComn}/zedign_logo.jpg" />
+			</a> 
+			<div style="position:absolute;right:10px;top:10px;"><a style="font-size:22px;color:black" href="${pthComn}/../search/"><span class="glyphicon glyphicon-search"></span></a></div>
+			</div>
+
+			`
 		);
 
 	}
@@ -1074,7 +1084,7 @@ $(document).ready(function() {
 
 			'</a>   ' +
 
-						`
+			`
 						<div style="text-shadow: 1px 1px 1px #777;position:absolute;right:3px;top:2px;font-size:26px;line-height:1em;display:flex;justify-content:center;align-items:center;">
 
 						<a title="permalink" href="${slug}.html" style="display:block">
@@ -1087,8 +1097,6 @@ $(document).ready(function() {
 						` +
 			// 
 			'</div> ' +
-
-
 
 			' </div> ' +
 				' </div>  ' +
@@ -1248,6 +1256,8 @@ $(document).ready(function() {
 
 	if (siteSection == "search") {
 
+		$('#searchBox').focus();
+
 		// Function to get query parameters
 		function getQueryParam(param) {
 			var urlParams = new URLSearchParams(window.location.search);
@@ -1283,18 +1293,18 @@ $(document).ready(function() {
 		function selectionType() {
 
 			if ($('#type1').is(':checked')) {
-				a = 'posters.txt';
+				a = '../common/sitemap/_ORIG_posters.txt';
 			} else if ($('#type2').is(':checked')) {
-				a = 'posters.txt';
+				a = '../common/sitemap/_ORIG_signature-posters.txt';
 			} else if ($('#type3').is(':checked')) {
-				a = 'posters.txt';
+				a = '../common/sitemap/_ORIG_postcards.txt';
 			} else {
 				a = null; // or any default value you want
 			}
 			return a;
 		}
 
-		const resultsPerPage = 5; // Number of results to display per page
+		const resultsPerPage = 10; // Number of results to display per page
 		let currentPage = 1; // Current page number
 		let allResults = []; // Store all search results
 
@@ -1370,29 +1380,44 @@ $(document).ready(function() {
 
 			resultsToShow.forEach(result => {
 
-				const url = result.url; // Accessing url directly
+				const url = (result.url).trim().replace(/[\s+]/igm, " "); // Accessing url directly
 
 				if (url) {
-					// Extract artist name and slug for the title
+
 					const urlParts = url.split('/');
-					// console.log(urlParts);
-					const artistName = urlParts[4]; // Get the second last part as artist name
-					const slug = urlParts[urlParts.length - 1].replace('.html', ''); // Get the last part and remove .html
 
-					// Create a formatted title
-					const title = `
+					const artistName = urlParts[4];
 
-				${artistName.replace(/-/g, ' ')} - 
+					const slug = (urlParts[urlParts.length - 1].replace('.html', '')).trim().replace(/\s+/igm, " ");
 
-				${slug.replace(/-/g, ' ')}
+					// console.log(slug);
 
-				`;
+					itemTitle = (slug.trim() == "") ? "" : " - " + slug;
 
-					const item = $('<div class="result-item"></div>');
-					item.html(`<a href="${url}" target="_blank">${title}</a>`);
-					resultsDiv.append(item);
+					const title = ` ${artistName.replace(/-/g, ' ')}  ${itemTitle} `;
+
+					// const item = $('<div class="result-item"></div>');
+					// item.html(`<a href="${url}" target="_blank">${title}</a>`);
+					// resultsDiv.append(item);
+
+					resultsDiv.append(`
+
+					    <div class="searchResultItem"
+
+					    style="cursor:pointer" 
+					    
+					    onclick="window.open('${url}', '_blank');"
+
+					     class="card d-flex flex-row">
+					     ${title} 
+
+					    </div>
+
+
+					`);
+
 				} else {
-					console.error('Result URL is undefined:', result);
+					// console.error('Result URL is undefined:', result);
 				}
 			});
 

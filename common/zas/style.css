@@ -134,3 +134,54 @@ body.item .thumbnail img {
 }
 
 /* --------------- /SINGLE ---------------- */
+
+/* --------------- SEARCH ---------------- */
+
+/* bootstrap 5 on search */
+
+.search .container {
+  /*  display: flex;
+    flex-direction: column;
+    width: 95%;*/
+  width: 95%;
+  max-width: 750px;
+}
+
+.search h1 {
+  overflow: inherit;
+}
+
+.search #typeForm {
+  display: flex;
+  justify-content: space-evenly;
+  width: 90%;
+}
+
+.search #typeForm div {
+  display: flex;
+  align-items: center;
+}
+
+.search #searchBox {
+  margin: 10px auto;
+  display: flex;
+  font-size: 18px;
+  width: 85%;
+  font-family: sans-serif;
+}
+
+.search #results {
+  width: 90%;
+}
+
+.search .searchResultItem {
+  margin: 10px 0;
+  padding: 10px 0;
+  border-bottom: solid 1px #aaa;
+}
+
+.search #pagination, .search #types {
+  margin: 10px 0;
+}
+
+/* --------------- /SEARCH ---------------- */

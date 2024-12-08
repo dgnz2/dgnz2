@@ -1,4 +1,8 @@
 https://art.zedign.com/zas/
+https://art.zedign.com/search/
+https://art.zedign.com/search/?type=classic
+https://art.zedign.com/search/?type=signature
+https://art.zedign.com/search/?type=postcard
 https://art.zedign.com/zas/ivan-aivazovsky/posters/
 https://art.zedign.com/zas/lawrence-alma-tadema/posters/
 https://art.zedign.com/zas/sophie-gengembre-anderson/posters/

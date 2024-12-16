@@ -375,7 +375,25 @@ function paginateHTML(opt, pHref, pTxt, nHref, nTxt) {
 
 function commonFooter() {
 	//// COMMON FOOTER
-	$('.container').append('<div id="commonFooter" style="text-align:center; margin:100px auto"> <hr/> <div class="row"> <div class="col-lg-12"> <p>  &copy; The Zedign House | <a href="/privacy.html">Privacy Policy </a> <br><br> <span style="opacity:0.7">' +
+	$('.container').append(`
+
+		<div id="commonFooter" style="text-align:center; margin:100px auto"> 
+
+		<hr/> 
+
+		<div class="row"> 
+
+		<div class="col-lg-12"> 
+
+		<p>  <span style="display:inline-block">&copy; The Zedign House</span> | <span style="display:inline-block"><a href="/privacy.html">Privacy Policy </a></span>
+
+		<br><br> <span style="opacity:0.7; display:inline-block"> 
+
+		` 
+
+		// 
+
+		+
 		// 
 		'<a rel="nofollow" href="https://www.pinterest.com/zedign"> <span class="rrssb-icon"><svg width="26" height="26" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 28 28"><path d="M14.021 1.57C6.96 1.57 1.236 7.293 1.236 14.355S6.96 27.14 14.021 27.14s12.785-5.725 12.785-12.785C26.807 7.294 21.082 1.57 14.021 1.57zm1.24 17.085c-1.161-.09-1.649-.666-2.559-1.219-.501 2.626-1.113 5.145-2.925 6.458-.559-3.971.822-6.951 1.462-10.116-1.093-1.84.132-5.545 2.438-4.632 2.837 1.123-2.458 6.842 1.099 7.557 3.711.744 5.227-6.439 2.925-8.775-3.325-3.374-9.678-.077-8.897 4.754.19 1.178 1.408 1.538.489 3.168-2.128-.472-2.763-2.15-2.682-4.388.131-3.662 3.291-6.227 6.46-6.582 4.007-.448 7.771 1.474 8.29 5.239.579 4.255-1.816 8.865-6.102 8.533l.002.003z"/></svg></span></a> &nbsp; ' +
 		'<a rel="nofollow" href="https://twitter.com/zedign"> <span class="rrssb-icon"><svg width="26" height="26" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 28 28"><path d="M24.253 8.756C24.69 17.08 18.297 24.182 9.97 24.62a15.093 15.093 0 0 1-8.86-2.32c2.702.18 5.375-.648 7.507-2.32a5.417 5.417 0 0 1-4.49-3.64c.802.13 1.62.077 2.4-.154a5.416 5.416 0 0 1-4.412-5.11 5.43 5.43 0 0 0 2.168.387A5.416 5.416 0 0 1 2.89 4.498a15.09 15.09 0 0 0 10.913 5.573 5.185 5.185 0 0 1 3.434-6.48 5.18 5.18 0 0 1 5.546 1.682 9.076 9.076 0 0 0 3.33-1.317 5.038 5.038 0 0 1-2.4 2.942 9.068 9.068 0 0 0 3.02-.85 5.05 5.05 0 0 1-2.48 2.71z"/></svg></span></a> &nbsp; ' +
@@ -1269,17 +1287,17 @@ $(document).ready(function() {
 
 		// Check if the type parameter exists and set the relevant input as checked
 		if (typeParam) {
-			if (typeParam === 'type1') {
-				$('#type1').prop('checked', true);
-			} else if (typeParam === 'type2') {
-				$('#type2').prop('checked', true);
-			} else if (typeParam === 'type3') {
-				$('#type3').prop('checked', true);
+			if (typeParam === 'classic') {
+				$('#classic').prop('checked', true);
+			} else if (typeParam === 'signature') {
+				$('#signature').prop('checked', true);
+			} else if (typeParam === 'postcard') {
+				$('#postcard').prop('checked', true);
 			}
 		} else {
 			// If no type parameter, check the first input by default
 			if (!$('input[name="type"]:checked').length) {
-				$('#type1').prop('checked', true);
+				$('#classic').prop('checked', true);
 			}
 		}
 
@@ -1292,12 +1310,13 @@ $(document).ready(function() {
 
 		function selectionType() {
 
-			if ($('#type1').is(':checked')) {
-				a = '../common/sitemap/_ORIG_posters.txt';
-			} else if ($('#type2').is(':checked')) {
-				a = '../common/sitemap/_ORIG_signature-posters.txt';
-			} else if ($('#type3').is(':checked')) {
-				a = '../common/sitemap/_ORIG_postcards.txt';
+			if ($('#classic').is(':checked')) {
+				a = '../common/sitemap/ORIG_posters.txt';
+				// no underscore filenames for git!
+			} else if ($('#signature').is(':checked')) {
+				a = '../common/sitemap/ORIG_signature-posters.txt';
+			} else if ($('#postcard').is(':checked')) {
+				a = '../common/sitemap/ORIG_postcards.txt';
 			} else {
 				a = null; // or any default value you want
 			}
@@ -1392,9 +1411,11 @@ $(document).ready(function() {
 
 					// console.log(slug);
 
-					itemTitle = (slug.trim() == "") ? "" : " - " + slug;
+					var itemTitle = (slug.trim() == "") ? "" : " - " + slug;
 
-					const title = ` ${artistName.replace(/-/g, ' ')}  ${itemTitle} `;
+					var title = ` ${artistName.replace(/-/g, ' ')}  ${itemTitle} `;
+
+					title = ((title.replace(/([\-_]|\.html)/igm," ")).replace(/\s+/," ")).trim();
 
 					// const item = $('<div class="result-item"></div>');
 					// item.html(`<a href="${url}" target="_blank">${title}</a>`);
@@ -1464,6 +1485,8 @@ $(document).ready(function() {
 		(async() => {
 			await initSearch();
 		})(); // Immediately invoked async function
+
+		commonFooter();
 
 	}
 

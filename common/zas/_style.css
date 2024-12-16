@@ -4,11 +4,70 @@
 
 /* CLS_PREVENTION */
 
+.container {
+  position: absolute;
+  /*outline: solid 10px red;*/
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.zdlogo, .breadcrumb, h1, #items_wrap, #commonFooter {
+  position: relative;
+}
+
+.zdlogo {
+  top: 0;
+  display: block;
+  height: 80px;
+}
+
+.breadcrumb {
+  /*top: 90px;*/
+  top: 0;
+}
+
+h1 {
+  /*top: 150px;*/
+  top: 20px;
+  display: block;
+  height: 130px;
+  overflow: hidden;
+}
+
+#items_wrap {
+  /*top: 300px;*/
+  top: 50px;
+}
+
+.paginateHTML {
+  /*display: none;*/
+}
+
+#monographPanel_wrap {
+  /*display: none;*/
+}
+
+#commonFooter {
+  /*display: none;*/
+}
+
+#hcmenu {
+  display: block;
+  width: 90%;
+  height: 30px;
+  overflow: auto;
+  position: absolute;
+  bottom: 0;
+}
+
+h1 {}
+
 /* /CLS_PREVENTION */
 
 body {
   font-family: Oswald, Arial, Helvetica, sans-serif;
   /*font-family: Arial, Helvetica, sans-serif;*/
+  line-height: 1em;
   padding-bottom: 300px;
   text-transform: uppercase !important;
 }
@@ -33,6 +92,21 @@ h1 {
 /* ------------ /MAIN ------------------ */
 
 /* ------------ ITEM ------------------ */
+
+body.item #items .thumbnail {
+  width: 280px;
+  height: 280px;
+  overflow: hidden;
+  background: linear-gradient(to right, #b4b0af, #e6e4e5);
+}
+
+body.item .thumbnail img {
+  width: 200px;
+  height: 200px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #b4b0af #e6e4e5 #e6e4e5 #b4b0af;
+}
 
 /* ------------ /ITEM ------------------ */
 
@@ -60,3 +134,55 @@ h1 {
 }
 
 /* --------------- /SINGLE ---------------- */
+
+/* --------------- SEARCH ---------------- */
+
+/* bootstrap 5 on search */
+
+.search .container {
+  /*  display: flex;
+    flex-direction: column;
+    width: 95%;*/
+  width: 95%;
+  max-width: 750px;
+}
+
+.search h1 {
+  overflow: inherit;
+  height: 60px;
+}
+
+.search #typeForm {
+  display: flex;
+  justify-content: space-evenly;
+  width: 90%;
+}
+
+.search #typeForm div {
+  display: flex;
+  align-items: center;
+}
+
+.search #searchBox {
+  margin: 10px auto;
+  display: flex;
+  font-size: 18px;
+  width: 85%;
+  font-family: sans-serif;
+}
+
+.search #results {
+  width: 90%;
+}
+
+.search .searchResultItem {
+  margin: 10px 0;
+  padding: 10px 0;
+  border-bottom: solid 1px #aaa;
+}
+
+.search #pagination, .search #types {
+  margin: 10px 0;
+}
+
+/* --------------- /SEARCH ---------------- */

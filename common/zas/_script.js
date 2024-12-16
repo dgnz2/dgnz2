@@ -389,7 +389,7 @@ function commonFooter() {
 
 		<br><br> <span style="opacity:0.7; display:inline-block"> 
 
-		` 
+		`
 
 		// 
 
@@ -934,6 +934,9 @@ $(document).ready(function() {
 		case "search":
 			pthComn = '../common';
 			break;
+		case "artist":
+			pthComn = '../../common';
+			break;
 		default:
 			pthComn = '/common';
 	}
@@ -941,7 +944,7 @@ $(document).ready(function() {
 
 	///// ON ALL BEFORE 
 
-	if (siteSection.match(/(single|item|main|search)/)) {
+	if (siteSection.match(/(single|item|main|search|artist)/)) {
 
 		$('.container').prepend(
 			// LOGO
@@ -1221,11 +1224,57 @@ $(document).ready(function() {
 
 	}
 
+	/////////////////////////////////////////////
+	/////////////////////////////////////////////
+	/////////////////////////////////////////////
+	/////////////////////////////////////////////
+	/////////////////////////////////////////////
+	/////////////////////////////////////////////
+	////////////////  ARTIST  ////////////////////////////
+	/////////////////////////////////////////////
+	/////////////////////////////////////////////
+	/////////////////////////////////////////////
+	/////////////////////////////////////////////
+	/////////////////////////////////////////////
+	/////////////////////////////////////////////
+
+	if (siteSection == "artist") {
+
+		$('h1').before(
+
+			//////// BREADCRUMBS
+			'<ol class="breadcrumb" style="text-transform: uppercase"> <li><a href="/zas/">All Masters</a> &gt; </li>  </ol>' +
+			// 
+			'');
+
+		// ----------- PAGINATION ---------
+		var prev = $("#prevnext a:eq(0)").attr("href");
+		var prevTxt = $("#prevnext a:eq(0)").text();
+		var next = $("#prevnext a:eq(1)").attr("href");
+		var nextTxt = $("#prevnext a:eq(1)").text();
+
+		$('#prevnext').remove();
+
+		$('#items_wrap').after(
+			paginateHTML(
+				"item",
+				prev,
+				prevTxt,
+				next,
+				nextTxt
+			)
+		);
+		// ----------- /PAGINATION ---------
+
+		commonFooter();
+
+	}
+
 	//////////////////////  /SINGLE  ////////////////////////////
 
 	///////// ON ALL COMMON **AFTER** //////////////////////////
 
-	if (siteSection.match(/(single|item|main)/)) {
+	if (siteSection.match(/(single|item|main|main)/)) {
 
 		try {
 			$('body').append('<div class="sharing"></div>');
@@ -1415,7 +1464,7 @@ $(document).ready(function() {
 
 					var title = ` ${artistName.replace(/-/g, ' ')}  ${itemTitle} `;
 
-					title = ((title.replace(/([\-_]|\.html)/igm," ")).replace(/\s+/," ")).trim();
+					title = ((title.replace(/([\-_]|\.html)/igm, " ")).replace(/\s+/, " ")).trim();
 
 					// const item = $('<div class="result-item"></div>');
 					// item.html(`<a href="${url}" target="_blank">${title}</a>`);

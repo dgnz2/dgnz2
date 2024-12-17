@@ -9,6 +9,8 @@
   /*outline: solid 10px red;*/
   left: 50%;
   transform: translateX(-50%);
+  width: 90%;
+  max-width: 800px;
 }
 
 .zdlogo, .breadcrumb, h1, #items_wrap, #commonFooter {
@@ -155,6 +157,7 @@ body.item .thumbnail img {
   top: 10px;
   height: 100px;
   font-size: 28px;
+  font-weight: bold;
 }
 
 .artist h2 {

@@ -836,7 +836,7 @@ function single_breadcrumbs() {
 	//// LOGO AND BREADCRUMS
 	$('.container').append(
 		//////// BREADCRUMBS
-		'<ol class="breadcrumb" style="text-transform: uppercase"> <li><a href="/zas/">Home</a></li> <li><a href="../../#' + catslug + '">' + catname + '</a></li>  <li><a href="./">' + dirname + '</a></li> </ol>' +
+		'<ol class="breadcrumb" style="text-transform: uppercase"> <li><a href="/zas/">Home</a></li> <li><a href="../../' + catslug + '/">' + catname + '</a></li>  <li><a href="./">' + dirname + '</a></li> </ol>' +
 		// 
 		'');
 
@@ -984,7 +984,7 @@ $(document).ready(function() {
 		$('.item').each(function(i) {
 			var content = ($(this).attr('data-d')).split('|');
 			// console.log(content[4]);
-			html += '<hr/> <div id="' + content[0] + '" class="media"> <div class="media-left" style=""> <img style="width:' + viewport(25, 'vw') + 'px; max-width:130px;" class="lazy media-object" data-src="https://books.zedign.com/i/e/' + content[4] + '.jpg" src="" alt=""> </div> <div class="media-body"> <h3 class="media-heading">' + content[1] + '</h3>' +
+			html += '<hr/> <div id="' + content[0] + '" class="media"> <div class="media-left" style=""> <a href="./' + content[0] + '/"> <img style="width:' + viewport(25, 'vw') + 'px; max-width:130px;" class="lazy media-object" data-src="https://books.zedign.com/i/e/' + content[4] + '.jpg" src="" alt=""> </a> </div> <div class="media-body"> <h3 class="media-heading"><b><a href="./' + content[0] + '/">' + content[1] + '</a></b></h3>' +
 			//// classic posters button
 			' <a style="background: #d8d9ff; margin: 5px" href="' + content[0] + '/posters/" role="button" class="btn btn-default">Classic Posters</a> ' +
 			// 
@@ -1058,7 +1058,7 @@ $(document).ready(function() {
 		//// BREADCRUMS
 		$('h1').before(
 			//////// BREADCRUMBS
-			'<ol class="breadcrumb" style="text-transform: uppercase"> <li><a href="/zas/">Home</a></li> <li><a href="../../#' + catslug + '">' + catname + '</a></li>  <li><a href="./">' + dirname + '</a></li> </ol>' +
+			'<ol class="breadcrumb" style="text-transform: uppercase"> <li><a href="/zas/">Home</a></li> <li><a href="../../' + catslug + '/">' + catname + '</a></li>  <li><a href="./">' + dirname + '</a></li> </ol>' +
 			// 
 			'');
 		// ITEM BODY
@@ -1239,6 +1239,18 @@ $(document).ready(function() {
 	/////////////////////////////////////////////
 
 	if (siteSection == "artist") {
+
+		// $("h1").prepend('');
+
+		try {
+
+			$('h2').wrapInner('<table><tr><td></td></tr></table>');
+
+			var image_src = $('head link[rel=image_src]').attr('href');
+			$('h2 tr').prepend('<td><div><img style="border-radius:72px;height:72px" src="'+image_src+'"/></div></td>');
+
+
+		} catch(e){}
 
 		$('h1').before(
 

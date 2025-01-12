@@ -162,7 +162,7 @@ body.item .thumbnail img {
 
 .artist h2 {
   height: 100px;
-  font-size: 12px;
+  font-size: calc(9px + 1vw);
   line-height: 1em;
   text-align: center;
 }

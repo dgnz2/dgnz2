@@ -1240,34 +1240,72 @@ $(document).ready(function() {
 
 	if (siteSection == "artist") {
 
-		// $("h1").prepend('');
-
 		try {
 
 			$('h2').wrapInner('<table><tr><td></td></tr></table>');
 
 			var image_src = $('head link[rel=image_src]').attr('href');
-			$('h2 tr').prepend('<td><div><img style="border-radius:72px;height:72px" src="'+image_src+'"/></div></td>');
+			$('h2 tr').prepend('<td><div><img style="border-radius:72px;height:72px" src="' + image_src + '"/></div></td>');
 
+			// console.log(miscInf[1]);
 
-		} catch(e){}
+		} catch (e) {}
+
+		$('#items_wrap').wrap('<div id="main_wrap"></div>');
+
+		///// VIDEO 
+
+		var videoID = "";
+
+		try {
+			videoID = miscInf[1];
+		} catch (e) {}
+
+		if (videoID.match(/.{4,}/)) {
+
+			$('#main_wrap').append(`
+
+			<div id="video" style="
+			display:flex;
+			justify-content:center;	
+
+			">
+			<iframe style="
+
+			width: calc(280px + 1vw);
+			height: calc(280px + 1vw);
+			max-width: 90vw;
+
+			" 
+
+			src="https://www.youtube.com/embed/${videoID}?controls=0&autoplay=1" 
+			frameborder="0" allowfullscreen></iframe>
+			</div>
+
+			`);
+
+			// &enablejsapi=1&rel=0&controls=0&showinfo=0&autoplay=1
+
+		}
+
+		///// /VIDEO 
 
 		$('h1').before(
 
 			//////// BREADCRUMBS
 			'<ol class="breadcrumb" style="text-transform: uppercase"> <li><a href="/zas/">All Masters</a> &gt; </li>  </ol>' +
 			// 
+
 			'');
 
 		// ----------- PAGINATION ---------
+
 		var prev = $("#prevnext a:eq(0)").attr("href");
 		var prevTxt = $("#prevnext a:eq(0)").text();
 		var next = $("#prevnext a:eq(1)").attr("href");
 		var nextTxt = $("#prevnext a:eq(1)").text();
 
-		$('#prevnext').remove();
-
-		$('#items_wrap').after(
+		$('#main_wrap').after(
 			paginateHTML(
 				"item",
 				prev,
@@ -1276,17 +1314,18 @@ $(document).ready(function() {
 				nextTxt
 			)
 		);
-		// ----------- /PAGINATION ---------
 
-		commonFooter();
+		$('#prevnext').remove();
+
+		// ----------- /PAGINATION ---------
 
 	}
 
-	//////////////////////  /SINGLE  ////////////////////////////
+	// /artistpage
 
 	///////// ON ALL COMMON **AFTER** //////////////////////////
 
-	if (siteSection.match(/(single|item|main|main)/)) {
+	if (siteSection.match(/(single|item|main|artist)/)) {
 
 		try {
 			$('body').append('<div class="sharing"></div>');

@@ -16,6 +16,20 @@ try {
 // 
 /////////////// funcs ////////////////////////
 
+function getBaseUrl() {
+	var currentUrl = window.location.href;
+	var url = new URL(currentUrl);
+	var baseUrl = url.origin + url.pathname;
+	return baseUrl;
+}
+
+function checkQueryParam(param, value) {
+	try {
+		var urlParams = new URLSearchParams(window.location.search);
+		return urlParams.get(param) === value;
+	} catch (e) {}
+}
+
 function affLocalize(objAmAffIds, strEPNId, strZzlId) {
 	// v6
 	// req: jq
@@ -920,6 +934,16 @@ function disqus_wrap() {
 
 // document.getElementsByTagName('body')[0].insertAdjacentHTML("afterbegin", '<div id="zedign_logo" style="height:74px;"></div>')
 
+/////////////// EXEC BEFORE JQ ////////////////////
+
+if (checkQueryParam('video', 'watch')) {
+
+	document.title = 'Watch ' + catname + " Fine Art Video 8K - The Zedign House ";
+
+}
+
+/////////////// EXEC JQ ////////////////////
+
 $(document).ready(function() {
 
 	///////// ON ALL COMMON **BEFORE**
@@ -1243,55 +1267,211 @@ $(document).ready(function() {
 
 	if (siteSection == "artist") {
 
-		try {
+		function putVideoPlay() {
+			var videoID = "";
 
-			$('h2').wrapInner('<table><tr><td></td></tr></table>');
+			try {
+				videoID = miscInf[1];
+			} catch (e) {}
 
-			var image_src = $('head link[rel=image_src]').attr('href');
-			$('h2 tr').prepend('<td><div><img style="border-radius:72px;height:72px" src="' + image_src + '"/></div></td>');
+			if (videoID.match(/.{4,}/)) {
 
-			// console.log(miscInf[1]);
+				$('head').append(`
 
-		} catch (e) {}
+					<style>
+						.breadcrumb {display:none}
+						#videoplayer {margin:0 auto}
 
-		$('#items_wrap').wrap('<div id="main_wrap"></div>');
+						@media screen and (orientation: portrait) { #videoplayer { width: 90vw; height: 90vw; } }
 
-		///// VIDEO 
+						@media screen and (orientation: landscape) { #videoplayer { width: 90vh; height: 90vh; } }
 
-		var videoID = "";
+					<style>
 
-		try {
-			videoID = miscInf[1];
-		} catch (e) {}
 
-		if (videoID.match(/.{4,}/)) {
+				`);
 
-			$('#main_wrap').append(`
+				$('#videoplayer').append(`
 
-			<div id="video" style="
-			display:flex;
-			justify-content:center;	
+					<div id="video" style=" display:flex; justify-content:center; ">
 
-			">
-			<iframe style="
+					<iframe id="videoplayer" 
+					src="https://www.youtube.com/embed/${videoID}?controls=0&autoplay=1&rel=0" frameborder="0" allowfullscreen></iframe> 
 
-			width: calc(280px + 1vw);
-			height: calc(280px + 1vw);
-			max-width: 90vw;
-
-			" 
-
-			src="https://www.youtube.com/embed/${videoID}?controls=0&autoplay=1&rel=0" 
-			frameborder="0" allowfullscreen></iframe>
-			</div>
+					</div>
 
 			`);
 
-			// &enablejsapi=1&rel=0&controls=0&showinfo=0&autoplay=1
+				// &enablejsapi=1&rel=0&controls=0&showinfo=0&autoplay=1
+
+			}
 
 		}
 
-		///// /VIDEO 
+		if (checkQueryParam('video', 'watch')) {
+
+			// console.log("The URL contains video=play");
+
+			// document.title = 'Watch ' + catname + " Fine Art Video 8K - The Zedign House ";
+
+			$('body').html(`
+
+					<div id="videoplayer">
+
+					<div><a 
+					
+					title ="Watch 8K High Quality Video" 
+					
+					href="${getBaseUrl()}"
+					
+					style="
+					font-size:40px;
+					line-height:1em;
+					margin:10px;
+					display:table;
+
+					"
+					>
+
+					<svg fill="#000000" height="30px" width="30px" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 330 330" xml:space="preserve"> <path id="XMLID_92_" d="M111.213,165.004L250.607,25.607c5.858-5.858,5.858-15.355,0-21.213c-5.858-5.858-15.355-5.858-21.213,0.001 l-150,150.004C76.58,157.211,75,161.026,75,165.004c0,3.979,1.581,7.794,4.394,10.607l150,149.996 C232.322,328.536,236.161,330,240,330s7.678-1.464,10.607-4.394c5.858-5.858,5.858-15.355,0-21.213L111.213,165.004z"/> </svg>
+
+					</a> </div>
+
+
+					</div>
+
+				
+			`);
+			// Perform your action here
+
+			try {
+				putVideoPlay();
+			} catch (e) {}
+
+		} else {
+
+			// console.log("The URL does not contain video=1.");
+
+			try {
+
+				$('h2').wrapInner('<table><tr><td></td></tr></table>');
+
+				var image_src = $('head link[rel=image_src]').attr('href');
+				$('h2 tr').prepend('<td><div><img style="border-radius:72px;height:72px" src="' + image_src + '"/></div></td>');
+
+				// console.log(miscInf[1]);
+
+			} catch (e) {}
+
+			$('#items_wrap').wrap('<div id="main_wrap"></div>');
+
+		}
+
+		///// -------------- VIDEO --------------
+
+		function putVideo() {
+
+			var videoID = "";
+
+			try {
+				videoID = miscInf[1];
+			} catch (e) {}
+
+			// console.log(videoID);
+
+			if (videoID.match(/.{4,}/)) {
+
+				/*
+					<div id="video" style="
+					display:flex;
+					justify-content:center;	
+
+					">
+					<iframe style="
+
+					width: calc(280px + 1vw);
+					height: calc(280px + 1vw);
+					max-width: 90vw;
+
+					" 
+
+					src="https://www.youtube.com/embed/${videoID}?controls=0&autoplay=1&rel=0" 
+					frameborder="0" allowfullscreen></iframe>
+					</div>
+					*/
+
+				$('#main_wrap').append(`
+
+
+					<div>
+
+					<a style="display: table; margin: 0 auto; position: relative;" href="./?video=watch">
+					
+					<img
+					style="
+					width: 60vw;
+					max-width: 300px;
+					display: block;
+					"
+					src="https://img.youtube.com/vi/${videoID}/hqdefault.jpg"
+					alt="Image">
+
+					<svg 
+
+					style="
+					position: absolute;  
+					top: 50%;  
+					left: 50%;  
+					transform: translate(-50%, -50%);  
+					pointer-events: none; 
+					width: 50px;  
+					height: 50px; 
+					"
+					height="100%" version="1.1" viewBox="0 0 68 48" width="100%"><path class="ytp-large-play-button-bg" d="M66.52,7.74c-0.78-2.93-2.49-5.41-5.42-6.19C55.79,.13,34,0,34,0S12.21,.13,6.9,1.55 C3.97,2.33,2.27,4.81,1.48,7.74C0.06,13.05,0,24,0,24s0.06,10.95,1.48,16.26c0.78,2.93,2.49,5.41,5.42,6.19 C12.21,47.87,34,48,34,48s21.79-0.13,27.1-1.55c2.93-0.78,4.64-3.26,5.42-6.19C67.94,34.95,68,24,68,24S67.94,13.05,66.52,7.74z" fill="#f03"></path><path d="M 45,24 27,14 27,34" fill="#fff"></path>
+
+					</svg>
+
+					</a>
+
+					</div>
+
+
+			`);
+
+				// 	$('#main_wrap').append(`
+
+				// 		<div>
+
+				// 		<a style="display:table; margin:0 auto;" href="./?video=watch">
+
+				// 		<div class="image-container">
+
+				// 		<img
+				// 		 style="
+				// 		 	width:50vw;
+				// 		 	max-width:80vw;
+				// 		 "
+				// 		 src="https://img.youtube.com/vi/${videoID}/hqdefault.jpg">
+
+				// 		 <svg height="100%" version="1.1" viewBox="0 0 68 48" width="100%"><path class="ytp-large-play-button-bg" d="M66.52,7.74c-0.78-2.93-2.49-5.41-5.42-6.19C55.79,.13,34,0,34,0S12.21,.13,6.9,1.55 C3.97,2.33,2.27,4.81,1.48,7.74C0.06,13.05,0,24,0,24s0.06,10.95,1.48,16.26c0.78,2.93,2.49,5.41,5.42,6.19 C12.21,47.87,34,48,34,48s21.79-0.13,27.1-1.55c2.93-0.78,4.64-3.26,5.42-6.19C67.94,34.95,68,24,68,24S67.94,13.05,66.52,7.74z" fill="#f03"></path><path d="M 45,24 27,14 27,34" fill="#fff"></path></svg>
+
+				// 		</div>
+
+				// 		 </a>
+
+				// 		 </div>
+
+				// `);
+
+				// &enablejsapi=1&rel=0&controls=0&showinfo=0&autoplay=1
+
+			}
+
+		}
+
+		putVideo();
+
+		///// -------------- /VIDEO --------------
 
 		$('h1').before(
 
@@ -1469,7 +1649,7 @@ $(document).ready(function() {
 				storeFields: ['url'], // fields to return with search results
 				idField: 'id', // Specify the id field
 				searchOptions: {
-					fuzzy: 0.2 // Allow for 20% fuzziness
+					fuzzy: 0.1 // Allow for 20% fuzziness
 				}
 			});
 
@@ -1907,7 +2087,9 @@ $(document).ready(function() {
 $(window).on("load", function() {
 
 	// 
-	affLocalize("", "", thsBlg_zzl);
+	if (siteSection.match(/(single|item)/)) {
+		affLocalize("", "", thsBlg_zzl);
+	}
 	// 
 });
 //

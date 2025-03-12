@@ -1281,7 +1281,7 @@ $(document).ready(function() {
 
 			" 
 
-			src="https://www.youtube.com/embed/${videoID}?controls=0&autoplay=1" 
+			src="https://www.youtube.com/embed/${videoID}?controls=0&autoplay=1&rel=0" 
 			frameborder="0" allowfullscreen></iframe>
 			</div>
 

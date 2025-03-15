@@ -938,6 +938,9 @@ function disqus_wrap() {
 
 if (checkQueryParam('video', 'watch')) {
 
+	var link = document.querySelector('link[rel="canonical"]');
+	link.href += (link.href.includes('?') ? '&' : '?') + 'video=watch';
+
 	document.title = 'Watch ' + catname + " Fine Art Video 8K - The Zedign House ";
 
 }

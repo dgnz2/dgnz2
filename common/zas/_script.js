@@ -1126,8 +1126,9 @@ $(document).ready(function() {
 
 			html += '<div class="col-sm-6 col-md-4"> <div class="thumbnail" style="position:relative;"> <a target="_blank" rel="nofollow" href="' +
 
-			// slug + '.html' + // our url 2024-01-29
-			link + // 2024-11-14 revert to zazz (now single pgs excl via robots.txt)
+			slug + '.html' + // our url 2024-01-29
+
+			// link + // 2024-11-14 revert to zazz (now single pgs excl via robots.txt)
 
 			'"> <img class="lazy" data-src="' + img + '" src="" alt="' + title + '"> <div class="caption"> <h4>' + title + '</h4> </div> </a>  ' +
 			// 
@@ -1138,9 +1139,14 @@ $(document).ready(function() {
 			`
 						<div style="text-shadow: 1px 1px 1px #777;position:absolute;right:3px;top:2px;font-size:26px;line-height:1em;display:flex;justify-content:center;align-items:center;">
 
+						<!-- LINK SYMBOL FOR PERMALINK -->
+						<!-- off 2025-03-21 href is now our page -->
+						<!-- 
 						<a title="permalink" href="${slug}.html" style="display:block">
 						<span class="glyphicon glyphicon-link"></span>
 						</a>
+						-->
+						
 
 					
 
@@ -1353,7 +1359,11 @@ $(document).ready(function() {
 
 		} else {
 
-			// console.log("The URL does not contain video=1.");
+			// chanage Monograph word
+			var regex = /^https\:\/\/books\.zedign\.com\/zas\/[0-9]+\.html$/;
+			$('a').filter(function() {
+				return regex.test($(this).attr('href'));
+			}).html('<span style="font-size:80%;line-height:1em;">Books: Print & Digital Editions</span>');
 
 			try {
 
@@ -1361,8 +1371,6 @@ $(document).ready(function() {
 
 				var image_src = $('head link[rel=image_src]').attr('href');
 				$('h2 tr').prepend('<td><div><img style="border-radius:72px;height:72px" src="' + image_src + '"/></div></td>');
-
-				// console.log(miscInf[1]);
 
 			} catch (e) {}
 
@@ -1380,33 +1388,21 @@ $(document).ready(function() {
 				videoID = miscInf[1];
 			} catch (e) {}
 
-			// console.log(videoID);
-
 			if (videoID.match(/.{4,}/)) {
 
-				/*
-					<div id="video" style="
-					display:flex;
-					justify-content:center;	
+				var bookUrl = "https://books.zedign.com"
 
-					">
-					<iframe style="
-
-					width: calc(280px + 1vw);
-					height: calc(280px + 1vw);
-					max-width: 90vw;
-
-					" 
-
-					src="https://www.youtube.com/embed/${videoID}?controls=0&autoplay=1&rel=0" 
-					frameborder="0" allowfullscreen></iframe>
-					</div>
-					*/
+				try {
+					var zasNum = featured[1].split('|')[2];
+					bookUrl = bookUrl + '/zas/' + zasNum + '.html';
+				} catch (e) {}
 
 				$('#main_wrap').append(`
 
 
 					<div>
+
+					<div style="text-align:center;margin: 10px 0 20px 0">Watch 8K Hi-Res Video<br>of a selection from the <a href="${bookUrl}">Full Monograph Book</a></div>
 
 					<a style="display: table; margin: 0 auto; position: relative;" href="./?video=watch">
 					

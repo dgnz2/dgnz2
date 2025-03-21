@@ -1528,8 +1528,9 @@ $(document).ready(function() {
 				waitForElement('#relatedFromFeed', 10000).then((elm) => {
 
 					// DISQUS
-					$('#relatedFromFeed').after('<hr/> <div id="disqus_thread"></div> ');
-					disqus_wrap();
+					// OFF 2025-03-21
+					// $('#relatedFromFeed').after('<hr/> <div id="disqus_thread"></div> ');
+					// disqus_wrap();
 					// /DISQUS
 
 					commonFooter();

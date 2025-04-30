@@ -1225,6 +1225,57 @@ $(document).ready(function() {
 			////
 
 		}); // (document).ready
+
+
+		// remove elements for screenshots etc
+
+		if (new URLSearchParams(window.location.search).get('clean') === 'yes') {
+
+			$('.container > *:not(#items_wrap)').remove();
+
+
+			$('#items > div').removeClass('col-md-4').addClass('col-md-3');
+
+			$('head').append(`
+			<style>
+
+			.thumbnail .caption,
+			#commonFooter, 
+			#monographPanel_wrap,
+			.sharing,
+			.paginateHTML
+
+			{
+			  display: none;
+			}
+
+			body.item #items .thumbnail {
+			  height: 245px;
+			  margin-bottom: 0;
+			  border: none;
+			  border-radius: 0;
+			}
+
+			.container {
+				max-width:1120px;
+			}
+
+			#items > div {
+				padding:0;
+			}
+
+			</style>
+		`);
+
+		}
+
+
+
+
+
+
+		// 
+
 	}
 
 	/////////////////////////////////////////////

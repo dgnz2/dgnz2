@@ -1300,7 +1300,7 @@ $(document).ready(function() {
 
 				`);
 
-				$('#videoplayer').append(`
+				$('#videoplayercontainer').append(`
 
 					<div id="video" style=" display:flex; justify-content:center; ">
 
@@ -1325,7 +1325,7 @@ $(document).ready(function() {
 
 			$('body').html(`
 
-					<div id="videoplayer">
+					<div id="videoplayercontainer">
 
 					<div><a 
 					

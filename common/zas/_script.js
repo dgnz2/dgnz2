@@ -1226,13 +1226,11 @@ $(document).ready(function() {
 
 		}); // (document).ready
 
-
 		// remove elements for screenshots etc
 
 		if (new URLSearchParams(window.location.search).get('clean') === 'yes') {
 
 			$('.container > *:not(#items_wrap)').remove();
-
 
 			$('#items > div').removeClass('col-md-4').addClass('col-md-3');
 
@@ -1268,11 +1266,6 @@ $(document).ready(function() {
 		`);
 
 		}
-
-
-
-
-
 
 		// 
 

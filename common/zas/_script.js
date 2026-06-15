@@ -938,10 +938,12 @@ function disqus_wrap() {
 
 if (checkQueryParam('video', 'watch')) {
 
-	var link = document.querySelector('link[rel="canonical"]');
-	link.href += (link.href.includes('?') ? '&' : '?') + 'video=watch';
+	// now redirecting to video.zedign
+	window.location.href = "https://video.zedign.com/zas/" + catslug + ".html";
 
-	document.title = 'Watch ' + catname + " Fine Art Video 8K - The Zedign House ";
+	// var link = document.querySelector('link[rel="canonical"]');
+	// link.href += (link.href.includes('?') ? '&' : '?') + 'video=watch';
+	// document.title = 'Watch ' + catname + " Fine Art Video 8K - The Zedign House ";
 
 }
 
@@ -1363,6 +1365,10 @@ $(document).ready(function() {
 
 		if (checkQueryParam('video', 'watch')) {
 
+			window.location.href = "https://video.zedign.com/zas/" + catslug + ".html";
+
+			return
+
 			// console.log("The URL contains video=play");
 
 			// document.title = 'Watch ' + catname + " Fine Art Video 8K - The Zedign House ";
@@ -1448,7 +1454,9 @@ $(document).ready(function() {
 
 					<div style="text-align:center;margin: 10px 0 20px 0">Watch 8K Hi-Res Video<br>of a selection from the <a href="${bookUrl}">Full Monograph Book</a></div>
 
-					<a style="display: table; margin: 0 auto; position: relative;" href="./?video=watch">
+					<!-- <a style="display: table; margin: 0 auto; position: relative;" href="./?video=watch"> -->
+
+					<a style="display: table; margin: 0 auto; position: relative;" href="https://video.zedign.com/zas/${catslug}.html">
 					
 					<img
 					style="

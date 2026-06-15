@@ -16,6 +16,22 @@ try {
 // 
 /////////////// funcs ////////////////////////
 
+async function toggleSpinner(e, t) {
+	const n = "spinner-standalone-style";
+	if (!document.getElementById(n)) {
+		const e = document.createElement("style");
+		e.id = n, e.textContent = " .js-spinner-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(255, 255, 255, 0.8); display: flex; justify-content: center; align-items: center; z-index: 99999; } body > .js-spinner-overlay { position: fixed; } .js-spinner-ring { width: 40px; height: 40px; border: 4px solid #f3f3f3; border-top: 4px solid #3498db; border-radius: 50%; animation: js-spin 0.8s linear infinite; } @keyframes js-spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } } ", document.head.appendChild(e)
+	}
+	const o = document.querySelector(e);
+	if (!o) return;
+	const s = o.querySelector(".js-spinner-overlay");
+	if (t) { if (s) return; return "body" !== e && "static" === window.getComputedStyle(o).position && (o.style.position = "relative"), (e = document.createElement("div")).className = "js-spinner-overlay", e.innerHTML = '<div class="js-spinner-ring"></div>', o.appendChild(e), new Promise((e => setTimeout(e, 50))) }
+	if (s) return new Promise((e => {
+		const t = s.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 200, easing: "linear" });
+		t.onfinish = (() => { s.remove(), e() })
+	}))
+}
+
 function getBaseUrl() {
 	var currentUrl = window.location.href;
 	var url = new URL(currentUrl);
@@ -932,6 +948,8 @@ function disqus_wrap() {
 
 //////////////////////  MAIN  ////////////////////////////
 
+toggleSpinner("body", true);
+
 // document.getElementsByTagName('body')[0].insertAdjacentHTML("afterbegin", '<div id="zedign_logo" style="height:74px;"></div>')
 
 /////////////// EXEC BEFORE JQ ////////////////////
@@ -1017,22 +1035,22 @@ $(document).ready(function() {
 			var content = ($(this).attr('data-d')).split('|');
 			// console.log(content[4]);
 			html += '<hr/> <div id="' + content[0] + '" class="media"> <div class="media-left" style=""> <a href="./' + content[0] + '/"> <img style="width:' + viewport(25, 'vw') + 'px; max-width:130px;" class="lazy media-object" data-src="https://books.zedign.com/i/e/' + content[4] + '.jpg" src="" alt=""> </a> </div> <div class="media-body"> <h3 class="media-heading"><b><a href="./' + content[0] + '/">' + content[1] + '</a></b></h3>' +
-			//// classic posters button
-			' <a style="background: #d8d9ff; margin: 5px" href="' + content[0] + '/posters/" role="button" class="btn btn-default">Classic Posters</a> ' +
-			// 
-			//// other buttons depending on availability
-			// signature-posters
-			((content[5] == "y") ? ' <a style="background: #fff2e7; margin: 5px" href="' + content[0] + '/signature-posters/" role="button" class="btn btn-default">Signature Posters</a> ' : "") +
-			// postcards
-			((content[6] == "y") ? ' <a style="background: #effcd1;  margin: 5px" href="' + content[0] + '/postcards/" role="button" class="btn btn-default">Postcards</a> ' : "") +
-			// 
-			// monographs
-			((content[4].match(/[0-9]+/)) ? ' <a style="background: #e1f6f7; margin: 5px; font-size: 80%; padding: 5px;" href="https://books.zedign.com/zas/' + content[4] + '.html" role="button" class="btn btn-default">MONOGRAPH</a> ' : "") +
-			// 
-			'' +
-			/// buttons 
-			// 
-			'</div> </div> ';
+				//// classic posters button
+				' <a style="background: #d8d9ff; margin: 5px" href="' + content[0] + '/posters/" role="button" class="btn btn-default">Classic Posters</a> ' +
+				// 
+				//// other buttons depending on availability
+				// signature-posters
+				((content[5] == "y") ? ' <a style="background: #fff2e7; margin: 5px" href="' + content[0] + '/signature-posters/" role="button" class="btn btn-default">Signature Posters</a> ' : "") +
+				// postcards
+				((content[6] == "y") ? ' <a style="background: #effcd1;  margin: 5px" href="' + content[0] + '/postcards/" role="button" class="btn btn-default">Postcards</a> ' : "") +
+				// 
+				// monographs
+				((content[4].match(/[0-9]+/)) ? ' <a style="background: #e1f6f7; margin: 5px; font-size: 80%; padding: 5px;" href="https://books.zedign.com/zas/' + content[4] + '.html" role="button" class="btn btn-default">MONOGRAPH</a> ' : "") +
+				// 
+				'' +
+				/// buttons 
+				// 
+				'</div> </div> ';
 		});
 		$('#items').remove();
 
@@ -1128,17 +1146,17 @@ $(document).ready(function() {
 
 			html += '<div class="col-sm-6 col-md-4"> <div class="thumbnail" style="position:relative;"> <a target="_blank" rel="nofollow" href="' +
 
-			slug + '.html' + // our url 2024-01-29
+				slug + '.html' + // our url 2024-01-29
 
-			// link + // 2024-11-14 revert to zazz (now single pgs excl via robots.txt)
+				// link + // 2024-11-14 revert to zazz (now single pgs excl via robots.txt)
 
-			'"> <img class="lazy" data-src="' + img + '" src="" alt="' + title + '"> <div class="caption"> <h4>' + title + '</h4> </div> </a>  ' +
-			// 
-			// ' <a href="' + slug + '.html" style="color:#444!important"> ' +
+				'"> <img class="lazy" data-src="' + img + '" src="" alt="' + title + '"> <div class="caption"> <h4>' + title + '</h4> </div> </a>  ' +
+				// 
+				// ' <a href="' + slug + '.html" style="color:#444!important"> ' +
 
-			'</a>   ' +
+				'</a>   ' +
 
-			`
+				`
 						<div style="text-shadow: 1px 1px 1px #777;position:absolute;right:3px;top:2px;font-size:26px;line-height:1em;display:flex;justify-content:center;align-items:center;">
 
 						<!-- LINK SYMBOL FOR PERMALINK -->
@@ -1154,10 +1172,10 @@ $(document).ready(function() {
 
 						</div>
 						` +
-			// 
-			'</div> ' +
+				// 
+				'</div> ' +
 
-			' </div> ' +
+				' </div> ' +
 				' </div>  ' +
 				'';
 
@@ -1663,7 +1681,7 @@ $(document).ready(function() {
 		let allResults = []; // Store all search results
 
 		// IMP!! async function initSearch() {  // <<<< JS BEAUTIFIER BREAKS IT! USE ES7 const initSearch = async() => {
-		const initSearch = async() => {
+		const initSearch = async () => {
 
 			const response = await fetch(selectionType());
 			const text = await response.text();
@@ -1817,7 +1835,7 @@ $(document).ready(function() {
 		// Initialize the search when the page loads
 
 		// IMP!! (async function() {  // <<<< JS BEAUTIFIER BREAKS IT! USE ES7 `(async() => {`
-		(async() => {
+		(async () => {
 			await initSearch();
 		})(); // Immediately invoked async function
 
@@ -2142,6 +2160,9 @@ $(window).on("load", function() {
 	if (siteSection.match(/(single|item)/)) {
 		affLocalize("", "", thsBlg_zzl);
 	}
+
+	toggleSpinner("body", false);
+
 	// 
 });
 //
